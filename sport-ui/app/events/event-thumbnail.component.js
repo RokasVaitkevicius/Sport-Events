@@ -19,8 +19,8 @@ var EventThumbnailComponent = (function () {
     EventThumbnailComponent = __decorate([
         core_1.Component({
             selector: 'event-thumbnail',
-            template: "\n       <div class=\"well hoverwell thumbnail\">\n            <h2>{{event.name}}</h2>\n            <div>Author: {{event.author}}</div>\n            <div>Sport: {{event.sport}}</div>\n            <div>Date: {{event.date}}</div>\n            <div>\n                <span>Location: {{event.location.address}}</span>\n                \n                <span class=\"pad-left\">{{event.location.city}}, {{event.location.country}}</span>\n            </div>\n        </div>\n        ",
-            styles: ["\n       .pad-left {margin-left: 10px;} \n       .well div { color: #bbb; }\n        "]
+            template: "\n       <div class=\"well hoverwell thumbnail\">\n            <h2>{{event?.name}}</h2>\n            <div>Author: {{event?.author}}</div>\n            <div>Sport: {{event?.sport}}</div>\n            <div>Date: {{event?.date}}</div>\n            <div [ngSwitch]=\"event?.time\">\n                Time: {{event?.time}}\n                <span *ngSwitchCase=\"'8:00 am'\">(Early Start)</span>\n                <span *ngSwitchCase=\"'10:00 am'\">(Late Start)</span>\n                <span *ngSwitchDefault>(Normal Start)</span>\n            </div>\n            <div>\n                <span>Location: {{event?.location?.address}}</span>            \n                <span class=\"pad-left\">{{event?.location?.city}}, {{event?.location.country}}</span>\n            </div>\n            <div *ngIf=\"event?.facebookEventUrl\">\n                Facebook event URL: {{event?.facebookEventUrl}} \n            </div>\n        </div>\n        ",
+            styles: ["\n       .thumbnail { min-height: 260px; }\n       .pad-left {margin-left: 10px;} \n       .well div { color: #bbb; }\n        "]
         }), 
         __metadata('design:paramtypes', [])
     ], EventThumbnailComponent);

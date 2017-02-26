@@ -11,25 +11,56 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require("@angular/core");
 var EventsListComponent = (function () {
     function EventsListComponent() {
-        this.event1 = {
-            id: 1,
-            author: 'Rokas Pokas',
-            name: 'Table Tennis',
-            sport: 'table-tennis',
-            date: '9/26/2036',
-            time: '10:00 am',
-            phoneNumber: '866666999',
-            location: {
-                address: '155-12',
-                city: 'Kaunas',
-                country: 'Lithuania'
+        this.events = [
+            {
+                id: 1,
+                author: 'Rokas Pokas',
+                name: 'Table Tennis',
+                sport: 'table-tennis',
+                date: '9/26/2036',
+                time: '10:00 am',
+                phoneNumber: '866666999',
+                location: {
+                    address: '155-12',
+                    city: 'Kaunas',
+                    country: 'Lithuania'
+                },
+                facebookEventUrl: "fb.com/1236544"
+            },
+            {
+                id: 2,
+                author: 'Rokas Pokas',
+                name: 'Footbal',
+                sport: 'football',
+                date: '9/26/2036',
+                time: '8:00 am',
+                phoneNumber: '866666999',
+                location: {
+                    address: '155-12',
+                    city: 'Kaunas',
+                    country: 'Lithuania'
+                }
+            },
+            {
+                id: 3,
+                author: 'Rokas Pokas',
+                name: 'Basketball',
+                sport: 'basketball',
+                date: '9/26/2036',
+                time: '12:00 am',
+                phoneNumber: '866666999',
+                location: {
+                    address: '155-12',
+                    city: 'Kaunas',
+                    country: 'Lithuania'
+                }
             }
-        };
+        ];
     }
     EventsListComponent = __decorate([
         core_1.Component({
             selector: 'events-list',
-            template: "\n        <div>\n            <h1>Upcoming Sport Events</h1>\n            <hr/>\n            <event-thumbnail [event]=\"event1\"></event-thumbnail>\n        </div>\n        "
+            template: "\n        <div>\n            <h1>Upcoming Sport Events</h1>\n            <hr/>\n            <div class=\"row\">\n                <div *ngFor=\"let event of events\" class=\"col-md-5\">\n                    <event-thumbnail [event]=\"event\"></event-thumbnail>\n                </div>\n            </div>\n        </div>\n        "
         }), 
         __metadata('design:paramtypes', [])
     ], EventsListComponent);
