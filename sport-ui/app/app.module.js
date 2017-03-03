@@ -10,21 +10,37 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require("@angular/core");
 var platform_browser_1 = require("@angular/platform-browser");
-var events_app_component_1 = require("./events-app.component");
-var events_list_component_1 = require("./events/events-list.component");
-var event_thumbnail_component_1 = require("./events/event-thumbnail.component");
+var router_1 = require("@angular/router");
+var index_1 = require('./events/index');
+var toastr_service_1 = require("./common/toastr.service");
+var routes_1 = require("./routes");
 var navbar_component_1 = require("./nav/navbar.component");
+var _404_component_1 = require("./errors/404.component");
+var events_app_component_1 = require("./events-app.component");
 var AppModule = (function () {
     function AppModule() {
     }
     AppModule = __decorate([
         core_1.NgModule({
-            imports: [platform_browser_1.BrowserModule],
+            imports: [
+                platform_browser_1.BrowserModule,
+                router_1.RouterModule.forRoot(routes_1.appRoutes)
+            ],
             declarations: [
                 events_app_component_1.EventsAppComponent,
-                events_list_component_1.EventsListComponent,
-                event_thumbnail_component_1.EventThumbnailComponent,
-                navbar_component_1.NavBarComponent
+                index_1.EventsListComponent,
+                index_1.EventThumbnailComponent,
+                index_1.EventDetailsComponent,
+                navbar_component_1.NavBarComponent,
+                index_1.CreateEventComponent,
+                _404_component_1.Error404Component
+            ],
+            providers: [
+                index_1.EventService,
+                toastr_service_1.ToastrService,
+                index_1.EventsRouteActivator,
+                index_1.EventListResolver,
+                { provide: 'canDeactivateCreateEvent', useValue: checkDirtyState }
             ],
             bootstrap: [events_app_component_1.EventsAppComponent]
         }), 
@@ -33,4 +49,10 @@ var AppModule = (function () {
     return AppModule;
 }());
 exports.AppModule = AppModule;
+function checkDirtyState(component) {
+    if (component.isDirty)
+        return window.confirm('You have not saved this event, do you' +
+            'really want to cancel?');
+    return true;
+}
 //# sourceMappingURL=app.module.js.map

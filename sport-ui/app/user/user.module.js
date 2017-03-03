@@ -9,17 +9,27 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require("@angular/core");
-var EventsAppComponent = (function () {
-    function EventsAppComponent() {
+var common_1 = require("@angular/common");
+var router_1 = require("@angular/router");
+var profile_component_1 = require("./profile.component");
+var user_routes_1 = require("./user.routes");
+var UserModule = (function () {
+    function UserModule() {
     }
-    EventsAppComponent = __decorate([
-        core_1.Component({
-            selector: 'events-app',
-            template: "\n        <nav-bar></nav-bar>\n        <router-outlet></router-outlet>\n        "
+    UserModule = __decorate([
+        core_1.NgModule({
+            imports: [
+                common_1.CommonModule,
+                router_1.RouterModule.forChild(user_routes_1.userRoutes)
+            ],
+            declarations: [
+                profile_component_1.ProfileComponent
+            ],
+            providers: []
         }), 
         __metadata('design:paramtypes', [])
-    ], EventsAppComponent);
-    return EventsAppComponent;
+    ], UserModule);
+    return UserModule;
 }());
-exports.EventsAppComponent = EventsAppComponent;
-//# sourceMappingURL=events-app.component.js.map
+exports.UserModule = UserModule;
+//# sourceMappingURL=user.module.js.map

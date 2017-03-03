@@ -9,17 +9,19 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require("@angular/core");
-var EventsAppComponent = (function () {
-    function EventsAppComponent() {
+var event_service_1 = require("./shared/event.service");
+var EventListResolver = (function () {
+    function EventListResolver(eventService) {
+        this.eventService = eventService;
     }
-    EventsAppComponent = __decorate([
-        core_1.Component({
-            selector: 'events-app',
-            template: "\n        <nav-bar></nav-bar>\n        <router-outlet></router-outlet>\n        "
-        }), 
-        __metadata('design:paramtypes', [])
-    ], EventsAppComponent);
-    return EventsAppComponent;
+    EventListResolver.prototype.resolve = function () {
+        return this.eventService.getEvents().map(function (events) { return events; });
+    };
+    EventListResolver = __decorate([
+        core_1.Injectable(), 
+        __metadata('design:paramtypes', [event_service_1.EventService])
+    ], EventListResolver);
+    return EventListResolver;
 }());
-exports.EventsAppComponent = EventsAppComponent;
-//# sourceMappingURL=events-app.component.js.map
+exports.EventListResolver = EventListResolver;
+//# sourceMappingURL=events-list-resolver.service.js.map
