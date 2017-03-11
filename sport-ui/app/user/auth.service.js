@@ -9,20 +9,29 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require("@angular/core");
-var auth_service_1 = require("../user/auth.service");
-var NavBarComponent = (function () {
-    function NavBarComponent(authService) {
-        this.authService = authService;
+var AuthService = (function () {
+    function AuthService() {
     }
-    NavBarComponent = __decorate([
-        core_1.Component({
-            selector: 'nav-bar',
-            templateUrl: 'app/nav/navbar.component.html',
-            styles: ["\n        .nav.navbar-nav {font-size: 15px;}\n        #searchForm {margin-right: 100px;}\n        @media (max-width: 1200px) {#searchForm {display:none}}\n        li > a.active { color: #F97924; }\n    "]
-        }), 
-        __metadata('design:paramtypes', [auth_service_1.AuthService])
-    ], NavBarComponent);
-    return NavBarComponent;
+    AuthService.prototype.loginUser = function (userName, password) {
+        this.currentUser = {
+            id: 1,
+            userName: userName,
+            firstName: 'Jonas',
+            lastName: 'Jonaitis'
+        };
+    };
+    AuthService.prototype.isAuthenticated = function () {
+        return !!this.currentUser;
+    };
+    AuthService.prototype.updateCurrentUser = function (firstName, lastName) {
+        this.currentUser.firstName = firstName;
+        this.currentUser.lastName = lastName;
+    };
+    AuthService = __decorate([
+        core_1.Injectable(), 
+        __metadata('design:paramtypes', [])
+    ], AuthService);
+    return AuthService;
 }());
-exports.NavBarComponent = NavBarComponent;
-//# sourceMappingURL=navbar.component.js.map
+exports.AuthService = AuthService;
+//# sourceMappingURL=auth.service.js.map

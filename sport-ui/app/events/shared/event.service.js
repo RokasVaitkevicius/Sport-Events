@@ -21,6 +21,10 @@ var EventService = (function () {
     EventService.prototype.getEvent = function (id) {
         return EVENTS.find(function (event) { return event.id === id; });
     };
+    EventService.prototype.saveEvent = function (event) {
+        event.id = 999;
+        EVENTS.push(event);
+    };
     EventService = __decorate([
         core_1.Injectable(), 
         __metadata('design:paramtypes', [])
@@ -34,7 +38,7 @@ var EVENTS = [
         author: 'Rokas Pokas',
         name: 'Table Tennis',
         sport: 'table-tennis',
-        date: '9/26/2036',
+        date: new Date('2036/09/05'),
         time: '10:00 am',
         phoneNumber: '866666999',
         location: {
@@ -49,7 +53,7 @@ var EVENTS = [
         author: 'Rokas Pokas',
         name: 'Footbal',
         sport: 'football',
-        date: '9/26/2036',
+        date: new Date('2036/09/05'),
         time: '8:00 am',
         phoneNumber: '866666999',
         location: {
@@ -63,7 +67,7 @@ var EVENTS = [
         author: 'Rokas Pokas',
         name: 'Basketball',
         sport: 'basketball',
-        date: '9/26/2036',
+        date: new Date('2036/09/05'),
         time: '12:00 am',
         phoneNumber: '866666999',
         location: {

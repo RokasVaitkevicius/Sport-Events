@@ -13,6 +13,8 @@ var common_1 = require("@angular/common");
 var router_1 = require("@angular/router");
 var profile_component_1 = require("./profile.component");
 var user_routes_1 = require("./user.routes");
+var login_component_1 = require("./login.component");
+var forms_1 = require("@angular/forms");
 var UserModule = (function () {
     function UserModule() {
     }
@@ -20,10 +22,13 @@ var UserModule = (function () {
         core_1.NgModule({
             imports: [
                 common_1.CommonModule,
+                forms_1.FormsModule,
+                forms_1.ReactiveFormsModule,
                 router_1.RouterModule.forChild(user_routes_1.userRoutes)
             ],
             declarations: [
-                profile_component_1.ProfileComponent
+                profile_component_1.ProfileComponent,
+                login_component_1.LoginComponent
             ],
             providers: []
         }), 

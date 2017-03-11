@@ -12,7 +12,7 @@ import {EventService} from "../shared/event.service";
 })
 export class EventDetailsComponent implements OnInit {
 
-    event: any;
+    event: IEvent;
 
     constructor(private eventService: EventService,
                 private route:ActivatedRoute) {

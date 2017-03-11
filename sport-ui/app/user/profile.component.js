@@ -9,14 +9,44 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
+var forms_1 = require("@angular/forms");
+var auth_service_1 = require("./auth.service");
+var router_1 = require("@angular/router");
 var ProfileComponent = (function () {
-    function ProfileComponent() {
+    function ProfileComponent(authService, router) {
+        this.authService = authService;
+        this.router = router;
     }
+    ProfileComponent.prototype.ngOnInit = function () {
+        this.firstName = new forms_1.FormControl(this.authService.currentUser.firstName, [forms_1.Validators.required,
+            forms_1.Validators.pattern('[a-zA-Z].*')]);
+        this.lastName = new forms_1.FormControl(this.authService.currentUser.lastName, forms_1.Validators.required);
+        this.profileForm = new forms_1.FormGroup({
+            firstName: this.firstName,
+            lastName: this.lastName
+        });
+    };
+    ProfileComponent.prototype.saveProfile = function (formValue) {
+        if (this.profileForm.valid) {
+            this.authService.updateCurrentUser(formValue.firstName, formValue.lastName);
+            this.router.navigate(['events']);
+        }
+    };
+    ProfileComponent.prototype.validateFirstName = function () {
+        return this.firstName.valid || this.firstName.untouched;
+    };
+    ProfileComponent.prototype.validateLastName = function () {
+        return this.lastName.valid || this.lastName.untouched;
+    };
+    ProfileComponent.prototype.cancel = function () {
+        this.router.navigate(['events']);
+    };
     ProfileComponent = __decorate([
         core_1.Component({
-            template: "\n    <h1>Edit Your Profile</h1>\n    <hr>\n    <div class=\"col-md-6\">\n      <h3>[Edit profile form will go here]</h3>\n      <br />\n      <br />\n      <button type=\"submit\" class=\"btn btn-primary\">Save</button>\n      <button type=\"button\" class=\"btn btn-default\">Cancel</button>\n    </div>\n  ",
+            templateUrl: 'app/user/profile.component.html',
+            styles: ["\n        em {float:right; color: #E05C65; padding-left: 10px;}\n        .error input {background-color: #E3C3C5;}\n        .error ::-webkit-input-placeholder {color: #999;}\n        .error ::-moz-placeholder {color: #999;}\n        .error :-moz-placeholder {color: #999;}\n        .error :-ms-input-placeholder {color: #999;}\n     "]
         }), 
-        __metadata('design:paramtypes', [])
+        __metadata('design:paramtypes', [auth_service_1.AuthService, router_1.Router])
     ], ProfileComponent);
     return ProfileComponent;
 }());

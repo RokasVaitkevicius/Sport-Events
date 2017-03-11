@@ -1,28 +1,34 @@
 import {Injectable} from "@angular/core";
-import {Subject} from "rxjs/RX";
+import {Subject, Observable} from "rxjs/RX";
 import Events = NodeJS.Events;
+import {IEvent} from "./event.model";
 
 @Injectable()
 export class EventService {
-    getEvents() {
-        let subject = new Subject();
+    getEvents(): Observable<IEvent[]> {
+        let subject = new Subject<IEvent[]>();
         setTimeout(() => {subject.next(EVENTS); subject.complete(); },
             100);
         return subject;
     }
 
-    getEvent(id: number) {
+    getEvent(id: number) : IEvent {
         return EVENTS.find(event => event.id === id);
+    }
+
+    saveEvent(event) {
+        event.id = 999;
+        EVENTS.push(event);
     }
 }
 
-    const EVENTS = [
+    const EVENTS : IEvent[] = [
     {
         id: 1,
         author: 'Rokas Pokas',
         name: 'Table Tennis',
         sport: 'table-tennis',
-        date: '9/26/2036',
+        date: new Date('2036/09/05'),
         time: '10:00 am',
         phoneNumber: '866666999',
         location: {
@@ -37,7 +43,7 @@ export class EventService {
         author: 'Rokas Pokas',
         name: 'Footbal',
         sport: 'football',
-        date: '9/26/2036',
+        date: new Date('2036/09/05'),
         time: '8:00 am',
         phoneNumber: '866666999',
         location: {
@@ -51,7 +57,7 @@ export class EventService {
         author: 'Rokas Pokas',
         name: 'Basketball',
         sport: 'basketball',
-        date: '9/26/2036',
+        date: new Date('2036/09/05'),
         time: '12:00 am',
         phoneNumber: '866666999',
         location: {

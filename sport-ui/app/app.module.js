@@ -11,8 +11,10 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require("@angular/core");
 var platform_browser_1 = require("@angular/platform-browser");
 var router_1 = require("@angular/router");
+var forms_1 = require("@angular/forms");
 var index_1 = require('./events/index');
 var toastr_service_1 = require("./common/toastr.service");
+var auth_service_1 = require("./user/auth.service");
 var routes_1 = require("./routes");
 var navbar_component_1 = require("./nav/navbar.component");
 var _404_component_1 = require("./errors/404.component");
@@ -24,6 +26,8 @@ var AppModule = (function () {
         core_1.NgModule({
             imports: [
                 platform_browser_1.BrowserModule,
+                forms_1.FormsModule,
+                forms_1.ReactiveFormsModule,
                 router_1.RouterModule.forRoot(routes_1.appRoutes)
             ],
             declarations: [
@@ -40,6 +44,7 @@ var AppModule = (function () {
                 toastr_service_1.ToastrService,
                 index_1.EventsRouteActivator,
                 index_1.EventListResolver,
+                auth_service_1.AuthService,
                 { provide: 'canDeactivateCreateEvent', useValue: checkDirtyState }
             ],
             bootstrap: [events_app_component_1.EventsAppComponent]
