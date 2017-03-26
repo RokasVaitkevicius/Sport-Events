@@ -1,4 +1,4 @@
-import {Component, OnInit, Inject, ViewContainerRef} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {AuthService} from "../shared/auth.service";
 import {Router} from "@angular/router";

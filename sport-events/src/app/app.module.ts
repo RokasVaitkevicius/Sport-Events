@@ -20,11 +20,7 @@ import {RouterModule} from "@angular/router";
 import {appRoutes} from "./app-routing.module";
 import {CreateEventComponent} from "./events/create-event/create-event.component";
 import {DurationPipe} from "./events/shared/duration.pipe";
-import {TOASTR_TOKEN} from "./shared/toastr.service";
-import {Toastr} from "./shared/toastr.model";
 import {ToastrModule} from "toastr-ng2";
-
-export declare let toastr: Toastr;
 
 @NgModule({
   declarations: [
@@ -52,7 +48,6 @@ export declare let toastr: Toastr;
     EventsRouteActivator,
     EventListResolver,
     AuthService,
-    //{ provide: TOASTR_TOKEN, useValue: toastr },
     { provide: 'canDeactivateCreateEvent', useValue: checkDirtyState}
   ],
   bootstrap: [AppComponent]
