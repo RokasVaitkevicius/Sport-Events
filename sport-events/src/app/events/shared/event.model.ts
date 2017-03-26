@@ -7,6 +7,7 @@ export interface IEvent {
   time: string,
   price?: number,
   phoneNumber: string,
+  duration: number,
   location?: {
     address: string,
     city: string,

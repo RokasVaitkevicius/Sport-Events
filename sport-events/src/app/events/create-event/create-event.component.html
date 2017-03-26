@@ -17,6 +17,16 @@
       <em *ngIf="newEventForm.controls.sport?.invalid && (newEventForm.controls.sport?.touched)">Required</em>
       <input (ngModel)="sport" name="sport" required id="sport" type="text" class="form-control" placeholder="Type of sport..." />
     </div>
+    <div class="form-group">
+      <label for="duration">Duration:</label>
+      <select class="form-control">
+        <option value="">select duration...</option>
+        <option value="1">Half Hour</option>
+        <option value="2">1 Hour</option>
+        <option value="3">Half Day</option>
+        <option value="4">Full Day</option>
+      </select>
+    </div>
     <div class="form-group" [ngClass]="{'error': newEventForm.controls.date?.invalid && newEventForm.controls.date?.touched}">
       <label for="eventDate">Event Date:</label>
       <em *ngIf="newEventForm.controls.date?.invalid && (newEventForm.controls.date?.touched)">Required</em>

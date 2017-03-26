@@ -3,15 +3,16 @@
 
   <div class="row">
     <div class="col-md-11">
-      <h2>{{event?.name}} </h2>
+      <h2>{{event?.name | uppercase}} </h2>
     </div>
   </div>
 
   <div class="row">
     <div class="col-md-6">
       <div><strong>Author:</strong> {{event?.author}}</div>
-      <div><strong>Date:</strong> {{event?.date}}</div>
+      <div><strong>Date:</strong> {{event?.date | date:'y-M-d'}}</div>
       <div><strong>Time:</strong> {{event?.time}}</div>
+      <span>Duration: {{event?.duration | duration}}</span><br />
     </div>
     <div class="col-md-6">
       <address>

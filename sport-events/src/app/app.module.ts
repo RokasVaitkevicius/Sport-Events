@@ -19,7 +19,11 @@ import {EventListResolver} from "./events/shared/event-list-resolver.service";
 import {RouterModule} from "@angular/router";
 import {appRoutes} from "./app-routing.module";
 import {CreateEventComponent} from "./events/create-event/create-event.component";
+import {DurationPipe} from "./events/shared/duration.pipe";
+import {TOASTR_TOKEN} from "./shared/toastr.service";
+import {Toastr} from "./shared/toastr.model";
 
+export declare let toastr: Toastr;
 
 @NgModule({
   declarations: [
@@ -31,7 +35,8 @@ import {CreateEventComponent} from "./events/create-event/create-event.component
     EventThumbnailComponent,
     ProfileComponent,
     LoginComponent,
-    Error404Component
+    Error404Component,
+    DurationPipe
   ],
   imports: [
     BrowserModule,
@@ -45,6 +50,7 @@ import {CreateEventComponent} from "./events/create-event/create-event.component
     EventsRouteActivator,
     EventListResolver,
     AuthService,
+    { provide: TOASTR_TOKEN, useValue: toastr },
     { provide: 'canDeactivateCreateEvent', useValue: checkDirtyState}
   ],
   bootstrap: [AppComponent]
@@ -57,3 +63,4 @@ export function checkDirtyState(component: CreateEventComponent) {
       'really want to cancel?')
   return true;
 }
+
