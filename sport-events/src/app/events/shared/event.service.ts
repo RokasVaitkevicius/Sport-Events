@@ -1,11 +1,12 @@
 import {Injectable} from "@angular/core";
 import {Observable, Subject} from "rxjs";
 import {IEvent} from "./event.model";
-/**
- * Created by Rokas on 2017-03-19.
- */
+
 @Injectable()
 export class EventService {
+  private searchNotification = new Subject<any>();
+  searchNotificationObservable$ = this.searchNotification.asObservable();
+
   getEvents(): Observable<IEvent[]> {
     let subject = new Subject<IEvent[]>();
     setTimeout(() => {subject.next(EVENTS); subject.complete(); },
@@ -20,6 +21,20 @@ export class EventService {
   saveEvent(event) {
     event.id = 999;
     EVENTS.push(event);
+  }
+
+  public activateSearch(searchTerm: string) {
+    let results: IEvent[] = [];
+    let term = searchTerm.trim().toLocaleLowerCase();
+    if(term === "") {
+      results = EVENTS;
+      this.searchNotification.next({events: results, searchTerm: term});
+    } else {
+      results = EVENTS.filter(events =>
+         events.name.toLocaleLowerCase().indexOf(term) > -1
+      );
+      this.searchNotification.next({events: results, searchTerm: searchTerm});
+    }
   }
 }
 

@@ -2,6 +2,8 @@
   <h1>Upcoming Sport Events</h1>
   <hr/>
   <div class="row">
+    <h1 class="searchTerm" *ngIf="searchTerm">Search term: {{searchTerm}}</h1>
+    <h1 class="searchTerm" *ngIf="events?.length === 0">No events found :(</h1>
     <div *ngFor="let event of events" class="col-md-5">
       <event-thumbnail [event]="event"></event-thumbnail>
     </div>
