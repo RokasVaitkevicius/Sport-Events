@@ -54,7 +54,8 @@ const EVENTS : IEvent[] = [
       city: 'Kaunas',
       country: 'Lithuania'
     },
-    facebookEventUrl: "fb.com/1236544"
+    facebookEventUrl: "fb.com/1236544",
+    voters: ['bradgreen', 'boi', 'kara', 'aaaa']
   },
   {
     id: 2,
@@ -69,7 +70,8 @@ const EVENTS : IEvent[] = [
       address: '155-12',
       city: 'Kaunas',
       country: 'Lithuania'
-    }
+    },
+    voters: ['bradgreen', 'boi', 'kara']
   },
   {
     id: 3,
@@ -84,6 +86,7 @@ const EVENTS : IEvent[] = [
       address: '155-12',
       city: 'Kaunas',
       country: 'Lithuania'
-    }
+    },
+    voters: ['bradgreen', 'boi', 'kara']
   }
 ];

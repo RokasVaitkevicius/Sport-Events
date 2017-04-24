@@ -21,6 +21,8 @@ import {appRoutes} from "./app-routing.module";
 import {CreateEventComponent} from "./events/create-event/create-event.component";
 import {DurationPipe} from "./events/shared/duration.pipe";
 import {ToastrModule} from "toastr-ng2";
+import {UpvoteComponent} from './events/upvote/upvote.component';
+import {VoterService} from './events/shared/voter.service';
 
 @NgModule({
   declarations: [
@@ -33,7 +35,8 @@ import {ToastrModule} from "toastr-ng2";
     ProfileComponent,
     LoginComponent,
     Error404Component,
-    DurationPipe
+    DurationPipe,
+    UpvoteComponent
   ],
   imports: [
     BrowserModule,
@@ -45,6 +48,7 @@ import {ToastrModule} from "toastr-ng2";
   ],
   providers: [
     EventService,
+    VoterService,
     EventsRouteActivator,
     EventListResolver,
     AuthService,

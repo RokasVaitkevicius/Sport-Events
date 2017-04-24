@@ -13,5 +13,6 @@ export interface IEvent {
     city: string,
     country: string
   },
-  facebookEventUrl?: string
+  facebookEventUrl?: string,
+  voters: string[]
 }

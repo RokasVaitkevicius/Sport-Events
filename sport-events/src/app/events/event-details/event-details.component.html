@@ -21,5 +21,13 @@
         {{event?.location?.city}}, {{event?.location?.country}}
       </address>
     </div>
+    <div class="col-md-1">
+      <div *ngIf="auth.isAuthenticated()">
+        <upvote (vote)="toggleVote(event)"
+                [count] ="event.voters.length"
+                [voted]="userHasVoted(event)">
+        </upvote>
+      </div>
+    </div>
   </div>
 </div>
