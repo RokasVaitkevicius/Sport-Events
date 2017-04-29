@@ -4,3 +4,24 @@ em {float:right; color: #E05C65; padding-left: 10px;}
 .error ::-moz-placeholder {color: #999;}
 .error :-moz-placeholder {color: #999;}
 .error :-ms-input-placeholder {color: #999;}
+
+input[type='number'] {
+  -moz-appearance:textfield;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+}
+
+select:invalid {
+  color: gray;
+}
+
+input:invalid {
+  color: gray;
+}
+
+option{
+  color: #000000;
+}

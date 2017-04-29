@@ -3,7 +3,7 @@
 <div class="col-md-6">
   <form #newEventForm="ngForm" (ngSubmit)="saveEvent(newEventForm.value)" autocomplete="off" novalidate>
     <div class="form-group" [ngClass]="{'error': newEventForm.controls.name?.invalid && newEventForm.controls.name?.touched}">
-      <label for="eventName">Event Name:</label>
+      <label for="name">Event Name:</label>
       <em *ngIf="newEventForm.controls.name?.invalid && (newEventForm.controls.name?.touched)">Required</em>
       <input (ngModel)="name" name="name" required id="name" type="text" class="form-control" placeholder="Name of your event..." />
     </div>
@@ -12,31 +12,35 @@
       <em *ngIf="newEventForm.controls.author?.invalid && (newEventForm.controls.author?.touched)">Required</em>
       <input (ngModel)="author" name="author" required id="author" type="text" class="form-control" placeholder="Author of event..." />
     </div>
-    <div class="form-group" [ngClass]="{'error': newEventForm.controls.sport?.invalid && newEventForm.controls.sport?.touched}">
-      <label for="sport">Sport:</label>
-      <em *ngIf="newEventForm.controls.sport?.invalid && (newEventForm.controls.sport?.touched)">Required</em>
-      <input (ngModel)="sport" name="sport" required id="sport" type="text" class="form-control" placeholder="Type of sport..." />
-    </div>
+
     <div class="form-group">
-      <label for="duration">Duration:</label>
-      <select class="form-control">
-        <option value="">select duration...</option>
-        <option value="1">Half Hour</option>
-        <option value="2">1 Hour</option>
-        <option value="3">Half Day</option>
-        <option value="4">Full Day</option>
+      <label>Sport Type:</label>
+      <em *ngIf="newEventForm.controls.sportType?.invalid && (newEventForm.controls.sportType?.touched)">Required</em>
+      <select class="form-control" required>
+        <option value="" selected disabled hidden>Choose Sport Type...</option>
+        <option *ngFor="let sportType of sportTypes" value="{{sportType.id}}">{{sportType.name}}</option>
       </select>
     </div>
+
     <div class="form-group" [ngClass]="{'error': newEventForm.controls.date?.invalid && newEventForm.controls.date?.touched}">
       <label for="eventDate">Event Date:</label>
       <em *ngIf="newEventForm.controls.date?.invalid && (newEventForm.controls.date?.touched)">Required</em>
-      <input (ngModel)="date" name="date" required id="eventDate" type="text" class="form-control" placeholder="format (mm/dd/yyyy)..." />
+      <input (ngModel)="date" name="date" required id="eventDate" type="date" class="form-control"/>
     </div>
-    <div class="form-group" [ngClass]="{'error': newEventForm.controls.time?.invalid && newEventForm.controls.time?.touched}">
-      <label for="eventTime">Event Time:</label>
-      <em *ngIf="newEventForm.controls.time?.invalid && (newEventForm.controls.time?.touched)">Required</em>
-      <input (ngModel)="time" name="time" required id="eventTime" type="text" class="form-control" placeholder="start and end time..." />
+
+    <div class="row">
+    <div class="col-md-6" [ngClass]="{'error': newEventForm.controls.timeFrom?.invalid && newEventForm.controls.timeFrom?.touched}">
+      <label for="timeFrom">Event Start Time:</label>
+      <em *ngIf="newEventForm.controls.timeFrom?.invalid && (newEventForm.controls.timeFrom?.touched)">Required</em>
+      <input (ngModel)="timeFrom" name="timeFrom" required id="timeFrom" type="text" class="form-control" placeholder="Event start time..." />
     </div>
+    <div class="col-md-6" [ngClass]="{'error': newEventForm.controls.timeTill?.invalid && newEventForm.controls.timeTill?.touched}">
+      <label for="timeTill">Event End Time:</label>
+      <em *ngIf="newEventForm.controls.timeTill?.invalid && (newEventForm.controls.timeTill?.touched)">Required</em>
+      <input (ngModel)="timeTill" name="timeTill" required id="timeTill" type="text" class="form-control" placeholder="Event end time..." />
+    </div>
+    </div>
+
     <div class="form-group" [ngClass]="{'error': newEventForm.controls.phoneNumber?.invalid && newEventForm.controls.phoneNumber?.touched}">
       <label for="phoneNumber">Phone number:</label>
       <em *ngIf="newEventForm.controls.phoneNumber?.invalid && (newEventForm.controls.phoneNumber?.touched)">Required</em>
@@ -45,11 +49,11 @@
     <div class="form-group" [ngClass]="{'error': newEventForm.controls.price?.invalid && newEventForm.controls.price?.touched}">
       <label for="eventPrice">Event Price:</label>
       <em *ngIf="newEventForm.controls.price?.invalid && (newEventForm.controls.price?.touched)">Required</em>
-      <input (ngModel)="price" name="price" required id="eventPrice" type="text" type="number" class="form-control" placeholder="event price..." />
+      <input (ngModel)="price" min=0 oninput="validity.valid||(value='')" name="price" required id="eventPrice" type="text" type="number" class="form-control"
+             placeholder="Event price. Enter 0 if free..." />
     </div>
 
-    <div ngModelGroup="location" #locationGroup="ngModelGroup"
-         validateLocation>
+    <div ngModelGroup="location" #locationGroup="ngModelGroup" validateLocation>
       <div class="form-group">
         <label for="address">Event Location:</label>
         <em *ngIf="locationGroup?.invalid && locationGroup?.touched">

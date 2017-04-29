@@ -1,6 +1,7 @@
 import {Injectable} from "@angular/core";
 import {Observable, Subject} from "rxjs";
 import {IEvent} from "./event.model";
+import {ISportType} from './sport-type.model';
 
 @Injectable()
 export class EventService {
@@ -10,6 +11,14 @@ export class EventService {
   getEvents(): Observable<IEvent[]> {
     let subject = new Subject<IEvent[]>();
     setTimeout(() => {subject.next(EVENTS); subject.complete(); },
+      100);
+    return subject;
+  }
+
+  getSportTypes(): Observable<ISportType[]> {
+    console.log('hello');
+    let subject = new Subject<ISportType[]>();
+    setTimeout(() => {subject.next(SPORTTYPES); subject.complete(); },
       100);
     return subject;
   }
@@ -38,17 +47,36 @@ export class EventService {
   }
 }
 
+const SPORTTYPES: ISportType[] = [
+  {
+    id: 1,
+    name: "Basketball"
+  },
+  {
+    id: 2,
+    name: "Football"
+  },
+  {
+    id: 3,
+    name: "Table tennis"
+  },
+  {
+    id: 4,
+    name: "Other"
+  }
+]
+
 const EVENTS : IEvent[] = [
   {
     id: 1,
     author: 'Rokas Pokas',
     name: 'Table Tennis',
-    sport: 'table-tennis',
+    sportType: 3,
     date: new Date('2036/09/05'),
-    time: '10:00 am',
+    timeFrom: 10,
+    timeTill: 12,
     phoneNumber: '866666999',
     price: 20,
-    duration: 1,
     location: {
       address: '155-12',
       city: 'Kaunas',
@@ -61,11 +89,11 @@ const EVENTS : IEvent[] = [
     id: 2,
     author: 'Rokas Pokas',
     name: 'Footbal',
-    sport: 'football',
+    sportType: 2,
     date: new Date('2036/09/05'),
-    time: '8:00 am',
+    timeFrom: 10,
+    timeTill: 12,
     phoneNumber: '866666999',
-    duration: 2,
     location: {
       address: '155-12',
       city: 'Kaunas',
@@ -77,11 +105,11 @@ const EVENTS : IEvent[] = [
     id: 3,
     author: 'Rokas Pokas',
     name: 'Basketball',
-    sport: 'basketball',
+    sportType: 1,
     date: new Date('2036/09/05'),
-    time: '12:00 am',
+    timeFrom: 10,
+    timeTill: 12,
     phoneNumber: '866666999',
-    duration: 3,
     location: {
       address: '155-12',
       city: 'Kaunas',

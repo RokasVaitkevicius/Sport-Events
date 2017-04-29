@@ -6,12 +6,8 @@
   <div>Author: {{event?.author}}</div>
   <div>Sport: {{event?.sport}}</div>
   <div>Date: {{event?.date | date:'y-M-d'}}</div>
-  <div [ngSwitch]="event?.time">
-    Time: {{event?.time}}
-    <span *ngSwitchCase="'8:00 am'">(Early Start)</span>
-    <span *ngSwitchCase="'10:00 am'">(Late Start)</span>
-    <span *ngSwitchDefault>(Normal Start)</span>
-  </div>
+  <div>Event Start Time: {{event?.timeFrom}} </div>
+  <div>Event End Time: {{event?.timeTill}} </div>
   <div *ngIf="event?.price">
     Price: {{event?.price | currency:'EUR':true}}
   </div>
