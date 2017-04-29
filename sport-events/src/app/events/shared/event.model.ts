@@ -6,13 +6,14 @@ export interface IEvent {
   date: Date,
   timeFrom: number,
   timeTill: number,
-  price?: number,
+  price: number,
   phoneNumber: string,
   location?: {
     address: string,
     city: string,
     country: string
   },
+  description?: string,
   facebookEventUrl?: string,
   voters: string[]
 }

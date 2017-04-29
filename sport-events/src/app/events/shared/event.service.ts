@@ -16,7 +16,6 @@ export class EventService {
   }
 
   getSportTypes(): Observable<ISportType[]> {
-    console.log('hello');
     let subject = new Subject<ISportType[]>();
     setTimeout(() => {subject.next(SPORTTYPES); subject.complete(); },
       100);

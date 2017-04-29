@@ -15,11 +15,11 @@ input::-webkit-inner-spin-button {
 }
 
 select:invalid {
-  color: gray;
+  color: #C7C7CD;
 }
 
 input:invalid {
-  color: gray;
+  color: #C7C7CD;
 }
 
 option{

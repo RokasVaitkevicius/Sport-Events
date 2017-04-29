@@ -4,10 +4,9 @@
     <i *ngIf="event.voters.length > 3" class="glyphicon glyphicon-fire" style="color:red"></i>
   </h2>
   <div>Author: {{event?.author}}</div>
-  <div>Sport: {{event?.sport}}</div>
+  <div>Sport Type: {{determineSportType(event?.sportType)}}</div>
   <div>Date: {{event?.date | date:'y-M-d'}}</div>
-  <div>Event Start Time: {{event?.timeFrom}} </div>
-  <div>Event End Time: {{event?.timeTill}} </div>
+  <div>Event Time: {{event?.timeFrom}} - {{event?.timeTill}}  </div>
   <div *ngIf="event?.price">
     Price: {{event?.price | currency:'EUR':true}}
   </div>
