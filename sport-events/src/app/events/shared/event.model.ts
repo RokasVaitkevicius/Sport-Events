@@ -4,8 +4,8 @@ export interface IEvent {
   name: string,
   sportType: number,
   date: Date,
-  timeFrom: number,
-  timeTill: number,
+  timeFrom: string,
+  timeTill: string,
   price: number,
   phoneNumber: string,
   location?: {
@@ -15,5 +15,6 @@ export interface IEvent {
   },
   description?: string,
   facebookEventUrl?: string,
-  voters: string[]
+  voters: string[],
+  imageUrl?: string
 }

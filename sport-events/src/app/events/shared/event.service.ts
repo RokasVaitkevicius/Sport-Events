@@ -72,8 +72,8 @@ const EVENTS : IEvent[] = [
     name: 'Table Tennis',
     sportType: 3,
     date: new Date('2036/09/05'),
-    timeFrom: 10,
-    timeTill: 12,
+    timeFrom: '10:15',
+    timeTill: '12:15',
     phoneNumber: '866666999',
     price: 20,
     location: {
@@ -82,7 +82,9 @@ const EVENTS : IEvent[] = [
       country: 'Lithuania'
     },
     facebookEventUrl: "fb.com/1236544",
-    voters: ['bradgreen', 'boi', 'kara', 'aaaa']
+    voters: ['bradgreen', 'boi', 'kara', 'aaaa'],
+    description: 'Nice event',
+    imageUrl: 'https://images-na.ssl-images-amazon.com/images/I/51HEs7T6f2L.jpg'
   },
   {
     id: 2,
@@ -90,9 +92,10 @@ const EVENTS : IEvent[] = [
     name: 'Footbal',
     sportType: 2,
     date: new Date('2036/09/05'),
-    timeFrom: 10,
-    timeTill: 12,
+    timeFrom: '10:15',
+    timeTill: '12:30',
     phoneNumber: '866666999',
+    price: 0,
     location: {
       address: '155-12',
       city: 'Kaunas',
@@ -106,9 +109,10 @@ const EVENTS : IEvent[] = [
     name: 'Basketball',
     sportType: 1,
     date: new Date('2036/09/05'),
-    timeFrom: 10,
-    timeTill: 12,
+    timeFrom: '10:15',
+    timeTill: '12:20',
     phoneNumber: '866666999',
+    price: 5,
     location: {
       address: '155-12',
       city: 'Kaunas',

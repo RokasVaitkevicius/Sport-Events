@@ -1,5 +1,5 @@
 <div class="container">
-  <img [src]="event?.imageUrl" [alt]="event?.name" class="event-image">
+  <img [src]="event?.imageUrl" [alt]="event?.name" class="event-image" height="42" width="42">
 
   <div class="row">
     <div class="col-md-11">
@@ -10,16 +10,20 @@
   <div class="row">
     <div class="col-md-6">
       <div><strong>Author:</strong> {{event?.author}}</div>
+      <div><strong>Phone Number:</strong> {{event?.phoneNumber}}</div>
       <div><strong>Date:</strong> {{event?.date | date:'y-M-d'}}</div>
-      <div><strong>Time From:</strong> {{event?.timeFrom}}</div>
-      <div><strong>Time Till:</strong> {{event?.timeTill}}</div>
-    </div>
-    <div class="col-md-6">
+      <div><strong>Event Time:</strong> {{event?.timeFrom}} - {{event?.timeTill}}</div>
+      <div *ngIf="event?.price > 0"><strong>Price:</strong> {{event?.price}}</div>
+      <div *ngIf="event?.price === 0"><strong>Price:</strong> FREE</div>
+      <div><strong>Sport Type:</strong> {{event?.sportType}}</div>
+      <div><strong>Facebook Event Url:</strong> {{event?.facebookEventUrl}}</div>
+      <div><strong>Votes count:</strong> {{event?.voters.length}}</div>
       <address>
         <strong>Address:</strong><br />
         {{event?.location?.address}}<br />
         {{event?.location?.city}}, {{event?.location?.country}}
       </address>
+      <div><strong>Description:</strong> {{event?.description}}</div>
     </div>
     <div class="col-md-1">
       <div *ngIf="auth.isAuthenticated()">

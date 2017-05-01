@@ -1,7 +1,7 @@
 <div class="navbar navbar-default">
   <div class="container-fluid">
     <div class="navbar-header">
-      <a class="navbar-brand" >sportEvents</a>
+      <a [routerLink]="['/events']" class="navbar-brand" >sportEvents</a>
     </div>
 
     <div class="collapse navbar-collapse">
@@ -11,20 +11,22 @@
              routerLinkActive="active"
              [routerLinkActiveOptions]="{exact:true}">All Events</a>
         </li>
-        <li><a [routerLink]="['/events/new']"
+        <li><a *ngIf="authService.isAuthenticated()" [routerLink]="['/events/new']"
                routerLinkActive="active">Create Event</a></li>
+
         <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" >
+          <a class="dropdown-toggle" data-toggle="dropdown">
             Events
             <span class="caret"></span>
           </a>
           <ul class="dropdown-menu">
-            <li >
-              <a href="">Angular Connect</a>
+            <li>
+              <a *ngFor="let sportType of sportTypes">{{sportType.name}}</a>
             </li>
           </ul>
         </li>
       </ul>
+
       <div class="navbar-header navbar-right">
         <ul class="nav navbar-nav">
           <li>
