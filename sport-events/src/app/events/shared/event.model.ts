@@ -1,6 +1,6 @@
 export interface IEvent {
   id: number,
-  author: string,
+  author: number,
   name: string,
   sportType: number,
   date: Date,
@@ -16,5 +16,6 @@ export interface IEvent {
   description?: string,
   facebookEventUrl?: string,
   voters: string[],
-  imageUrl?: string
+  imageUrl?: string,
+  dateUpdated: Date
 }

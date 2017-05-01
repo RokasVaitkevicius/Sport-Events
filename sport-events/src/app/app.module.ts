@@ -24,6 +24,8 @@ import {ToastrModule} from "toastr-ng2";
 import {UpvoteComponent} from './events/upvote/upvote.component';
 import {VoterService} from './events/shared/voter.service';
 import {LocationValidator} from './events/create-event/location-validator.directive';
+import {EditEventComponent} from './events/edit-event/edit-event.component';
+import {MyEventsComponent} from './events/my-events/my-events.component';
 
 @NgModule({
   declarations: [
@@ -38,7 +40,9 @@ import {LocationValidator} from './events/create-event/location-validator.direct
     Error404Component,
     DurationPipe,
     UpvoteComponent,
-    LocationValidator
+    LocationValidator,
+    EditEventComponent,
+    MyEventsComponent
   ],
   imports: [
     BrowserModule,

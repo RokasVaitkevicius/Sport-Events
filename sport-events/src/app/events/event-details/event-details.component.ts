@@ -4,6 +4,7 @@ import {EventService} from "../shared/event.service";
 import {IEvent} from "../shared/event.model";
 import {AuthService} from '../../user/shared/auth.service';
 import {VoterService} from '../shared/voter.service';
+import {ISportType} from '../shared/sport-type.model';
 
 @Component({
   selector: 'event-details',
@@ -12,6 +13,7 @@ import {VoterService} from '../shared/voter.service';
 })
 export class EventDetailsComponent implements OnInit {
   event: IEvent;
+  sportTypes: ISportType[];
 
   constructor(private eventService: EventService,
               private route:ActivatedRoute,
@@ -21,6 +23,10 @@ export class EventDetailsComponent implements OnInit {
   ngOnInit() {
     this.event = this.eventService.getEvent
     (+this.route.snapshot.params['id']);
+
+    this.eventService.getSportTypes().subscribe(sportType => {
+      this.sportTypes = sportType;
+    });
   }
 
   toggleVote(event: IEvent) {
@@ -35,4 +41,9 @@ export class EventDetailsComponent implements OnInit {
     return this.voterService.userHasVoted(event, this.auth.currentUser.userName);
   }
 
+  determineSportType(sportTypeId: number): string {
+    if(this.sportTypes !== undefined){
+      return this.sportTypes.find(x => x.id === sportTypeId).name;
+    }
+  }
 }

@@ -7,13 +7,18 @@ import {EventsRouteActivator} from "./events/event-details/event-route-activator
 import {Error404Component} from "./errors/error404/error404.component";
 import {ProfileComponent} from "./user/profile/profile.component";
 import {LoginComponent} from "./user/login/login.component";
+import {MyEventsComponent} from './events/my-events/my-events.component';
 
 export const appRoutes:Routes = [
   { path: 'events/new', component: CreateEventComponent, canDeactivate: ['canDeactivateCreateEvent'] },
   { path: 'events', component: EventListComponent, resolve: { events: EventListResolver }},
+  { path: 'events/search/:searchTerm', component: EventListComponent, resolve: { events: EventListResolver }},
+  { path: 'events/category/:categoryId', component: EventListComponent, resolve: { events: EventListResolver }},
   { path: 'events/:id', component: EventDetailsComponent, canActivate: [EventsRouteActivator] },
   { path: '404', component: Error404Component },
   { path: '', redirectTo: '/events', pathMatch: 'full' },
+
+  {path: 'events/myEvents', component: MyEventsComponent},
 
   {path: 'user/profile', component: ProfileComponent},
   {path: 'user/login', component: LoginComponent}

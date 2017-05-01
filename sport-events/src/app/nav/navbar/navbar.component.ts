@@ -26,4 +26,13 @@ export class NavbarComponent implements OnInit {
     this.eventService.activateSearch(searchTerm);
   }
 
+  filterEvents(id: number, name: string) {
+    this.searchTerm = null;
+    this.eventService.filterEvents(id, name);
+  }
+
+  resetEvents() {
+    this.searchTerm = null;
+    this.eventService.resetEvents();
+  }
 }

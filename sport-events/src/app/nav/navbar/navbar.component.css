@@ -7,9 +7,15 @@
 }
 
 @media (max-width: 1200px) {
-  #searchForm {display:none}
+  #searchForm {
+    display: none
+  }
 }
 
 li > a.active {
   color: #F97924;
+}
+
+.dropdown-menu>li>a {
+  cursor: pointer;
 }

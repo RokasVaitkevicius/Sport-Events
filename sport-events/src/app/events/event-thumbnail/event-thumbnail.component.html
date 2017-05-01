@@ -10,7 +10,7 @@
   <div *ngIf="event?.price">
     Price: {{event?.price | currency:'EUR':true}}
   </div>
-  <div>
+  <div *ngIf="event.location">
     <span>Location: {{event?.location?.address}}</span>
     <span class="pad-left">{{event?.location?.city}}, {{event?.location.country}}</span>
   </div>
