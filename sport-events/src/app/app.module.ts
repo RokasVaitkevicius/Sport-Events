@@ -26,6 +26,7 @@ import {VoterService} from './events/shared/voter.service';
 import {LocationValidator} from './events/create-event/location-validator.directive';
 import {EditEventComponent} from './events/edit-event/edit-event.component';
 import {MyEventsComponent} from './events/my-events/my-events.component';
+import {UserService} from './user/shared/user.service';
 
 @NgModule({
   declarations: [
@@ -54,6 +55,7 @@ import {MyEventsComponent} from './events/my-events/my-events.component';
   ],
   providers: [
     EventService,
+    UserService,
     VoterService,
     EventsRouteActivator,
     EventListResolver,

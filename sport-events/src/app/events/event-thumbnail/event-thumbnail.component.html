@@ -3,7 +3,7 @@
     {{event?.name | uppercase}}
     <i *ngIf="event.voters.length > 3" class="glyphicon glyphicon-fire" style="color:red"></i>
   </h2>
-  <div>Author: {{event?.author}}</div>
+  <div>Author: {{determineAuthor(event?.author)}}</div>
   <div>Sport Type: {{determineSportType(event?.sportType)}}</div>
   <div>Date: {{event?.date | date:'y-M-d'}}</div>
   <div>Event Time: {{event?.timeFrom}} - {{event?.timeTill}}  </div>

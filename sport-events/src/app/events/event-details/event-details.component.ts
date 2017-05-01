@@ -5,6 +5,8 @@ import {IEvent} from "../shared/event.model";
 import {AuthService} from '../../user/shared/auth.service';
 import {VoterService} from '../shared/voter.service';
 import {ISportType} from '../shared/sport-type.model';
+import {IUser} from '../../user/shared/user.model';
+import {UserService} from '../../user/shared/user.service';
 
 @Component({
   selector: 'event-details',
@@ -14,11 +16,13 @@ import {ISportType} from '../shared/sport-type.model';
 export class EventDetailsComponent implements OnInit {
   event: IEvent;
   sportTypes: ISportType[];
+  users: IUser[];
 
   constructor(private eventService: EventService,
               private route:ActivatedRoute,
               private auth: AuthService,
-              private voterService: VoterService) { }
+              private voterService: VoterService,
+              private userService: UserService) { }
 
   ngOnInit() {
     this.event = this.eventService.getEvent
@@ -26,6 +30,10 @@ export class EventDetailsComponent implements OnInit {
 
     this.eventService.getSportTypes().subscribe(sportType => {
       this.sportTypes = sportType;
+    });
+
+    this.userService.getUsers().subscribe(users => {
+      this.users = users;
     });
   }
 
@@ -44,6 +52,13 @@ export class EventDetailsComponent implements OnInit {
   determineSportType(sportTypeId: number): string {
     if(this.sportTypes !== undefined){
       return this.sportTypes.find(x => x.id === sportTypeId).name;
+    }
+  }
+
+  determineAuthor(authorId: number): string {
+    if(this.users !== undefined){
+      let foundUser = this.users.find(x => x.id === authorId);
+      return `${foundUser.firstName} ${foundUser.lastName}`;
     }
   }
 }
