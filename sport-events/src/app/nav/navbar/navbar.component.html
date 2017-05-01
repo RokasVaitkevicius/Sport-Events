@@ -16,8 +16,8 @@
                routerLinkActive="active">Create Event</a></li>
         <li>
           <a
-            *ngIf="authService.isAuthenticated()"
-            [routerLink]="['/events/myEvents']"
+
+            [routerLink]="['/myEvents']"
             routerLinkActive="active">My Events</a>
         </li>
 
@@ -28,7 +28,8 @@
           </a>
           <ul class="dropdown-menu">
             <li>
-              <a [routerLink]="['/events/category', sportType.id]" *ngFor="let sportType of sportTypes">{{sportType.name}}</a>
+              <a [routerLink]="['/events/category', sportType.id]"
+                 *ngFor="let sportType of sportTypes">{{sportType.name}}</a>
             </li>
           </ul>
         </li>

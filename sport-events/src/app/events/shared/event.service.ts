@@ -59,6 +59,10 @@ export class EventService {
   resetEvents() {
     this.resetEventsNotification.next({events: EVENTS});
   }
+
+  getEventsByAuthorId(authorId: number) {
+    return EVENTS.filter(event => event.author === authorId);
+  }
 }
 
 const SPORTTYPES: ISportType[] = [
