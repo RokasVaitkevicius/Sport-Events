@@ -6,7 +6,7 @@
         <i *ngIf="event.voters.length > 3" class="glyphicon glyphicon-fire" style="color:red"></i>
 
           <button class="btn btn-default" (onClick)="onCancelClick(event.id)">Cancel Event</button>
-          <button class="btn btn-primary">Edit</button>
+          <button class="btn btn-primary" [routerLink]="['/myEvents', event.id]">Edit</button>
 
       </div>
       <div well-body>

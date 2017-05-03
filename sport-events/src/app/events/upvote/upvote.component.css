@@ -6,6 +6,9 @@
   height: 64px;
   padding-top: 7px;
   border-radius: 21px;
+  background-color: #4e5d6c;
+  margin-top: 30px;
+  margin-left: -35px;
 }
 
 .votingButton {

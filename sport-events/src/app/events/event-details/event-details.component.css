@@ -2,3 +2,12 @@ collapsible-well h6 {
   margin-top: -5px;
   margin-bottom: 10px
 }
+
+.description {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+div {
+  margin-bottom: 5px;
+}

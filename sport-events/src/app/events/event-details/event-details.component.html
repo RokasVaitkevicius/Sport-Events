@@ -1,9 +1,13 @@
 <div class="container">
-  <img [src]="event?.imageUrl" [alt]="event?.name" class="event-image" height="42" width="42">
+
 
   <div class="row">
     <div class="col-md-11">
-      <h2>{{event?.name | uppercase}} </h2>
+      <h2>
+        <img *ngIf="event.imageUrl" [src]="event?.imageUrl" [alt]="event?.name" class="event-image" height="42" width="42">
+        {{event?.name | uppercase}}
+        <i *ngIf="event.voters.length > 3" class="glyphicon glyphicon-fire" style="color:red"></i>
+      </h2>
     </div>
   </div>
 
@@ -19,18 +23,18 @@
       <div *ngIf="event.facebookEventUrl"><strong>Facebook Event Url:</strong> {{event?.facebookEventUrl}}</div>
       <div><strong>Votes count:</strong> {{event?.voters.length}}</div>
       <address *ngIf="event.location">
-        <strong>Address:</strong><br />
-        {{event?.location?.address}}<br />
-        {{event?.location?.city}}, {{event?.location?.country}}
+        <strong>Address:</strong><br/>
+        {{event?.location?.country}}, {{event?.location?.city}}, {{event?.location?.address}}
       </address>
-      <div *ngIf="event.description"><strong>Description:</strong> {{event?.description}}</div>
-    </div>
-    <div class="col-md-1">
-      <div *ngIf="auth.isAuthenticated()">
-        <upvote (vote)="toggleVote(event)"
-                [count] ="event.voters.length"
-                [voted]="userHasVoted(event)">
-        </upvote>
+      <div *ngIf="event.description" class="description"><strong>Description:</strong> {{event?.description}}</div>
+
+      <div class="col-md-1">
+        <div *ngIf="auth.isAuthenticated()">
+          <upvote (vote)="toggleVote(event)"
+                  [count]="event.voters.length"
+                  [voted]="userHasVoted(event)">
+          </upvote>
+        </div>
       </div>
     </div>
   </div>
