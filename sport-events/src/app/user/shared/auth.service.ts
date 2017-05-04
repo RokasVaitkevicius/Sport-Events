@@ -23,4 +23,8 @@ export class AuthService {
     this.currentUser.firstName = firstName;
     this.currentUser.lastName = lastName;
   }
+
+  //getCurrentUserName(): string {
+  //  return `${this.currentUser.firstName} ${this.currentUser.lastName}`
+ // }
 }

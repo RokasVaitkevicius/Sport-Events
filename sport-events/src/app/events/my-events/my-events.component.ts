@@ -3,6 +3,7 @@ import {AuthService} from '../../user/shared/auth.service';
 import {IEvent} from '../shared/event.model';
 import {EventService} from '../shared/event.service';
 import {ActivatedRoute} from '@angular/router';
+import {ISportType} from '../shared/sport-type.model';
 
 @Component({
   selector: 'app-my-events',
@@ -11,7 +12,9 @@ import {ActivatedRoute} from '@angular/router';
 })
 export class MyEventsComponent implements OnInit {
   private myEvents: IEvent[];
-  private arrow: string = '&#9660;';
+  private author: string = "";
+  sportTypes: ISportType[];
+
 
   constructor(private auth: AuthService,
               private eventService: EventService,
@@ -20,12 +23,29 @@ export class MyEventsComponent implements OnInit {
   ngOnInit() {
     //let authorId = this.auth.currentUser.id;
     //this.myEvents = this.eventService.getEventsByAuthorId(authorId);
-    this.myEvents = this.eventService.getEventsByAuthorId(1);
+    this.eventService.getSportTypes().subscribe(sportType => {
+      this.sportTypes = sportType;
+    });
+    this.myEvents = this.eventService.getEventsByAuthorId(1).sort((event1, event2) => {
+      if(event1.date > event2.date) {
+        return 1;
+      } else if(event1.date < event2.date) {
+        return -1;
+      }
+      return 0;
+    });
+    //this.author = this.auth.getCurrentUserName();
     //console.log(this.myEvents);
   }
 
     onCancelClick(id: number) {
     console.log(`Hello from my events cancel click: ${id}`)
+  }
+
+  determineSportType(sportTypeId: number): string {
+    if (this.sportTypes !== undefined) {
+      return this.sportTypes.find(x => x.id === sportTypeId).name;
+    }
   }
 }
 //<session-list [eventId]="event?.id" [sortBy]="sortBy" [filterBy]="filterBy" *ngIf="!addMode" [sessions]="event?.sessions"></session-list>

@@ -28,6 +28,7 @@ import {EditEventComponent} from './events/edit-event/edit-event.component';
 import {MyEventsComponent} from './events/my-events/my-events.component';
 import {UserService} from './user/shared/user.service';
 import { CollapsibleWellComponent } from './common/collapsible-well/collapsible-well.component';
+import { SortingComponent } from './events/sorting/sorting.component';
 
 @NgModule({
   declarations: [
@@ -45,7 +46,8 @@ import { CollapsibleWellComponent } from './common/collapsible-well/collapsible-
     LocationValidator,
     EditEventComponent,
     MyEventsComponent,
-    CollapsibleWellComponent
+    CollapsibleWellComponent,
+    SortingComponent
   ],
   imports: [
     BrowserModule,

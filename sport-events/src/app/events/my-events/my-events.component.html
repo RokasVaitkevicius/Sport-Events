@@ -1,3 +1,4 @@
+<sorting [events]="myEvents"></sorting>
 <div class="row" *ngFor="let event of myEvents">
   <div class="col-md-12">
     <collapsible-well>
@@ -10,8 +11,21 @@
 
       </div>
       <div well-body>
+        <img *ngIf="event.imageUrl" [src]="event?.imageUrl" [alt]="event?.name" class="event-image" height="42" width="42">
+        <div><strong>Author:</strong> {{author}}</div>
+        <div><strong>Phone Number:</strong> {{event?.phoneNumber}}</div>
         <div><strong>Date:</strong> {{event?.date | date:'y-M-d'}}</div>
         <div><strong>Event Time:</strong> {{event?.timeFrom}} - {{event?.timeTill}}</div>
+        <div *ngIf="event?.price > 0"><strong>Price:</strong> {{event?.price}}</div>
+        <div *ngIf="event?.price === 0"><strong>Price:</strong> FREE</div>
+        <div><strong>Sport Type:</strong> {{determineSportType(event?.sportType)}}</div>
+        <div *ngIf="event.facebookEventUrl"><strong>Facebook Event Url:</strong> {{event?.facebookEventUrl}}</div>
+        <div><strong>Votes count:</strong> {{event?.voters.length}}</div>
+        <address *ngIf="event.location">
+          <strong>Address:</strong><br/>
+          {{event?.location?.country}}, {{event?.location?.city}}, {{event?.location?.address}}
+        </address>
+        <div *ngIf="event.description" class="description"><strong>Description:</strong> {{event?.description}}</div>
       </div>
     </collapsible-well>
   </div>

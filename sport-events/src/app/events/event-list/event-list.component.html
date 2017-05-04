@@ -1,6 +1,7 @@
 <div>
   <h1>Upcoming Sport Events</h1>
   <hr/>
+  <sorting [events]="events"></sorting>
   <div class="row">
     <h1 class="term" *ngIf="searchTerm">Search term: {{searchTerm}}</h1>
     <h1 class="term" *ngIf="filterTerm">Filtering by: {{filterTerm}}</h1>

@@ -111,7 +111,7 @@ const EVENTS : IEvent[] = [
     author: 1,
     name: 'Footbal',
     sportType: 2,
-    date: new Date('2036/09/05'),
+    date: new Date('2011/09/05'),
     timeFrom: '10:15',
     timeTill: '12:30',
     phoneNumber: '866666999',
@@ -126,7 +126,7 @@ const EVENTS : IEvent[] = [
     author: 1,
     name: 'Basketball',
     sportType: 1,
-    date: new Date('2036/09/05'),
+    date: new Date('2013/09/05'),
     timeFrom: '10:15',
     timeTill: '12:20',
     phoneNumber: '866666999',
@@ -136,7 +136,7 @@ const EVENTS : IEvent[] = [
       city: 'Kaunas',
       country: 'Lithuania'
     },
-    voters: ['bradgreen', 'boi', 'kara'],
+    voters: ['bradgreen', 'boi', 'kara','kara'],
     dateUpdated: new Date('2017/02/01')
   }
 ];
