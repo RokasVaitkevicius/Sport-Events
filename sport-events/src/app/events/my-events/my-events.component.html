@@ -16,7 +16,7 @@
         <div><strong>Event Time:</strong> {{event?.timeFrom}} - {{event?.timeTill}}</div>
         <div *ngIf="event?.price > 0"><strong>Price:</strong> {{event?.price}}</div>
         <div *ngIf="event?.price === 0"><strong>Price:</strong> FREE</div>
-        <div><strong>Sport Type:</strong> {{determineSportType(event?.sportType)}}</div>
+        <div><strong>Sport Type:</strong> {{determineSportType(event?.sportTypeId)}}</div>
         <div *ngIf="event.facebookEventUrl"><strong>Facebook Event Url:</strong> {{event?.facebookEventUrl}}</div>
         <div><strong>Votes count:</strong> {{event?.voters.length}}</div>
         <address *ngIf="event.location">

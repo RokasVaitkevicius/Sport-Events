@@ -13,7 +13,7 @@
          [ngClass]="{'error': newEventForm.controls.author?.invalid && newEventForm.controls.author?.touched}">
       <label for="author">Author:</label>
       <em *ngIf="newEventForm.controls.author?.invalid && (newEventForm.controls.author?.touched)">Required</em>
-      <input (ngModel)="author" name="author" required id="author" type="text" class="form-control"
+      <input (ngModel)="authorId" name="author" required id="author" type="text" class="form-control"
              placeholder="Author of event..."/>
     </div>
 

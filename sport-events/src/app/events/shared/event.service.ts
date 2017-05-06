@@ -52,7 +52,7 @@ export class EventService {
 
   filterEvents(id: number, name: string) {
     let results: IEvent[] = [];
-    results = EVENTS.filter(event => event.sportType === id);
+    results = EVENTS.filter(event => event.sportTypeId === id);
     this.filterNotification.next({events: results, filterName: name});
   }
 
@@ -61,7 +61,7 @@ export class EventService {
   }
 
   getEventsByAuthorId(authorId: number) {
-    return EVENTS.filter(event => event.author === authorId);
+    return EVENTS.filter(event => event.authorId === authorId);
   }
 
   updateEvent(formValue: IEvent) {
@@ -92,9 +92,9 @@ const SPORTTYPES: ISportType[] = [
 const EVENTS : IEvent[] = [
   {
     id: 1,
-    author: 1,
+    authorId: 1,
     name: 'Table Tennis',
-    sportType: 3,
+    sportTypeId: 3,
     date: new Date('09/05/2036'),
     timeFrom: '10:15',
     timeTill: '12:15',
@@ -113,9 +113,9 @@ const EVENTS : IEvent[] = [
   },
   {
     id: 2,
-    author: 1,
+    authorId: 1,
     name: 'Footbal',
-    sportType: 2,
+    sportTypeId: 2,
     date: new Date('2011/09/05'),
     timeFrom: '10:15',
     timeTill: '12:30',
@@ -133,9 +133,9 @@ const EVENTS : IEvent[] = [
   },
   {
     id: 3,
-    author: 1,
+    authorId: 1,
     name: 'Basketball',
-    sportType: 1,
+    sportTypeId: 1,
     date: new Date('2013/09/05'),
     timeFrom: '10:15',
     timeTill: '12:20',

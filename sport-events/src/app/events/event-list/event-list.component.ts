@@ -34,7 +34,7 @@ export class EventListComponent implements OnInit {
       console.log('hello from search');
     } else if(this.route.snapshot.params['categoryId']) {
         let category = Number(this.route.snapshot.params['categoryId']);
-        this.events = this.events.filter(event => event.sportType === category);
+        this.events = this.events.filter(event => event.sportTypeId === category);
         console.log('hello from category');
         console.log(this.events);
         console.log(category);
