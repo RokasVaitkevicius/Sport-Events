@@ -63,6 +63,11 @@ export class EventService {
   getEventsByAuthorId(authorId: number) {
     return EVENTS.filter(event => event.author === authorId);
   }
+
+  updateEvent(formValue: IEvent) {
+    let event = EVENTS.find(event => event.id === formValue.id);
+    event = formValue;
+  }
 }
 
 const SPORTTYPES: ISportType[] = [
@@ -90,7 +95,7 @@ const EVENTS : IEvent[] = [
     author: 1,
     name: 'Table Tennis',
     sportType: 3,
-    date: new Date('2036/09/05'),
+    date: new Date('09/05/2036'),
     timeFrom: '10:15',
     timeTill: '12:15',
     phoneNumber: '866666999',
@@ -104,7 +109,7 @@ const EVENTS : IEvent[] = [
     voters: ['bradgreen', 'boi', 'kara', 'aaaa'],
     description: 'Nice event',
     imageUrl: 'https://images-na.ssl-images-amazon.com/images/I/51HEs7T6f2L.jpg',
-    dateUpdated: new Date('2017/05/01')
+    dateUpdated: new Date('05/01/2011')
   },
   {
     id: 2,
@@ -116,8 +121,13 @@ const EVENTS : IEvent[] = [
     timeTill: '12:30',
     phoneNumber: '866666999',
     price: 0,
+    location: {
+      address: '',
+      city: '',
+      country: ''
+    },
     voters: ['bradgreen', 'boi', 'kara'],
-    dateUpdated: new Date('2017/04/01'),
+    dateUpdated: new Date('04/01/2017'),
     facebookEventUrl: "fb.com/1236544",
     description: "Koool event i love it asdas requiem asdas lasodaosdpas"
   },

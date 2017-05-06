@@ -16,14 +16,13 @@
     <div class="form-group">
       <label>Sport Type:</label>
      <select class="form-control" required>
-        <option value="" selected disabled hidden>Choose Sport Type...</option>
-        <option *ngFor="let sportType of sportTypes" value="{{sportType.id}}">{{sportType.name}}</option>
+        <option *ngFor="let sportType of sportTypes" value="{{sportType.id}}" [selected]="sportType.id === event.sportType">{{sportType.name}}</option>
       </select>
     </div>
 
     <div class="form-group">
       <label for="eventDate">Event Date:</label>
-      <input  formControlName="date" required id="eventDate" type="date" class="form-control"/>
+      <input  formControlName="date" required id="eventDate" type="date" class="form-control" [ngModel]="event.date | date:'yyyy-MM-dd'" />
     </div>
 
     <div class="row">

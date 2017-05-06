@@ -10,11 +10,14 @@
   <div *ngIf="event?.price">
     Price: {{event?.price | currency:'EUR':true}}
   </div>
-  <div *ngIf="event.location">
+  <div *ngIf="event.location.address !== ''">
     <span>Location: {{event?.location?.address}}</span>
     <span class="pad-left">{{event?.location?.city}}, {{event?.location.country}}</span>
   </div>
   <div *ngIf="event?.facebookEventUrl">
     Facebook event URL: {{event?.facebookEventUrl}}
+  </div>
+  <div *ngIf="event?.voters">
+    Voters: {{event?.voters.length}}
   </div>
 </div>
