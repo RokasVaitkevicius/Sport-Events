@@ -1,29 +1,27 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 
-namespace Events.Repository.Pocos
+namespace Events.Api.Dto.Events
 {
-    public class Event
+    public class NewEvent
     {
-        [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int Id { get; set; }
-
+        [Required]
         public string Name { get; set; }
 
+        [Required]
         public DateTime EventDate { get; set; }
 
+        [Required]
         public string TimeFrom { get; set; }
 
+        [Required]
         public string TimeTill { get; set; }
 
+        [Required]
         public double Price { get; set; }
 
+        [Required]
         public string PhoneNumber { get; set; }
-
-        // TODO: research if it is possivle to use xomplex types in ef
-        //public Location Location { get; set; }
 
         public string Address { get; set; }
 
@@ -37,21 +35,10 @@ namespace Events.Repository.Pocos
 
         public string ImageUrl { get; set; }
 
-        public DateTime DateUpdated { get; set; }
-
-        // Todo: Solve issue with storing list of voters
-        //public Voter Voters { get; set; }
-
-        #region Dependencies
-
+        [Required]
         public int AuthorId { get; set; }
 
-        public User Author { get; set; }
-
+        [Required]
         public int SportTypeId { get; set; }
-
-        public SportType SportType { get; set; }
-
-        #endregion
     }
 }

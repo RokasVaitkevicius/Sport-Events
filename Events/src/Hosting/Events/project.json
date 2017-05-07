@@ -1,11 +1,18 @@
 ﻿{
   "dependencies": {
-    "Swashbuckle.AspNetCore": "1.0.0", 
-
-    "Microsoft.AspNetCore.Diagnostics": "1.0.0",
-    "Microsoft.AspNetCore.Server.IISIntegration": "1.0.0",
-    "Microsoft.AspNetCore.Server.Kestrel": "1.0.1",
-    "Microsoft.Extensions.Logging.Console": "1.0.0"
+    "Events.Api.Controllers": "1.0.0-*",
+    "Events.Api.DI.Setup": "1.0.0-*",
+    "Events.Repository.Contexts": "1.0.0-*",
+    "Microsoft.AspNetCore.Cors": "1.1.1",
+    "Microsoft.AspNetCore.Diagnostics": "1.1.1",
+    "Microsoft.AspNetCore.Mvc": "1.1.2",
+    "Microsoft.AspNetCore.Server.IISIntegration": "1.1.1",
+    "Microsoft.AspNetCore.Server.Kestrel": "1.1.1",
+    "Microsoft.EntityFrameworkCore.Sqlite": "1.1.1",
+    "Microsoft.Extensions.Configuration.FileExtensions": "1.1.1",
+    "Microsoft.Extensions.Configuration.Json": "1.1.1",
+    "Microsoft.Extensions.Logging.Console": "1.1.1",
+    "Swashbuckle.AspNetCore": "1.0.0"
   },
 
   "tools": {
@@ -16,7 +23,7 @@
     "netcoreapp1.1": {
       "dependencies": {
         "Microsoft.NETCore.App": {
-          "version": "1.1.0",
+          "version": "1.1.1",
           "type": "platform"
         }
       }
