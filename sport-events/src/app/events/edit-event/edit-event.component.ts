@@ -23,7 +23,7 @@ export class EditEventComponent implements OnInit {
 
   ngOnInit() {
     this.event = this.eventService.getEvent
-    (+this.route.snapshot.params['id']);
+    (+this.route.snapshot.params['eventId']);
 
     this.eventService.getSportTypes().subscribe(sportType => {
       this.sportTypes = sportType;

@@ -1,7 +1,6 @@
-﻿using System;
+﻿using Events.Constants.Constants;
+using System;
 using System.Collections.Generic;
-using System.Reflection;
-using Events.Constants.Constants;
 
 namespace Events.Api.Dto.Events
 {
