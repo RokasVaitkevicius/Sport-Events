@@ -1,9 +1,8 @@
-﻿{
+{
   "version": "1.0.0-*",
 
   "dependencies": {
     "Events.Api.Dto": "1.0.0-*",
-    "Events.Repository.Pocos": "1.0.0-*",
     "NETStandard.Library": "1.6.1"
   },
 

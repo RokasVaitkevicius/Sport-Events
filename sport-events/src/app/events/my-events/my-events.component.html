@@ -5,8 +5,8 @@
       <div well-title class="title">
         {{event.name}}
         <i *ngIf="event.voters.length > 3" class="glyphicon glyphicon-fire" style="color:red"></i>
-          <button class="btn btn-default" (onClick)="onCancelClick(event.id)">Cancel Event</button>
-          <button class="btn btn-primary" [routerLink]="['/myEvents', event.id]">Edit</button>
+          <button class="btn btn-default" (onClick)="onCancelClick(event.eventId)">Cancel Event</button>
+          <button class="btn btn-primary" [routerLink]="['/myEvents', event.eventId]">Edit</button>
       </div>
       <div well-body>
         <img *ngIf="event.imageUrl" [src]="event?.imageUrl" [alt]="event?.name" class="event-image" height="42" width="42">

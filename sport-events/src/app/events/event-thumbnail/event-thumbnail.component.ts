@@ -31,7 +31,7 @@ export class EventThumbnailComponent implements OnInit{
 
   determineSportType(sportTypeId: number): string {
     if(this.sportTypes !== undefined){
-      return this.sportTypes.find(x => x.id === sportTypeId).name;
+      return this.sportTypes.find(x => x.sportTypeId === sportTypeId).name;
     }
   }
 

@@ -22,7 +22,7 @@ namespace Events.Repository.Event
 
         public async Task<EventPoco> GetEventById(int id)
         {
-            return await _db.Events.SingleOrDefaultAsync(e => e.Id == id);
+            return await _db.Events.SingleOrDefaultAsync(e => e.EventId == id);
         }
 
         public async Task CreateEvent(EventPoco newEvent)

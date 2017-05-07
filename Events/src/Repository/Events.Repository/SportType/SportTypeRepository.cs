@@ -17,7 +17,7 @@ namespace Events.Repository.SportType
 
         public async Task<SportTypePoco> GetSportTypeById(int id)
         {
-            return await _db.SportTypes.SingleOrDefaultAsync(e => e.Id == id);
+            return await _db.SportTypes.SingleOrDefaultAsync(e => e.SportTypeId == id);
         }
 
         public async Task<SportTypePoco[]> GetAllSportTypes()

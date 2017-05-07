@@ -1,5 +1,5 @@
-﻿using System.Threading.Tasks;
-using Events.Api.Dto.Events;
+﻿using Events.Api.Dto.Events;
+using System.Threading.Tasks;
 
 namespace Events.Api.Cases.Event
 {

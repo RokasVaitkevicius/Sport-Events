@@ -15,9 +15,9 @@ export const appRoutes:Routes = [
   { path: 'events', component: EventListComponent, resolve: { events: EventListResolver }},
   { path: 'events/search/:searchTerm', component: EventListComponent, resolve: { events: EventListResolver }},
   { path: 'events/category/:categoryId', component: EventListComponent, resolve: { events: EventListResolver }},
-  { path: 'events/:id', component: EventDetailsComponent, canActivate: [EventsRouteActivator] },
+  { path: 'events/:sportTypeId', component: EventDetailsComponent, canActivate: [EventsRouteActivator] },
   { path: 'myEvents', component: MyEventsComponent, resolve: { events: EventListResolver}},
-  { path: 'myEvents/:id', component: EditEventComponent, canActivate: [EventsRouteActivator]},
+  { path: 'myEvents/:sportTypeId', component: EditEventComponent, canActivate: [EventsRouteActivator]},
 
   { path: '404', component: Error404Component },
   { path: '', redirectTo: '/events', pathMatch: 'full' },

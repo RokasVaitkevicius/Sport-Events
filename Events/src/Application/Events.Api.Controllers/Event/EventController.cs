@@ -1,9 +1,9 @@
-﻿using System;
-using System.Threading.Tasks;
-using Events.Api.Cases.Event;
+﻿using Events.Api.Cases.Event;
 using Events.Api.Controllers.Helpers;
 using Events.Api.Dto.Events;
 using Microsoft.AspNetCore.Mvc;
+using System.Threading.Tasks;
+using EventDto = Events.Api.Dto.Events.Event;
 
 namespace Events.Api.Controllers.Event
 {
@@ -19,14 +19,14 @@ namespace Events.Api.Controllers.Event
 
         [HttpGet]
         [Route("", Name = nameof(RouteNames.GetAllEvents))]
-        public async Task<Repository.Pocos.Event[]> GetAll()
+        public async Task<EventDto[]> GetAll()
         {
             return await _cases.GetAllEvents();
         }
 
         [HttpGet]
         [Route("{id:int}", Name = nameof(RouteNames.GetEventById))]
-        [Produces(typeof(Repository.Pocos.Event))]
+        [Produces(typeof(EventDto))]
         public async Task<IActionResult> GetById([FromRoute] int id)
         {
             IActionResult result;

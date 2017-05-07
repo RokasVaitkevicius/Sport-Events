@@ -23,6 +23,8 @@ export class EventListComponent implements OnInit {
   ngOnInit() {
     this.events = this.route.snapshot.data['events'];
 
+    console.log(this.events);
+
     if(this.route.snapshot.params['searchTerm']) {
       let term = this.route.snapshot.params['searchTerm'].trim().toLocaleLowerCase();
       if(term === "") {

@@ -8,7 +8,7 @@ using Events.Repository.Contexts;
 namespace Events.Repository.Contexts.Migrations
 {
     [DbContext(typeof(EventsDbContext))]
-    [Migration("20170506133243_Initial")]
+    [Migration("20170507170737_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -18,7 +18,7 @@ namespace Events.Repository.Contexts.Migrations
 
             modelBuilder.Entity("Events.Repository.Pocos.Event", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("EventId")
                         .ValueGeneratedOnAdd();
 
                     b.Property<string>("Address");
@@ -51,7 +51,7 @@ namespace Events.Repository.Contexts.Migrations
 
                     b.Property<string>("TimeTill");
 
-                    b.HasKey("Id");
+                    b.HasKey("EventId");
 
                     b.HasIndex("AuthorId");
 
@@ -62,12 +62,12 @@ namespace Events.Repository.Contexts.Migrations
 
             modelBuilder.Entity("Events.Repository.Pocos.SportType", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("SportTypeId")
                         .ValueGeneratedOnAdd();
 
                     b.Property<string>("Name");
 
-                    b.HasKey("Id");
+                    b.HasKey("SportTypeId");
 
                     b.ToTable("SportTypes");
                 });
@@ -88,6 +88,20 @@ namespace Events.Repository.Contexts.Migrations
                     b.ToTable("Users");
                 });
 
+            modelBuilder.Entity("Events.Repository.Pocos.Voters", b =>
+                {
+                    b.Property<int>("VoterId")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<int>("EventId");
+
+                    b.HasKey("VoterId");
+
+                    b.HasIndex("EventId");
+
+                    b.ToTable("Voters");
+                });
+
             modelBuilder.Entity("Events.Repository.Pocos.Event", b =>
                 {
                     b.HasOne("Events.Repository.Pocos.User", "Author")
@@ -98,6 +112,14 @@ namespace Events.Repository.Contexts.Migrations
                     b.HasOne("Events.Repository.Pocos.SportType", "SportType")
                         .WithMany("Events")
                         .HasForeignKey("SportTypeId")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("Events.Repository.Pocos.Voters", b =>
+                {
+                    b.HasOne("Events.Repository.Pocos.Event", "Event")
+                        .WithMany("Voters")
+                        .HasForeignKey("EventId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
         }

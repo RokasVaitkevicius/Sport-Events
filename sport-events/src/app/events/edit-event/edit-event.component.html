@@ -16,7 +16,7 @@
     <div class="form-group">
       <label>Sport Type:</label>
      <select class="form-control" required>
-        <option *ngFor="let sportType of sportTypes" value="{{sportType.id}}" [selected]="sportType.id === event.sportTypeId">{{sportType.name}}</option>
+        <option *ngFor="let sportType of sportTypes" value="{{sportType.sportTypeId}}" [selected]="sportType.sportTypeId === event.sportTypeId">{{sportType.name}}</option>
       </select>
     </div>
 

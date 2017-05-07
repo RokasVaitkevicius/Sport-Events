@@ -1,4 +1,4 @@
 export interface ISportType {
-  id: number,
-  name: string
+  sportTypeId: number;
+  name: string;
 }

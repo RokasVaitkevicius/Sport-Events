@@ -21,7 +21,7 @@ export class MyEventsComponent implements OnInit {
               private route: ActivatedRoute) { }
 
   ngOnInit() {
-    //let authorId = this.auth.currentUser.id;
+    //let authorId = this.auth.currentUser.eventId;
     //this.myEvents = this.eventService.getEventsByAuthorId(authorId);
     this.eventService.getSportTypes().subscribe(sportType => {
       this.sportTypes = sportType;
@@ -44,8 +44,8 @@ export class MyEventsComponent implements OnInit {
 
   determineSportType(sportTypeId: number): string {
     if (this.sportTypes !== undefined) {
-      return this.sportTypes.find(x => x.id === sportTypeId).name;
+      return this.sportTypes.find(x => x.sportTypeId === sportTypeId).name;
     }
   }
 }
-//<session-list [eventId]="event?.id" [sortBy]="sortBy" [filterBy]="filterBy" *ngIf="!addMode" [sessions]="event?.sessions"></session-list>
+//<session-list [eventId]="event?.eventId" [sortBy]="sortBy" [filterBy]="filterBy" *ngIf="!addMode" [sessions]="event?.sessions"></session-list>

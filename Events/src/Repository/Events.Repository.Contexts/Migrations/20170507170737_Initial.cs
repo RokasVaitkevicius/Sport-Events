@@ -12,13 +12,13 @@ namespace Events.Repository.Contexts.Migrations
                 name: "SportTypes",
                 columns: table => new
                 {
-                    Id = table.Column<int>(nullable: false)
+                    SportTypeId = table.Column<int>(nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
                     Name = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_SportTypes", x => x.Id);
+                    table.PrimaryKey("PK_SportTypes", x => x.SportTypeId);
                 });
 
             migrationBuilder.CreateTable(
@@ -40,7 +40,7 @@ namespace Events.Repository.Contexts.Migrations
                 name: "Events",
                 columns: table => new
                 {
-                    Id = table.Column<int>(nullable: false)
+                    EventId = table.Column<int>(nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
                     Address = table.Column<string>(nullable: true),
                     AuthorId = table.Column<int>(nullable: false),
@@ -60,7 +60,7 @@ namespace Events.Repository.Contexts.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Events", x => x.Id);
+                    table.PrimaryKey("PK_Events", x => x.EventId);
                     table.ForeignKey(
                         name: "FK_Events_Users_AuthorId",
                         column: x => x.AuthorId,
@@ -71,7 +71,26 @@ namespace Events.Repository.Contexts.Migrations
                         name: "FK_Events_SportTypes_SportTypeId",
                         column: x => x.SportTypeId,
                         principalTable: "SportTypes",
-                        principalColumn: "Id",
+                        principalColumn: "SportTypeId",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Voters",
+                columns: table => new
+                {
+                    VoterId = table.Column<int>(nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    EventId = table.Column<int>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Voters", x => x.VoterId);
+                    table.ForeignKey(
+                        name: "FK_Voters_Events_EventId",
+                        column: x => x.EventId,
+                        principalTable: "Events",
+                        principalColumn: "EventId",
                         onDelete: ReferentialAction.Cascade);
                 });
 
@@ -84,10 +103,18 @@ namespace Events.Repository.Contexts.Migrations
                 name: "IX_Events_SportTypeId",
                 table: "Events",
                 column: "SportTypeId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Voters_EventId",
+                table: "Voters",
+                column: "EventId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.DropTable(
+                name: "Voters");
+
             migrationBuilder.DropTable(
                 name: "Events");
 

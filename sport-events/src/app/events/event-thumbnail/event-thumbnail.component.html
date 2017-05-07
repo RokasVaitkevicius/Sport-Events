@@ -1,4 +1,4 @@
-<div [routerLink]="['/events', event.id]" class="well hoverwell thumbnail">
+<div [routerLink]="['/events', event.eventId]" class="well hoverwell thumbnail">
   <h2>
     {{event?.name | uppercase}}
     <i *ngIf="event.voters.length > 3" class="glyphicon glyphicon-fire" style="color:red"></i>

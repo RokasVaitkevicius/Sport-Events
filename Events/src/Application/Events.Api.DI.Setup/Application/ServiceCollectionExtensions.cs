@@ -1,4 +1,5 @@
-﻿using Events.Api.DI.Setup.Application.Event;
+﻿using AutoMapper;
+using Events.Api.DI.Setup.Application.Event;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 
@@ -14,7 +15,8 @@ namespace Events.Api.DI.Setup.Application
             }
 
             return services
-                .AddApplicationLayerEventDependencies();
+                .AddApplicationLayerEventDependencies()
+                .AddAutoMapper();
         }
     }
 }

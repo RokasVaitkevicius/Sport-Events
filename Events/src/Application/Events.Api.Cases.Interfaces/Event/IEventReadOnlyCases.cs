@@ -1,13 +1,12 @@
 ﻿using System.Threading.Tasks;
-//using EventDto = Events.Api.Dto.Events.Event;
-using EventPoco = Events.Repository.Pocos.Event;
+using EventDto = Events.Api.Dto.Events.Event;
 
 namespace Events.Api.Cases.Event
 {
     public interface IEventReadOnlyCases
     {
-        Task<EventPoco[]> GetAllEvents();
+        Task<EventDto[]> GetAllEvents();
 
-        Task<EventPoco> GetEventById(int id);
+        Task<EventDto> GetEventById(int id);
     }
 }

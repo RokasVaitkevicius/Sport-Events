@@ -1,8 +1,9 @@
-import {Injectable} from "@angular/core";
-import {Observable, Subject} from "rxjs";
-import {IEvent} from "./event.model";
+import {Injectable} from '@angular/core';
+import {Observable, Subject} from 'rxjs/Rx';
+import {IEvent} from './event.model';
 import {ISportType} from './sport-type.model';
-import {IUser} from '../../user/shared/user.model';
+import {Http, Response} from '@angular/http';
+
 
 @Injectable()
 export class EventService {
@@ -13,11 +14,15 @@ export class EventService {
   filterNotificationObservable$ = this.filterNotification.asObservable();
   resetEventsObservable$ = this.resetEventsNotification.asObservable();
 
+  constructor(private http: Http) {
+
+  }
+
   getEvents(): Observable<IEvent[]> {
-    let subject = new Subject<IEvent[]>();
-    setTimeout(() => {subject.next(EVENTS); subject.complete(); },
-      100);
-    return subject;
+    return this.http.get('http://localhost:5000/api/events')
+      .map((response: Response) => {
+        return <IEvent[]>response.json();
+    }).catch(this.handleError);
   }
 
   getSportTypes(): Observable<ISportType[]> {
@@ -28,7 +33,7 @@ export class EventService {
   }
 
   getEvent(id: number) : IEvent {
-    return EVENTS.find(event => event.id === id);
+    return EVENTS.find(event => event.eventId === id);
   }
 
   saveEvent(event) {
@@ -39,7 +44,7 @@ export class EventService {
   public activateSearch(searchTerm: string) {
     let results: IEvent[] = [];
     let term = searchTerm.trim().toLocaleLowerCase();
-    if(term === "") {
+    if(term === '') {
       results = EVENTS;
       this.searchNotification.next({events: results, searchTerm: term});
     } else {
@@ -65,33 +70,37 @@ export class EventService {
   }
 
   updateEvent(formValue: IEvent) {
-    let event = EVENTS.find(event => event.id === formValue.id);
+    let event = EVENTS.find(event => event.eventId === formValue.eventId);
     event = formValue;
+  }
+
+  private handleError(error: Response) {
+    return Observable.throw(error.statusText);
   }
 }
 
 const SPORTTYPES: ISportType[] = [
   {
-    id: 1,
-    name: "Basketball"
+    sportTypeId: 1,
+    name: 'Basketball'
   },
   {
-    id: 2,
-    name: "Football"
+    sportTypeId: 2,
+    name: 'Football'
   },
   {
-    id: 3,
-    name: "Table tennis"
+    sportTypeId: 3,
+    name: 'Table tennis'
   },
   {
-    id: 4,
-    name: "Other"
+    sportTypeId: 4,
+    name: 'Other'
   }
 ];
 
-const EVENTS : IEvent[] = [
+const EVENTS: IEvent[] = [
   {
-    id: 1,
+    eventId: 1,
     authorId: 1,
     name: 'Table Tennis',
     sportTypeId: 3,
@@ -105,14 +114,14 @@ const EVENTS : IEvent[] = [
       city: 'Kaunas',
       country: 'Lithuania'
     },
-    facebookEventUrl: "fb.com/1236544",
+    facebookEventUrl: 'fb.com/1236544',
     voters: ['bradgreen', 'boi', 'kara', 'aaaa'],
     description: 'Nice event',
     imageUrl: 'https://images-na.ssl-images-amazon.com/images/I/51HEs7T6f2L.jpg',
     dateUpdated: new Date('05/01/2011')
   },
   {
-    id: 2,
+    eventId: 2,
     authorId: 1,
     name: 'Footbal',
     sportTypeId: 2,
@@ -128,11 +137,11 @@ const EVENTS : IEvent[] = [
     },
     voters: ['bradgreen', 'boi', 'kara'],
     dateUpdated: new Date('04/01/2017'),
-    facebookEventUrl: "fb.com/1236544",
-    description: "Koool event i love it asdas requiem asdas lasodaosdpas"
+    facebookEventUrl: 'fb.com/1236544',
+    description: 'Koool event i love it asdas requiem asdas lasodaosdpas'
   },
   {
-    id: 3,
+    eventId: 3,
     authorId: 1,
     name: 'Basketball',
     sportTypeId: 1,

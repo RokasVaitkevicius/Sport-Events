@@ -1,5 +1,5 @@
 export interface IEvent {
-  id: number;
+  eventId: number;
   authorId: number;
   name: string;
   sportTypeId: number;

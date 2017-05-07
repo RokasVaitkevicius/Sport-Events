@@ -46,6 +46,8 @@ Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "Events.Domain.Factories.Int
 EndProject
 Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "Events.Api.Dto", "src\Application\Events.Api.Dto\Events.Api.Dto.xproj", "{E1AA292F-13E8-43D9-9389-7A8BB8A7B134}"
 EndProject
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "Events.Api.Mappers", "src\Application\Events.Api.Mappers\Events.Api.Mappers.xproj", "{E8E624EC-7477-4CBC-A8BA-FB65C798D6CF}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -108,6 +110,10 @@ Global
 		{E1AA292F-13E8-43D9-9389-7A8BB8A7B134}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E1AA292F-13E8-43D9-9389-7A8BB8A7B134}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E1AA292F-13E8-43D9-9389-7A8BB8A7B134}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E8E624EC-7477-4CBC-A8BA-FB65C798D6CF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E8E624EC-7477-4CBC-A8BA-FB65C798D6CF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E8E624EC-7477-4CBC-A8BA-FB65C798D6CF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E8E624EC-7477-4CBC-A8BA-FB65C798D6CF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -131,5 +137,6 @@ Global
 		{A4FC0C85-1983-4DC2-A14D-99A6218C4D3E} = {92E1383A-F036-401D-B7FC-6CB03D1791D1}
 		{893310D9-227B-4EB6-BAC4-186251ECAEE2} = {92E1383A-F036-401D-B7FC-6CB03D1791D1}
 		{E1AA292F-13E8-43D9-9389-7A8BB8A7B134} = {F139C663-1D05-4533-8F7F-F40452F43F5B}
+		{E8E624EC-7477-4CBC-A8BA-FB65C798D6CF} = {F139C663-1D05-4533-8F7F-F40452F43F5B}
 	EndGlobalSection
 EndGlobal

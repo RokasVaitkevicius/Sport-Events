@@ -1,10 +1,13 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Reflection;
+using Events.Constants.Constants;
 
 namespace Events.Api.Dto.Events
 {
     public class Event
     {
-        public int Id { get; set; }
+        public int EventId { get; set; }
 
         public string Name { get; set; }
 
@@ -18,11 +21,7 @@ namespace Events.Api.Dto.Events
 
         public string PhoneNumber { get; set; }
 
-        public string Address { get; set; }
-
-        public string City { get; set; }
-
-        public string Country { get; set; }
+        public Location Location { get; set; }
 
         public string Description { get; set; }
 
@@ -35,5 +34,7 @@ namespace Events.Api.Dto.Events
         public int AuthorId { get; set; }
 
         public int SportTypeId { get; set; }
+
+        public List<Voter> Voters { get; set; }
     }
 }

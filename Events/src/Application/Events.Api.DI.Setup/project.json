@@ -1,7 +1,8 @@
-﻿{
+{
   "version": "1.0.0-*",
 
   "dependencies": {
+    "AutoMapper.Extensions.Microsoft.DependencyInjection": "2.0.1",
     "Events.Api.Cases": "1.0.0-*",
     "Events.Api.Cases.Interfaces": "1.0.0-*",
     "Events.Domain.Factories": "1.0.0-*",

@@ -22,7 +22,7 @@
       <em *ngIf="newEventForm.controls.sportType?.invalid && (newEventForm.controls.sportType?.touched)">Required</em>
       <select class="form-control" required>
         <option value="" selected disabled hidden>Choose Sport Type...</option>
-        <option *ngFor="let sportType of sportTypes" value="{{sportType.id}}">{{sportType.name}}</option>
+        <option *ngFor="let sportType of sportTypes" value="{{sportType.sportTypeId}}">{{sportType.name}}</option>
       </select>
     </div>
 

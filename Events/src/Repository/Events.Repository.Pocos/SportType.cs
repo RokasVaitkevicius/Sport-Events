@@ -8,7 +8,7 @@ namespace Events.Repository.Pocos
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int Id { get; set; }
+        public int SportTypeId { get; set; }
 
         public string Name { get; set; }
 

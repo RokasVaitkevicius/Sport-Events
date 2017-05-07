@@ -3,6 +3,7 @@
 
   "dependencies": {
     "Events.Api.Cases.Interfaces": "1.0.0-*",
+    "Events.Api.Mappers": "1.0.0-*",
     "Events.Domain.Factories.Interfaces": "1.0.0-*",
     "Events.Repository.Interfaces": "1.0.0-*",
     "NETStandard.Library": "1.6.1"
