@@ -12,7 +12,7 @@ namespace Events.Repository.Contexts
 
         public DbSet<User> Users { get; set; }
 
-        public DbSet<Voters> Voters { get; set; }
+        public DbSet<Voter> Voters { get; set; }
 
         public EventsDbContext(DbContextOptions<EventsDbContext> options) :
             base(options)
@@ -34,7 +34,7 @@ namespace Events.Repository.Contexts
                 .HasForeignKey(e => e.SportTypeId)
                 .IsRequired();
 
-            modelBuilder.Entity<Voters>()
+            modelBuilder.Entity<Voter>()
                 .HasOne(v => v.Event)
                 .WithMany(e => e.Voters)
                 .HasForeignKey(e => e.EventId)

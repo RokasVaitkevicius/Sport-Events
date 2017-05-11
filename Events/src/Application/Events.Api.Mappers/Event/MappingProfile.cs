@@ -11,8 +11,6 @@ namespace Events.Api.Mappers.Event
     {
         public MappingProfile()
         {
-            CreateMap<Voters, Voter>();
-
             CreateMap<EventPoco, EventDto>()
                 .ForMember(e => e.Location, o => o.ResolveUsing(fa => new Location
                 {
@@ -21,8 +19,7 @@ namespace Events.Api.Mappers.Event
                     Country = fa.Country
                 }))
                 .ForMember(e => e.Voters, o => o.MapFrom(a => a.Voters)                 
-                );
-            
+                );   
         }
     }
 }

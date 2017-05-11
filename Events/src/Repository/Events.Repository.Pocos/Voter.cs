@@ -2,7 +2,7 @@
 
 namespace Events.Repository.Pocos
 {
-    public class Voters
+    public class Voter
     {
         [Key]
         public int VoterId { get; set; }
