@@ -8,7 +8,7 @@ import {EventDetailsComponent} from './events/event-details/event-details.compon
 
 import {EventService} from "./events/shared/event.service";
 import {NavbarComponent} from './nav/navbar/navbar.component';
-import {EventsRouteActivator} from "./events/event-details/event-route-activator.service";
+import {EventResolver} from "./events/shared/event-resolver.service";
 import {EventListComponent} from './events/event-list/event-list.component';
 import {EventThumbnailComponent} from './events/event-thumbnail/event-thumbnail.component';
 import {ProfileComponent} from './user/profile/profile.component';
@@ -61,7 +61,7 @@ import { SortingComponent } from './events/sorting/sorting.component';
     EventService,
     UserService,
     VoterService,
-    EventsRouteActivator,
+    EventResolver,
     EventListResolver,
     AuthService,
     {provide: 'canDeactivateCreateEvent', useValue: checkDirtyState}

@@ -47,7 +47,7 @@ namespace Events.Repository.Pocos
 
         public SportType SportType { get; set; }
 
-        public List<Voters> Voters { get; set; }
+        public List<Voter> Voters { get; set; }
 
         #endregion
     }

@@ -5,7 +5,6 @@ import {EventService} from './event.service';
 @Injectable()
 export class EventListResolver implements Resolve<any> {
   constructor(private eventService: EventService) {
-
   }
 
   resolve() {

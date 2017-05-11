@@ -32,8 +32,12 @@ export class EventService {
     return subject;
   }
 
-  getEvent(id: number) : IEvent {
-    return EVENTS.find(event => event.eventId === id);
+  getEvent(id: number) : Observable<IEvent> {
+    console.log("Hello from service, id is: " + id);
+    return this.http.get('http://localhost:5000/api/events/' + id)
+      .map((response: Response) => {
+        return <IEvent>response.json();
+      }).catch(this.handleError);
   }
 
   saveEvent(event) {

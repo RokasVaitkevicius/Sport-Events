@@ -25,8 +25,7 @@ export class EventDetailsComponent implements OnInit {
               private userService: UserService) { }
 
   ngOnInit() {
-    this.event = this.eventService.getEvent
-    (+this.route.snapshot.params['id']);
+    this.event = this.route.snapshot.data['event'];
 
     this.eventService.getSportTypes().subscribe(sportType => {
       this.sportTypes = sportType;
