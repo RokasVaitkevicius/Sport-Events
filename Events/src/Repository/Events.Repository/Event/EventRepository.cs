@@ -17,7 +17,7 @@ namespace Events.Repository.Event
 
         public async Task<EventPoco[]> GetAllEvents()
         {
-            return await _db.Events.Select(e => e).ToArrayAsync();
+            return await _db.Events.Select(e => e).Include(v => v.Voters).ToArrayAsync();
         }
 
         public async Task<EventPoco> GetEventById(int id)

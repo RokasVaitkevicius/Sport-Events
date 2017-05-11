@@ -26,9 +26,9 @@
             Events
             <span class="caret"></span>
           </a>
-          <ul class="dropdown-menu">
+            <ul class="dropdown-menu">
             <li>
-              <a [routerLink]="['/events/category', sportTypeId.id]"
+              <a [routerLink]="['/events/category', sportType.sportTypeId]"
                  *ngFor="let sportType of sportTypes">{{sportType.name}}</a>
             </li>
           </ul>

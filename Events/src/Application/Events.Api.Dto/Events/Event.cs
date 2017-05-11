@@ -1,6 +1,7 @@
 ﻿using Events.Constants.Constants;
 using System;
 using System.Collections.Generic;
+using Events.Api.Dto.Voters;
 
 namespace Events.Api.Dto.Events
 {
