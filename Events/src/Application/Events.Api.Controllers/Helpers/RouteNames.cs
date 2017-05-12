@@ -4,7 +4,9 @@
     {
         GetAllEvents,
         GetEventById,
+        GetEventsByUserId,
 
-        GetEventsByUserId
+        GetAllSportTypes,
+        GetSportTypeById
     }
 }

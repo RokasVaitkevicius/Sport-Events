@@ -1,4 +1,5 @@
 ﻿using Events.Api.DI.Setup.Infrastructure.Event;
+using Events.Api.DI.Setup.Infrastructure.SportType;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 
@@ -14,7 +15,8 @@ namespace Events.Api.DI.Setup.Infrastructure
             }
 
             return services
-                .AddInfrastructureLayerEventDependencies();
+                .AddInfrastructureLayerEventDependencies()
+                .AddInfrastructureLayerSportTypeDependencies();
         }
     }
 }

@@ -2,6 +2,7 @@
 using Events.Api.DI.Setup.Application.Event;
 using Microsoft.Extensions.DependencyInjection;
 using System;
+using Events.Api.DI.Setup.Application.SportType;
 
 namespace Events.Api.DI.Setup.Application
 {
@@ -16,6 +17,7 @@ namespace Events.Api.DI.Setup.Application
 
             return services
                 .AddApplicationLayerEventDependencies()
+                .AddApplicationLayerSportTypeDependencies()
                 .AddAutoMapper();
         }
     }
