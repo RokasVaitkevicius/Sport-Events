@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import {IEvent} from '../shared/event.model';
+import {IEvent} from '../../microservices/event/event.model';
 import {ActivatedRoute, Router} from '@angular/router';
-import {EventService} from '../shared/event.service';
+import {EventService} from '../../microservices/event/event.service';
 import {FormControl, FormGroup} from '@angular/forms';
-import {ISportType} from "../shared/sport-type.model";
+import {ISportType} from "../../microservices/sport-type/sport-type.model";
 import {ToastrService} from "toastr-ng2";
+import {SportTypeService} from '../../microservices/sport-type/sport-type.service';
 
 @Component({
   selector: 'edit-event',
@@ -17,14 +18,15 @@ export class EditEventComponent implements OnInit {
   sportTypes: ISportType[];
 
   constructor(private eventService: EventService,
-              private route:ActivatedRoute,
+              private sportTypeService: SportTypeService,
+              private route: ActivatedRoute,
               private router: Router,
               private toastrService: ToastrService) { }
 
   ngOnInit() {
     this.event = this.route.snapshot.data['event'];
 
-    this.eventService.getSportTypes().subscribe(sportType => {
+    this.sportTypeService.getSportTypes().subscribe(sportType => {
       this.sportTypes = sportType;
     });
 
@@ -54,6 +56,6 @@ export class EditEventComponent implements OnInit {
     console.log(formValue);
       this.eventService.updateEvent(formValue);
       //this.router.navigate(['events']);
-      this.toastrService.success('Profile Saved');
+      this.toastrService.success('Event Saved');
   }
 }

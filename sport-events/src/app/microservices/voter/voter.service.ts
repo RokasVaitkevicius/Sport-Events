@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {IEvent} from './event.model';
+import {IEvent} from '../event/event.model';
 
 @Injectable()
 export class VoterService {

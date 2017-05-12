@@ -1,12 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute} from "@angular/router";
-import {EventService} from "../shared/event.service";
-import {IEvent} from "../shared/event.model";
+import {EventService} from "../../microservices/event/event.service";
+import {IEvent} from "../../microservices/event/event.model";
 import {AuthService} from '../../user/shared/auth.service';
-import {VoterService} from '../shared/voter.service';
-import {ISportType} from '../shared/sport-type.model';
+import {VoterService} from '../../microservices/voter/voter.service';
+import {ISportType} from '../../microservices/sport-type/sport-type.model';
 import {IUser} from '../../user/shared/user.model';
 import {UserService} from '../../user/shared/user.service';
+import {SportTypeService} from '../../microservices/sport-type/sport-type.service';
 
 @Component({
   selector: 'event-details',
@@ -15,20 +16,21 @@ import {UserService} from '../../user/shared/user.service';
 })
 export class EventDetailsComponent implements OnInit {
   event: IEvent;
-  sportTypes: ISportType[];
+  sportType: ISportType;
   users: IUser[];
 
   constructor(private eventService: EventService,
-              private route:ActivatedRoute,
+              private route: ActivatedRoute,
               private auth: AuthService,
               private voterService: VoterService,
-              private userService: UserService) { }
+              private userService: UserService,
+              private sportTypeService: SportTypeService ) { }
 
   ngOnInit() {
     this.event = this.route.snapshot.data['event'];
 
-    this.eventService.getSportTypes().subscribe(sportType => {
-      this.sportTypes = sportType;
+    this.sportTypeService.getSportTypeById(this.event.sportTypeId).subscribe(sportType => {
+      this.sportType = sportType;
     });
 
     this.userService.getUsers().subscribe(users => {
@@ -46,12 +48,6 @@ export class EventDetailsComponent implements OnInit {
 
   userHasVoted(event: IEvent) {
     return this.voterService.userHasVoted(event, this.auth.currentUser.userName);
-  }
-
-  determineSportType(sportTypeId: number): string {
-    if(this.sportTypes !== undefined){
-      return this.sportTypes.find(x => x.sportTypeId === sportTypeId).name;
-    }
   }
 
   determineAuthor(authorId: number): string {

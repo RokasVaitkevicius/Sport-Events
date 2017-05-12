@@ -6,29 +6,30 @@ import {HttpModule} from '@angular/http';
 import {AppComponent} from './app.component';
 import {EventDetailsComponent} from './events/event-details/event-details.component';
 
-import {EventService} from "./events/shared/event.service";
+import {EventService} from "./microservices/event/event.service";
 import {NavbarComponent} from './nav/navbar/navbar.component';
-import {EventResolver} from "./events/shared/event-resolver.service";
+import {EventResolver} from "./microservices/event/event-resolver.service";
 import {EventListComponent} from './events/event-list/event-list.component';
 import {EventThumbnailComponent} from './events/event-thumbnail/event-thumbnail.component';
 import {ProfileComponent} from './user/profile/profile.component';
 import {LoginComponent} from './user/login/login.component';
 import {Error404Component} from './errors/error404/error404.component';
 import {AuthService} from "./user/shared/auth.service";
-import {EventListResolver} from "./events/shared/event-list-resolver.service";
+import {EventListResolver} from "./microservices/event/event-list-resolver.service";
 import {RouterModule} from "@angular/router";
 import {appRoutes} from "./app-routing.module";
 import {CreateEventComponent} from "./events/create-event/create-event.component";
 import {DurationPipe} from "./events/shared/duration.pipe";
 import {ToastrModule} from "toastr-ng2";
 import {UpvoteComponent} from './events/upvote/upvote.component';
-import {VoterService} from './events/shared/voter.service';
+import {VoterService} from './microservices/voter/voter.service';
 import {LocationValidator} from './events/create-event/location-validator.directive';
 import {EditEventComponent} from './events/edit-event/edit-event.component';
 import {MyEventsComponent} from './events/my-events/my-events.component';
 import {UserService} from './user/shared/user.service';
 import { CollapsibleWellComponent } from './common/collapsible-well/collapsible-well.component';
 import { SortingComponent } from './events/sorting/sorting.component';
+import {SportTypeService} from './microservices/sport-type/sport-type.service';
 
 @NgModule({
   declarations: [
@@ -61,6 +62,7 @@ import { SortingComponent } from './events/sorting/sorting.component';
     EventService,
     UserService,
     VoterService,
+    SportTypeService,
     EventResolver,
     EventListResolver,
     AuthService,

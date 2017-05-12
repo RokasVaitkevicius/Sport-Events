@@ -1,10 +1,11 @@
 import {Component, OnInit, Input} from '@angular/core';
-import {IEvent} from "../shared/event.model";
-import {ISportType} from '../shared/sport-type.model';
-import {EventService} from '../shared/event.service';
+import {IEvent} from "../../microservices/event/event.model";
+import {ISportType} from '../../microservices/sport-type/sport-type.model';
+import {EventService} from '../../microservices/event/event.service';
 import {AuthService} from '../../user/shared/auth.service';
 import {IUser} from '../../user/shared/user.model';
 import {UserService} from '../../user/shared/user.service';
+import {SportTypeService} from '../../microservices/sport-type/sport-type.service';
 
 @Component({
   selector: 'event-thumbnail',
@@ -16,11 +17,12 @@ export class EventThumbnailComponent implements OnInit{
   sportTypes: ISportType[];
   users: IUser[];
 
-  constructor(private eventService: EventService, private userService: UserService) {
+  constructor(private eventService: EventService, private userService: UserService,
+              private sportTypeService: SportTypeService) {
   }
 
   ngOnInit(): void {
-    this.eventService.getSportTypes().subscribe(sportType => {
+    this.sportTypeService.getSportTypes().subscribe(sportType => {
       this.sportTypes = sportType;
     });
 

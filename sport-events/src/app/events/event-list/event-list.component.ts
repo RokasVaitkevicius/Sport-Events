@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
-import {EventService} from "../shared/event.service";
+import {EventService} from "../../microservices/event/event.service";
 import {ActivatedRoute, Router} from "@angular/router";
-import {IEvent} from "../shared/event.model";
+import {IEvent} from "../../microservices/event/event.model";
 import {Subscription} from 'rxjs';
 
 @Component({

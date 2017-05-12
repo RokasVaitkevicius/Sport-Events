@@ -1,7 +1,8 @@
 import {Component, OnInit} from '@angular/core';
-import {EventService} from "../shared/event.service";
-import {Router} from "@angular/router";
-import {ISportType} from '../shared/sport-type.model';
+import {EventService} from '../../microservices/event/event.service';
+import {Router} from '@angular/router';
+import {ISportType} from '../../microservices/sport-type/sport-type.model';
+import {SportTypeService} from '../../microservices/sport-type/sport-type.service';
 
 @Component({
   selector: 'create-event',
@@ -11,11 +12,14 @@ import {ISportType} from '../shared/sport-type.model';
 export class CreateEventComponent implements OnInit{
   isDirty: boolean = true;
   sportTypes: ISportType[];
-  constructor(private eventService: EventService, private router: Router) {
+  constructor(private eventService: EventService,
+              private router: Router,
+              private sportTypeService: SportTypeService
+    ) {
   }
 
   ngOnInit(): void {
-    this.eventService.getSportTypes().subscribe(sportType => {
+    this.sportTypeService.getSportTypes().subscribe(sportType => {
       this.sportTypes = sportType;
     });
   }

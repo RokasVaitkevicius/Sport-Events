@@ -1,5 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {IEvent} from '../shared/event.model';
+import {IEvent} from '../../microservices/event/event.model';
 
 @Component({
   selector: 'sorting',

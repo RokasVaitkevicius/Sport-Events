@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import {AuthService} from "../../user/shared/auth.service";
-import {EventService} from '../../events/shared/event.service';
-import {ISportType} from '../../events/shared/sport-type.model';
+import {AuthService} from '../../user/shared/auth.service';
+import {EventService} from '../../microservices/event/event.service';
+import {ISportType} from '../../microservices/sport-type/sport-type.model';
+import {SportTypeService} from '../../microservices/sport-type/sport-type.service';
 
 @Component({
   selector: 'nav-bar',
@@ -13,13 +14,16 @@ export class NavbarComponent implements OnInit {
   sportTypes: ISportType[];
 
   constructor(private authService: AuthService,
-    private eventService: EventService) {
+    private eventService: EventService,
+    private sportTypeService: SportTypeService) {
   }
 
   ngOnInit() {
-    this.eventService.getSportTypes().subscribe(sportType => {
+    this.sportTypeService.getSportTypes().subscribe(sportType => {
       this.sportTypes = sportType;
+      console.log(this.sportTypes);
     });
+    console.log("aaa");
   }
 
   searchEvents(searchTerm: string) {

@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import {AuthService} from '../../user/shared/auth.service';
-import {IEvent} from '../shared/event.model';
-import {EventService} from '../shared/event.service';
+import {IEvent} from '../../microservices/event/event.model';
+import {EventService} from '../../microservices/event/event.service';
 import {ActivatedRoute} from '@angular/router';
-import {ISportType} from '../shared/sport-type.model';
+import {ISportType} from '../../microservices/sport-type/sport-type.model';
+import {SportTypeService} from '../../microservices/sport-type/sport-type.service';
 
 @Component({
   selector: 'app-my-events',
@@ -18,12 +19,13 @@ export class MyEventsComponent implements OnInit {
 
   constructor(private auth: AuthService,
               private eventService: EventService,
+              private sportTypeService: SportTypeService,
               private route: ActivatedRoute) { }
 
   ngOnInit() {
     //let userId = this.auth.currentUser.eventId;
     //this.myEvents = this.eventService.getEventsByUserId(userId);
-    this.eventService.getSportTypes().subscribe(sportType => {
+    this.sportTypeService.getSportTypes().subscribe(sportType => {
       this.sportTypes = sportType;
     });
 
@@ -43,7 +45,7 @@ export class MyEventsComponent implements OnInit {
   }
 
     onCancelClick(id: number) {
-    console.log(`Hello from my events cancel click: ${id}`)
+    console.log(`Hello from my events cancel click: ${id}`);
   }
 
   determineSportType(sportTypeId: number): string {

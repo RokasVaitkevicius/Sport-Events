@@ -1,7 +1,6 @@
 import {Injectable} from '@angular/core';
 import {Observable, Subject} from 'rxjs/Rx';
 import {IEvent} from './event.model';
-import {ISportType} from './sport-type.model';
 import {Http, Response} from '@angular/http';
 
 
@@ -23,17 +22,10 @@ export class EventService {
     return this.http.get(this.baseUrl + '/api/events')
       .map((response: Response) => {
         return <IEvent[]>response.json();
-    }).catch(this.handleError);
+      }).catch(this.handleError);
   }
 
-  getSportTypes(): Observable<ISportType[]> {
-    let subject = new Subject<ISportType[]>();
-    setTimeout(() => {subject.next(SPORTTYPES); subject.complete(); },
-      100);
-    return subject;
-  }
-
-  getEvent(id: number) : Observable<IEvent> {
+  getEvent(id: number): Observable<IEvent> {
     return this.http.get(this.baseUrl + '/api/events/' + id)
       .map((response: Response) => {
         return <IEvent>response.json();
@@ -85,25 +77,6 @@ export class EventService {
     return Observable.throw(error.statusText);
   }
 }
-
-const SPORTTYPES: ISportType[] = [
-  {
-    sportTypeId: 1,
-    name: 'Basketball'
-  },
-  {
-    sportTypeId: 2,
-    name: 'Football'
-  },
-  {
-    sportTypeId: 3,
-    name: 'Table tennis'
-  },
-  {
-    sportTypeId: 4,
-    name: 'Other'
-  }
-];
 
 const EVENTS: IEvent[] = [
   {
