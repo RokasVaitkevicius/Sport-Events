@@ -23,9 +23,9 @@ namespace Events.Repository.Contexts
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Event>()
-                .HasOne(e => e.Author)
+                .HasOne(e => e.User)
                 .WithMany(a => a.Events)
-                .HasForeignKey(e => e.AuthorId)
+                .HasForeignKey(e => e.UserId)
                 .IsRequired();
 
             modelBuilder.Entity<Event>()
@@ -38,6 +38,12 @@ namespace Events.Repository.Contexts
                 .HasOne(v => v.Event)
                 .WithMany(e => e.Voters)
                 .HasForeignKey(e => e.EventId)
+                .IsRequired();
+
+            modelBuilder.Entity<Voter>()
+                .HasOne(v => v.User)
+                .WithMany(e => e.Voters)
+                .HasForeignKey(e => e.UserId)
                 .IsRequired();
         }
     }

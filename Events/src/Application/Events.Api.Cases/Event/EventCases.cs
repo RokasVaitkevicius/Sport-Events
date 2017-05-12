@@ -40,6 +40,13 @@ namespace Events.Api.Cases.Event
             return _mapper.Map<EventPoco, EventDto>(eventPoco);
         }
 
+        public async Task<EventDto[]> GetEventsByUserId(int userId)
+        {
+            var eventsPoco = await _repository.GetEventsByUserId(userId);
+
+            return eventsPoco.Select(eventPoco => _mapper.Map<EventPoco, EventDto>(eventPoco)).ToArray();
+        }
+
         public async Task CreateEvent(NewEvent newEvent)
         {
             await _eventFactory.CreateEvent(newEvent);

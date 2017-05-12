@@ -25,6 +25,11 @@ namespace Events.Repository.Event
             return await _db.Events.Include(v => v.Voters).SingleOrDefaultAsync(e => e.EventId == id);
         }
 
+        public async Task<EventPoco[]> GetEventsByUserId(int userId)
+        {
+            return await _db.Events.Select(e => e).Where(e => e.UserId == userId).Include(e => e.Voters).ToArrayAsync();
+        }
+
         public async Task CreateEvent(EventPoco newEvent)
         {
             await _db.Events.AddAsync(newEvent);

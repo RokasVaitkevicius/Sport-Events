@@ -13,11 +13,11 @@
 
   <div class="row">
     <div class="col-md-6">
-      <div><strong>Author:</strong> {{determineAuthor(event?.authorId)}}</div>
+      <div><strong>Author:</strong> {{determineAuthor(event?.userId)}}</div>
       <div><strong>Phone Number:</strong> {{event?.phoneNumber}}</div>
       <div><strong>Date:</strong> {{event?.date | date:'y-M-d'}}</div>
       <div><strong>Event Time:</strong> {{event?.timeFrom}} - {{event?.timeTill}}</div>
-      <div *ngIf="event?.price > 0"><strong>Price:</strong> {{event?.price}}</div>
+      <div *ngIf="event?.price > 0"><strong>Price:</strong> {{event?.price | currency:'EUR':true}}</div>
       <div *ngIf="event?.price === 0"><strong>Price:</strong> FREE</div>
       <div><strong>Sport Type:</strong> {{determineSportType(event?.sportTypeId)}}</div>
       <div *ngIf="event.facebookEventUrl"><strong>Facebook Event Url:</strong> {{event?.facebookEventUrl}}</div>

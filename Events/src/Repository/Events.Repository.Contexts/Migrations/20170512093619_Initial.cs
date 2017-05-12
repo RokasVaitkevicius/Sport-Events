@@ -25,7 +25,7 @@ namespace Events.Repository.Contexts.Migrations
                 name: "Users",
                 columns: table => new
                 {
-                    Id = table.Column<int>(nullable: false)
+                    UserId = table.Column<int>(nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
                     FirstName = table.Column<string>(nullable: true),
                     LastName = table.Column<string>(nullable: true),
@@ -33,7 +33,7 @@ namespace Events.Repository.Contexts.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Users", x => x.Id);
+                    table.PrimaryKey("PK_Users", x => x.UserId);
                 });
 
             migrationBuilder.CreateTable(
@@ -43,7 +43,6 @@ namespace Events.Repository.Contexts.Migrations
                     EventId = table.Column<int>(nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
                     Address = table.Column<string>(nullable: true),
-                    AuthorId = table.Column<int>(nullable: false),
                     City = table.Column<string>(nullable: true),
                     Country = table.Column<string>(nullable: true),
                     DateUpdated = table.Column<DateTime>(nullable: false),
@@ -56,22 +55,23 @@ namespace Events.Repository.Contexts.Migrations
                     Price = table.Column<double>(nullable: false),
                     SportTypeId = table.Column<int>(nullable: false),
                     TimeFrom = table.Column<string>(nullable: true),
-                    TimeTill = table.Column<string>(nullable: true)
+                    TimeTill = table.Column<string>(nullable: true),
+                    UserId = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Events", x => x.EventId);
                     table.ForeignKey(
-                        name: "FK_Events_Users_AuthorId",
-                        column: x => x.AuthorId,
-                        principalTable: "Users",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
                         name: "FK_Events_SportTypes_SportTypeId",
                         column: x => x.SportTypeId,
                         principalTable: "SportTypes",
                         principalColumn: "SportTypeId",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Events_Users_UserId",
+                        column: x => x.UserId,
+                        principalTable: "Users",
+                        principalColumn: "UserId",
                         onDelete: ReferentialAction.Cascade);
                 });
 
@@ -81,7 +81,8 @@ namespace Events.Repository.Contexts.Migrations
                 {
                     VoterId = table.Column<int>(nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
-                    EventId = table.Column<int>(nullable: false)
+                    EventId = table.Column<int>(nullable: false),
+                    UserId = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -92,12 +93,13 @@ namespace Events.Repository.Contexts.Migrations
                         principalTable: "Events",
                         principalColumn: "EventId",
                         onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Voters_Users_UserId",
+                        column: x => x.UserId,
+                        principalTable: "Users",
+                        principalColumn: "UserId",
+                        onDelete: ReferentialAction.Cascade);
                 });
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Events_AuthorId",
-                table: "Events",
-                column: "AuthorId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Events_SportTypeId",
@@ -105,9 +107,19 @@ namespace Events.Repository.Contexts.Migrations
                 column: "SportTypeId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Events_UserId",
+                table: "Events",
+                column: "UserId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Voters_EventId",
                 table: "Voters",
                 column: "EventId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Voters_UserId",
+                table: "Voters",
+                column: "UserId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -119,10 +131,10 @@ namespace Events.Repository.Contexts.Migrations
                 name: "Events");
 
             migrationBuilder.DropTable(
-                name: "Users");
+                name: "SportTypes");
 
             migrationBuilder.DropTable(
-                name: "SportTypes");
+                name: "Users");
         }
     }
 }

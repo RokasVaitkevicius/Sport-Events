@@ -13,13 +13,14 @@ export class EventService {
   searchNotificationObservable$ = this.searchNotification.asObservable();
   filterNotificationObservable$ = this.filterNotification.asObservable();
   resetEventsObservable$ = this.resetEventsNotification.asObservable();
+  private baseUrl = 'http://localhost:5000';
 
   constructor(private http: Http) {
 
   }
 
   getEvents(): Observable<IEvent[]> {
-    return this.http.get('http://localhost:5000/api/events')
+    return this.http.get(this.baseUrl + '/api/events')
       .map((response: Response) => {
         return <IEvent[]>response.json();
     }).catch(this.handleError);
@@ -33,8 +34,7 @@ export class EventService {
   }
 
   getEvent(id: number) : Observable<IEvent> {
-    console.log("Hello from service, id is: " + id);
-    return this.http.get('http://localhost:5000/api/events/' + id)
+    return this.http.get(this.baseUrl + '/api/events/' + id)
       .map((response: Response) => {
         return <IEvent>response.json();
       }).catch(this.handleError);
@@ -69,8 +69,11 @@ export class EventService {
     this.resetEventsNotification.next({events: EVENTS});
   }
 
-  getEventsByAuthorId(authorId: number) {
-    return EVENTS.filter(event => event.authorId === authorId);
+  getEventsByUserId(userId: number): Observable<IEvent[]> {
+    return this.http.get(this.baseUrl + '/api/myEvents/' + userId)
+      .map((response: Response) => {
+        return <IEvent>response.json();
+      }).catch(this.handleError);
   }
 
   updateEvent(formValue: IEvent) {
@@ -105,7 +108,7 @@ const SPORTTYPES: ISportType[] = [
 const EVENTS: IEvent[] = [
   {
     eventId: 1,
-    authorId: 1,
+    userId: 1,
     name: 'Table Tennis',
     sportTypeId: 3,
     date: new Date('09/05/2036'),
@@ -126,7 +129,7 @@ const EVENTS: IEvent[] = [
   },
   {
     eventId: 2,
-    authorId: 1,
+    userId: 1,
     name: 'Footbal',
     sportTypeId: 2,
     date: new Date('2011/09/05'),
@@ -146,7 +149,7 @@ const EVENTS: IEvent[] = [
   },
   {
     eventId: 3,
-    authorId: 1,
+    userId: 1,
     name: 'Basketball',
     sportTypeId: 1,
     date: new Date('2013/09/05'),

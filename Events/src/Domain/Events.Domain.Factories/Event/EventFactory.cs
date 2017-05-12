@@ -31,7 +31,7 @@ namespace Events.Domain.Factories.Event
                 FacebookEventUrl = newEvent.FacebookEventUrl,
                 ImageUrl = newEvent.ImageUrl,
                 DateUpdated = DateTime.Now,
-                AuthorId = newEvent.AuthorId,
+                UserId = newEvent.UserId,
                 SportTypeId = newEvent.SportTypeId
             };
 

@@ -8,5 +8,7 @@ namespace Events.Repository.Event
         Task<EventPoco[]> GetAllEvents();
 
         Task<EventPoco> GetEventById(int id);
+
+        Task<EventPoco[]> GetEventsByUserId(int userId);
     }
 }

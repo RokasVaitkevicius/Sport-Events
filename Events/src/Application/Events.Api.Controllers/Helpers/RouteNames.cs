@@ -3,6 +3,8 @@
     public enum RouteNames
     {
         GetAllEvents,
-        GetEventById
+        GetEventById,
+
+        GetEventsByUserId
     }
 }

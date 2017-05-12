@@ -36,7 +36,7 @@ namespace Events.Api.Dto.Events
         public string ImageUrl { get; set; }
 
         [Required]
-        public int AuthorId { get; set; }
+        public int UserId { get; set; }
 
         [Required]
         public int SportTypeId { get; set; }

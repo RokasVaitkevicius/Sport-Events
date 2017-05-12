@@ -13,6 +13,10 @@ namespace Events.Repository.Pocos
 
         public Event Event { get; set; }
 
+        public int UserId { get; set; }
+
+        public User User { get; set; }
+
         #endregion
 
     }

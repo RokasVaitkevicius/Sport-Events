@@ -22,15 +22,14 @@ export class EditEventComponent implements OnInit {
               private toastrService: ToastrService) { }
 
   ngOnInit() {
-    this.eventService.getEvent
-    (+this.route.snapshot.params['eventId']).subscribe(e => this.event = e);
+    this.event = this.route.snapshot.data['event'];
 
     this.eventService.getSportTypes().subscribe(sportType => {
       this.sportTypes = sportType;
     });
 
     this.eventForm = new FormGroup({
-      author: new FormControl(this.event.authorId),
+      author: new FormControl(this.event.userId),
       name: new FormControl(this.event.name),
       sportType: new FormControl(this.event.sportTypeId),
       date: new FormControl(this.event.date),

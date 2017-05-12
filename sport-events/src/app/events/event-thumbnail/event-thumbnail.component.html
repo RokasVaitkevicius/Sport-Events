@@ -3,13 +3,12 @@
     {{event?.name | uppercase}}
     <i *ngIf="event.voters.length > 3" class="glyphicon glyphicon-fire" style="color:red"></i>
   </h2>
-  <div>Author: {{determineAuthor(event?.authorId)}}</div>
+  <div>Author: {{determineAuthor(event?.userId)}}</div>
   <div>Sport Type: {{determineSportType(event?.sportTypeId)}}</div>
   <div>Date: {{event?.date | date:'y-M-d'}}</div>
   <div>Event Time: {{event?.timeFrom}} - {{event?.timeTill}}  </div>
-  <div *ngIf="event?.price">
-    Price: {{event?.price | currency:'EUR':true}}
-  </div>
+  <div *ngIf="event?.price > 0"><strong>Price:</strong> {{event?.price | currency:'EUR':true}}</div>
+  <div *ngIf="event?.price === 0"><strong>Price:</strong> FREE</div>
   <div *ngIf="event.location.address !== ''">
     <span>Location: {{event?.location?.address}}</span>
     <span class="pad-left">{{event?.location?.city}}, {{event?.location.country}}</span>

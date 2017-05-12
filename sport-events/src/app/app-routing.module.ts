@@ -17,7 +17,7 @@ export const appRoutes: Routes = [
   { path: 'events/category/:categoryId', component: EventListComponent, resolve: { events: EventListResolver }},
   { path: 'events/:eventId', component: EventDetailsComponent, resolve: { event: EventResolver }},
   { path: 'myEvents', component: MyEventsComponent, resolve: { events: EventListResolver}},
-  { path: 'myEvents/:eventId', component: EditEventComponent, resolve: EventResolver},
+  { path: 'myEvents/:eventId', component: EditEventComponent, resolve: { event: EventResolver }},
 
   { path: '404', component: Error404Component },
   { path: '', redirectTo: '/events', pathMatch: 'full' },

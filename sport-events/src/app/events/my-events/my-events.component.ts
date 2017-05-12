@@ -21,19 +21,23 @@ export class MyEventsComponent implements OnInit {
               private route: ActivatedRoute) { }
 
   ngOnInit() {
-    //let authorId = this.auth.currentUser.eventId;
-    //this.myEvents = this.eventService.getEventsByAuthorId(authorId);
+    //let userId = this.auth.currentUser.eventId;
+    //this.myEvents = this.eventService.getEventsByUserId(userId);
     this.eventService.getSportTypes().subscribe(sportType => {
       this.sportTypes = sportType;
     });
-    this.myEvents = this.eventService.getEventsByAuthorId(1).sort((event1, event2) => {
-      if(event1.date > event2.date) {
-        return 1;
-      } else if(event1.date < event2.date) {
-        return -1;
-      }
-      return 0;
-    });
+
+    this.eventService.getEventsByUserId(1).subscribe(e => {
+      this.myEvents = e;
+      this.myEvents.sort((event1, event2) => {
+        if(event1.date > event2.date) {
+          return 1;
+        } else if(event1.date < event2.date) {
+          return -1;
+        }
+        return 0;
+      });
+    })
     //this.author = this.auth.getCurrentUserName();
     //console.log(this.myEvents);
   }

@@ -31,7 +31,7 @@ namespace Events.Api.Dto.Events
 
         public DateTime DateUpdated { get; set; }
 
-        public int AuthorId { get; set; }
+        public int UserId { get; set; }
 
         public int SportTypeId { get; set; }
 

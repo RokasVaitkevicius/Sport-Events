@@ -39,9 +39,9 @@ namespace Events.Repository.Pocos
 
         #region Dependencies
 
-        public int AuthorId { get; set; }
+        public int UserId { get; set; }
 
-        public User Author { get; set; }
+        public User User { get; set; }
 
         public int SportTypeId { get; set; }
 
