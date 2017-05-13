@@ -1,4 +1,5 @@
 ﻿using Events.Api.DI.Setup.Domain.Event;
+using Events.Api.DI.Setup.Domain.Voter;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 
@@ -14,7 +15,8 @@ namespace Events.Api.DI.Setup.Domain
             }
 
             return services
-                .AddDomainLayerEventDependencies();
+                .AddDomainLayerEventDependencies()
+                .AddDomainLayerVoterDependencies();
         }
     }
 }

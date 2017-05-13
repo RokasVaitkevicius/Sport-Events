@@ -1,6 +1,6 @@
 ﻿namespace Events.Api.Dto.Voters
 {
-    public class Voter
+    public class NewVoter
     {
         public int EventId { get; set; }
 

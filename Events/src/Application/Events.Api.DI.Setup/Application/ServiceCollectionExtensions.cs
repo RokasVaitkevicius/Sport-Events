@@ -1,8 +1,9 @@
 ﻿using AutoMapper;
 using Events.Api.DI.Setup.Application.Event;
+using Events.Api.DI.Setup.Application.SportType;
+using Events.Api.DI.Setup.Application.Voter;
 using Microsoft.Extensions.DependencyInjection;
 using System;
-using Events.Api.DI.Setup.Application.SportType;
 
 namespace Events.Api.DI.Setup.Application
 {
@@ -18,6 +19,7 @@ namespace Events.Api.DI.Setup.Application
             return services
                 .AddApplicationLayerEventDependencies()
                 .AddApplicationLayerSportTypeDependencies()
+                .AddApplicationLayerVoterDependencies()
                 .AddAutoMapper();
         }
     }

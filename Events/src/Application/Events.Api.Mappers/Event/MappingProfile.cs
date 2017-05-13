@@ -1,7 +1,5 @@
 ﻿using AutoMapper;
-using Events.Api.Dto.Voters;
 using Events.Constants.Constants;
-using Events.Repository.Pocos;
 using EventDto = Events.Api.Dto.Events.Event;
 using EventPoco = Events.Repository.Pocos.Event;
 

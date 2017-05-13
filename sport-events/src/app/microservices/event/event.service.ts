@@ -1,7 +1,8 @@
 import {Injectable} from '@angular/core';
 import {Observable, Subject} from 'rxjs/Rx';
 import {IEvent} from './event.model';
-import {Http, Response} from '@angular/http';
+import {Http, Response, Headers, RequestOptions} from '@angular/http';
+import {AuthService} from '../../user/shared/auth.service';
 
 
 @Injectable()
@@ -12,9 +13,10 @@ export class EventService {
   searchNotificationObservable$ = this.searchNotification.asObservable();
   filterNotificationObservable$ = this.filterNotification.asObservable();
   resetEventsObservable$ = this.resetEventsNotification.asObservable();
-  private baseUrl = 'http://localhost:5000';
+    private baseUrl = 'http://localhost:5000';
 
-  constructor(private http: Http) {
+  constructor(private http: Http,
+              private auth: AuthService) {
 
   }
 
@@ -32,9 +34,19 @@ export class EventService {
       }).catch(this.handleError);
   }
 
-  saveEvent(event) {
-    event.id = 999;
+  saveEvent(event: IEvent) {
+    console.log(event);
+    //event.id = 999;
     EVENTS.push(event);
+  }
+
+  saveEvent2(event: IEvent): Observable<IEvent> {
+    let headers = new Headers({'Content-Type': 'application/json'});
+    let options = new RequestOptions({headers: headers});
+
+    return this.http.post(this.baseUrl + 'api/events', JSON.stringify(event), options).map((response: Response) => {
+      return response.json();
+    }).catch(this.handleError);
   }
 
   public activateSearch(searchTerm: string) {
@@ -77,8 +89,8 @@ export class EventService {
     return Observable.throw(error.statusText);
   }
 }
-
-const EVENTS: IEvent[] = [
+const EVENTS: IEvent[] = [];
+/**const EVENTS: IEvent[] = [
   {
     eventId: 1,
     userId: 1,
@@ -138,4 +150,4 @@ const EVENTS: IEvent[] = [
     voters: ['bradgreen', 'boi', 'kara','kara'],
     dateUpdated: new Date('2017/02/01')
   }
-];
+];*/

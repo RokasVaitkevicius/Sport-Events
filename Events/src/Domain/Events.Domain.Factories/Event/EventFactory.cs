@@ -1,13 +1,13 @@
-﻿using System;
-using System.Threading.Tasks;
-using Events.Api.Dto.Events;
+﻿using Events.Api.Dto.Events;
 using Events.Repository.Event;
+using System;
+using System.Threading.Tasks;
 
 namespace Events.Domain.Factories.Event
 {
     public class EventFactory : IEventFactory
     {
-        private IEventsRepository _repository;
+        private readonly IEventsRepository _repository;
 
         public EventFactory(IEventsRepository repository)
         {
@@ -24,9 +24,9 @@ namespace Events.Domain.Factories.Event
                 TimeTill = newEvent.TimeTill,
                 Price = newEvent.Price,
                 PhoneNumber = newEvent.PhoneNumber,
-                Address = newEvent.Address,
-                City = newEvent.City,
-                Country = newEvent.Country,
+                Address = newEvent.Location.Address,
+                City = newEvent.Location.City,
+                Country = newEvent.Location.Country,
                 Description = newEvent.Description,
                 FacebookEventUrl = newEvent.FacebookEventUrl,
                 ImageUrl = newEvent.ImageUrl,

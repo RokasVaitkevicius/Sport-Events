@@ -30,6 +30,7 @@ import {UserService} from './user/shared/user.service';
 import { CollapsibleWellComponent } from './common/collapsible-well/collapsible-well.component';
 import { SortingComponent } from './events/sorting/sorting.component';
 import {SportTypeService} from './microservices/sport-type/sport-type.service';
+import {StringToDatePipe} from './events/shared/string-to-date.pipe';
 
 @NgModule({
   declarations: [
@@ -43,6 +44,7 @@ import {SportTypeService} from './microservices/sport-type/sport-type.service';
     LoginComponent,
     Error404Component,
     DurationPipe,
+    StringToDatePipe,
     UpvoteComponent,
     LocationValidator,
     EditEventComponent,

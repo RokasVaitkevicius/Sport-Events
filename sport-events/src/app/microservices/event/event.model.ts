@@ -1,3 +1,5 @@
+import {IVoter} from '../voter/voter.model';
+
 export interface IEvent {
   eventId: number;
   userId: number;
@@ -15,7 +17,7 @@ export interface IEvent {
   };
   description?: string;
   facebookEventUrl?: string;
-  voters: string[];
+  voters: IVoter[];
   imageUrl?: string;
   dateUpdated: Date;
 }

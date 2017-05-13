@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {ActivatedRoute} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import {EventService} from "../../microservices/event/event.service";
 import {IEvent} from "../../microservices/event/event.model";
 import {AuthService} from '../../user/shared/auth.service';
@@ -8,6 +8,7 @@ import {ISportType} from '../../microservices/sport-type/sport-type.model';
 import {IUser} from '../../user/shared/user.model';
 import {UserService} from '../../user/shared/user.service';
 import {SportTypeService} from '../../microservices/sport-type/sport-type.service';
+import {IVoter} from '../../microservices/voter/voter.model';
 
 @Component({
   selector: 'event-details',
@@ -24,7 +25,8 @@ export class EventDetailsComponent implements OnInit {
               private auth: AuthService,
               private voterService: VoterService,
               private userService: UserService,
-              private sportTypeService: SportTypeService ) { }
+              private sportTypeService: SportTypeService,
+              private router: Router) { }
 
   ngOnInit() {
     this.event = this.route.snapshot.data['event'];
@@ -39,15 +41,25 @@ export class EventDetailsComponent implements OnInit {
   }
 
   toggleVote(event: IEvent) {
-    if(this.userHasVoted(event)) {
-      this.voterService.deleteVoter(event, this.auth.currentUser.userName);
+    if (this.userHasVoted(event)) {
+      this.voterService.deleteVoter(event.eventId, this.auth.currentUser.id).subscribe(
+        () => {
+          console.log('boi');
+        this.event.voters = this.event.voters.filter(e => e.userId === this.auth.currentUser.id);
+      });
     } else {
-      this.voterService.addVoter(event, this.auth.currentUser.userName);
+      this.voterService.addVoter(event.eventId, this.auth.currentUser.id).subscribe(() => {
+        let voter: IVoter = {
+          eventId: this.event.eventId,
+          userId: this.auth.currentUser.id
+        };
+        this.event.voters.push(voter);
+      });
     }
   }
 
   userHasVoted(event: IEvent) {
-    return this.voterService.userHasVoted(event, this.auth.currentUser.userName);
+    return this.voterService.userHasVoted(event, this.auth.currentUser.id);
   }
 
   determineAuthor(authorId: number): string {
