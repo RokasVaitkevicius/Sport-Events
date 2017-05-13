@@ -42,19 +42,15 @@ export class EventDetailsComponent implements OnInit {
 
   toggleVote(event: IEvent) {
     if (this.userHasVoted(event)) {
-      this.voterService.deleteVoter(event.eventId, this.auth.currentUser.id).subscribe(
-        () => {
-          console.log('boi');
-        this.event.voters = this.event.voters.filter(e => e.userId === this.auth.currentUser.id);
-      });
+      this.voterService.deleteVoter(event.eventId, this.auth.currentUser.id).subscribe();
+      this.event.voters = this.event.voters.filter(e => e.userId !== this.auth.currentUser.id);
     } else {
-      this.voterService.addVoter(event.eventId, this.auth.currentUser.id).subscribe(() => {
-        let voter: IVoter = {
-          eventId: this.event.eventId,
-          userId: this.auth.currentUser.id
-        };
-        this.event.voters.push(voter);
-      });
+      this.voterService.addVoter(event.eventId, this.auth.currentUser.id).subscribe();
+      let voter: IVoter = {
+        eventId: this.event.eventId,
+        userId: this.auth.currentUser.id
+      };
+      this.event.voters.push(voter);
     }
   }
 
