@@ -22,6 +22,7 @@ export class EventThumbnailComponent implements OnInit{
   }
 
   ngOnInit(): void {
+
     this.sportTypeService.getSportTypes().subscribe(sportType => {
       this.sportTypes = sportType;
     });

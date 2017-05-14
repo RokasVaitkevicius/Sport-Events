@@ -36,14 +36,13 @@ export class CreateEventComponent implements OnInit{
   }*/
 
   saveEvent(formValues: IEvent) {
-    formValues.userId = this.auth.currentUser.id;
-    formValues.date = new Date('2017-05-13T08:11:38.478Z');
-    console.log(formValues);
+    let event: IEvent = Object.assign({}, formValues);
+    console.log(event);
 
-    this.eventService.saveEvent2(formValues).subscribe(event => {
-      this.router.navigate(['/myEvents']);
-      this.isDirty = false;
-    });
+    //this.eventService.saveEvent2(formValues).subscribe(event => {});
+
+    //this.router.navigate(['/myEvents']);
+    //this.isDirty = false;
   }
 
   cancel() {

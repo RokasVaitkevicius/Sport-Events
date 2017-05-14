@@ -5,7 +5,7 @@ export interface IEvent {
   userId: number;
   name: string;
   sportTypeId: number;
-  date: Date;
+  eventDate: Date;
   timeFrom: string;
   timeTill: string;
   price: number;

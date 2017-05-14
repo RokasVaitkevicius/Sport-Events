@@ -20,10 +20,10 @@
     </div>
 
     <div class="form-group"
-         [ngClass]="{'error': newEventForm.controls.date?.invalid && newEventForm.controls.date?.touched}">
+         [ngClass]="{'error': newEventForm.controls.eventDate?.invalid && newEventForm.controls.eventDate?.touched}">
       <label for="eventDate">Event Date:</label>
-      <em *ngIf="newEventForm.controls.date?.invalid && (newEventForm.controls.date?.touched)">Required</em>
-      <input (ngModel)="date" name="date" required id="eventDate" type="date" class="form-control"/>
+      <em *ngIf="newEventForm.controls.eventDate?.invalid && (newEventForm.controls.eventDate?.touched)">Required</em>
+      <input (ngModel)="eventDate" name="eventDate" required id="eventDate" type="date" class="form-control"/>
     </div>
 
     <div class="row">

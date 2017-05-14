@@ -32,14 +32,14 @@ export class MyEventsComponent implements OnInit {
     this.eventService.getEventsByUserId(1).subscribe(e => {
       this.myEvents = e;
       this.myEvents.sort((event1, event2) => {
-        if(event1.date > event2.date) {
+        if (event1.eventDate > event2.eventDate) {
           return 1;
-        } else if(event1.date < event2.date) {
+        } else if (event1.eventDate < event2.eventDate) {
           return -1;
         }
         return 0;
       });
-    })
+    });
     //this.author = this.auth.getCurrentUserName();
     //console.log(this.myEvents);
   }

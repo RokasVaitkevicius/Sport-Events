@@ -34,7 +34,7 @@ export class EditEventComponent implements OnInit {
       author: new FormControl(this.event.userId),
       name: new FormControl(this.event.name),
       sportType: new FormControl(this.event.sportTypeId),
-      date: new FormControl(this.event.date),
+      eventDate: new FormControl(this.event.eventDate),
       timeFrom: new FormControl(this.event.timeFrom),
       timeTill: new FormControl(this.event.timeTill),
       price: new FormControl(this.event.price),

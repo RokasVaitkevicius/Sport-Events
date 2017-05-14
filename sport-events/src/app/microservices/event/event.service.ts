@@ -43,6 +43,8 @@ export class EventService {
   saveEvent2(event: IEvent): Observable<IEvent> {
     let headers = new Headers({'Content-Type': 'application/json'});
     let options = new RequestOptions({headers: headers});
+    event.userId = this.auth.currentUser.id;
+    event.eventDate = new Date(event.eventDate);
 
     return this.http.post(this.baseUrl + 'api/events', JSON.stringify(event), options).map((response: Response) => {
       return response.json();

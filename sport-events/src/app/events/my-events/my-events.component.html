@@ -12,7 +12,7 @@
         <img *ngIf="event.imageUrl" [src]="event?.imageUrl" [alt]="event?.name" class="event-image" height="42" width="42">
         <div><strong>Author:</strong> {{author}}</div>
         <div><strong>Phone Number:</strong> {{event?.phoneNumber}}</div>
-        <div><strong>Date:</strong> {{event?.date | date:'y-M-d'}}</div>
+        <div><strong>Date:</strong> {{event?.eventDate | date:'y-M-d'}}</div>
         <div><strong>Event Time:</strong> {{event?.timeFrom}} - {{event?.timeTill}}</div>
         <div *ngIf="event?.price > 0"><strong>Price:</strong> {{event?.price}}</div>
         <div *ngIf="event?.price === 0"><strong>Price:</strong> FREE</div>
