@@ -20,6 +20,8 @@ export interface IEvent {
   voters: IVoter[];
   imageUrl?: string;
   dateUpdated: Date;
+  sportTypeName: string;
+  authorName: string;
 }
 
 export interface INewEvent {
