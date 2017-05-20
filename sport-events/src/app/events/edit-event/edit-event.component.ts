@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import {IEvent} from '../../microservices/event/event.model';
+import {Component, OnInit} from '@angular/core';
+import {IEvent, IUpdateEvent} from '../../microservices/event/event.model';
 import {ActivatedRoute, Router} from '@angular/router';
 import {EventService} from '../../microservices/event/event.service';
 import {FormControl, FormGroup} from '@angular/forms';
@@ -21,7 +21,8 @@ export class EditEventComponent implements OnInit {
               private sportTypeService: SportTypeService,
               private route: ActivatedRoute,
               private router: Router,
-              private toastrService: ToastrService) { }
+              private toastrService: ToastrService) {
+  }
 
   ngOnInit() {
     this.event = this.route.snapshot.data['event'];
@@ -31,9 +32,7 @@ export class EditEventComponent implements OnInit {
     });
 
     this.eventForm = new FormGroup({
-      author: new FormControl(this.event.userId),
       name: new FormControl(this.event.name),
-      sportType: new FormControl(this.event.sportTypeId),
       eventDate: new FormControl(this.event.eventDate),
       timeFrom: new FormControl(this.event.timeFrom),
       timeTill: new FormControl(this.event.timeTill),
@@ -44,7 +43,8 @@ export class EditEventComponent implements OnInit {
       country: new FormControl(this.event.location.country),
       description: new FormControl(this.event.description),
       facebookEventUrl: new FormControl(this.event.facebookEventUrl),
-      imageUrl: new FormControl(this.event.imageUrl)
+      imageUrl: new FormControl(this.event.imageUrl),
+      sportTypeId: new FormControl(this.event.sportTypeId)
     });
   }
 
@@ -52,10 +52,32 @@ export class EditEventComponent implements OnInit {
     this.router.navigate(['/myEvents']);
   }
 
-  saveEvent(formValue: IEvent) {
-    console.log(formValue);
-      this.eventService.updateEvent(formValue);
-      //this.router.navigate(['events']);
-      this.toastrService.success('Event Saved');
+  saveEvent(formValues) {
+
+    const updateEvent: IUpdateEvent = {
+      name: formValues.name,
+      sportTypeId: formValues.sportTypeId,
+      eventDate: new Date(formValues.eventDate),
+      timeFrom: formValues.timeFrom,
+      timeTill: formValues.timeTill,
+      phoneNumber: formValues.phoneNumber,
+      price: formValues.price,
+      location: {
+        address: formValues.address,
+        city: formValues.city,
+        country: formValues.country,
+      },
+      facebookEventUrl: formValues.facebookEventUrl,
+      description: formValues.description,
+      imageUrl: formValues.imageUrl
+    };
+
+    console.log(updateEvent);
+
+    this.eventService.updateEvent(updateEvent, this.event.eventId).subscribe();
+
+    this.router.navigate(['/myEvents']);
+
+    this.toastrService.success('Event Updated');
   }
 }

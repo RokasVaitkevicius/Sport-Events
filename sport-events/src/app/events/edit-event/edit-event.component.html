@@ -7,16 +7,11 @@
       <input formControlName="name" required id="name" type="text" class="form-control"
              placeholder="Name of your event..."/>
     </div>
-    <div class="form-group">
-      <label for="author">Author:</label>
-       <input  formControlName="author" required id="author" type="text" class="form-control"
-             placeholder="Author of event..."/>
-    </div>
 
     <div class="form-group">
       <label>Sport Type:</label>
-     <select class="form-control" required>
-        <option *ngFor="let sportType of sportTypes" value="{{sportType.sportTypeId}}" [selected]="sportType.sportTypeId === event.sportTypeId">{{sportType.name}}</option>
+     <select class="form-control" required formControlName="sportTypeId" name="sportTypeId" id="sportTypeId">
+        <option *ngFor="let sportType of sportTypes" [value]="sportType.sportTypeId" [selected]="sportType.sportTypeId === event.sportTypeId">{{sportType.name}}</option>
       </select>
     </div>
 

@@ -5,6 +5,7 @@ import {ISportType} from '../../microservices/sport-type/sport-type.model';
 import {SportTypeService} from '../../microservices/sport-type/sport-type.service';
 import {IEvent, INewEvent} from '../../microservices/event/event.model';
 import {AuthService} from '../../user/shared/auth.service';
+import {ToastrService} from 'toastr-ng2';
 
 @Component({
   selector: 'create-event',
@@ -18,8 +19,8 @@ export class CreateEventComponent implements OnInit{
   constructor(private eventService: EventService,
               private router: Router,
               private sportTypeService: SportTypeService,
-              private auth: AuthService
-    ) {
+              private auth: AuthService,
+              private toastrService: ToastrService) {
   }
 
   ngOnInit(): void {
@@ -54,10 +55,11 @@ export class CreateEventComponent implements OnInit{
       imageUrl: formValues.imageUrl
     };
 
-    this.eventService.saveEvent2(newEvent).subscribe();
+    this.eventService.saveEvent(newEvent).subscribe();
 
     this.router.navigate(['/myEvents']);
     this.isDirty = false;
+    this.toastrService.success('Event Created Successfully!');
   }
 
   cancel() {

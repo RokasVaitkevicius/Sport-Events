@@ -2,6 +2,7 @@
 using Events.Api.Controllers.Helpers;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
+using Events.Api.Dto.Events;
 using EventDto = Events.Api.Dto.Events.Event;
 
 
@@ -36,6 +37,15 @@ namespace Events.Api.Controllers.Event
             }
 
             return result;
+        }
+
+        [HttpPut]
+        [Route("{eventId:int}")]
+        public async Task<IActionResult> UpdateMyEvent([FromRoute] int eventId, [FromBody]EventUpdate eventUpdate)
+        {
+            await _cases.UpdateEvent(eventId, eventUpdate);
+
+            return Ok();
         }
     }
 }

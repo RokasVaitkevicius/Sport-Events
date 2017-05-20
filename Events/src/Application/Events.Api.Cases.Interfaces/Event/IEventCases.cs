@@ -6,5 +6,7 @@ namespace Events.Api.Cases.Event
     public interface IEventCases : IEventReadOnlyCases
     {
         Task CreateEvent(NewEvent newEvent);
+
+        Task UpdateEvent(int eventId, EventUpdate eventUpdate);
     }
 }

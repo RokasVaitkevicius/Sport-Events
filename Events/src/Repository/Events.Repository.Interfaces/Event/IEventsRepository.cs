@@ -6,5 +6,7 @@ namespace Events.Repository.Event
     public interface IEventsRepository : IEventsReadOnlyRepository
     {
         Task CreateEvent(EventPoco newEvent);
+
+        Task UpdateEvent(int eventId, EventPoco updatedEvent);
     }
 }

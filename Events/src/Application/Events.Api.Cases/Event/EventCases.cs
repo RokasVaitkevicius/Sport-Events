@@ -51,5 +51,10 @@ namespace Events.Api.Cases.Event
         {
             await _eventFactory.CreateEvent(newEvent);
         }
+
+        public async Task UpdateEvent(int eventId, EventUpdate eventUpdate)
+        {
+            await _eventFactory.CreateUpdatedEvent(eventId, eventUpdate);
+        }
     }
 }

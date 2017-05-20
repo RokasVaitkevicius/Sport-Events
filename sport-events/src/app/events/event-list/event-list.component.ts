@@ -49,10 +49,7 @@ export class EventListComponent implements OnInit {
         return e;
       });
     });
-
-
-    console.log(this.events);
-
+    
     if (this.route.snapshot.params['searchTerm']) {
       let term = this.route.snapshot.params['searchTerm'].trim().toLocaleLowerCase();
       if (term === "") {
