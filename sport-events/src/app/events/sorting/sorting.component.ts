@@ -37,8 +37,8 @@ function sortByNameAsc(s1: IEvent, s2: IEvent) {
 }
 
 function sortByDateAsc(s1: IEvent, s2: IEvent) {
-  if(s1.date > s2.date) return 1;
-  else if(s1.date === s2.date) return 0;
+  if(s1.eventDate > s2.eventDate) return 1;
+  else if(s1.eventDate === s2.eventDate) return 0;
   else return -1;
 }
 

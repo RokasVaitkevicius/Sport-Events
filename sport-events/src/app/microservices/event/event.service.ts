@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {Observable, Subject} from 'rxjs/Rx';
-import {IEvent} from './event.model';
+import {IEvent, INewEvent} from './event.model';
 import {Http, Response, Headers, RequestOptions} from '@angular/http';
 import {AuthService} from '../../user/shared/auth.service';
 
@@ -40,13 +40,31 @@ export class EventService {
     EVENTS.push(event);
   }
 
-  saveEvent2(event: IEvent): Observable<IEvent> {
-    let headers = new Headers({'Content-Type': 'application/json'});
-    let options = new RequestOptions({headers: headers});
-    event.userId = this.auth.currentUser.id;
-    event.eventDate = new Date(event.eventDate);
+  saveEvent2(eventForm): Observable<IEvent> {
+    const headers = new Headers({'Content-Type': 'application/json'});
+    const options = new RequestOptions({headers: headers});
+    //event.userId = this.auth.currentUser.id;
+    //event.eventDate = new Date(event.eventDate);
+    const event: INewEvent = {
+      userId: 1,
+      name: 'Table Tennis',
+      sportTypeId: 1,
+      eventDate: new Date('09/05/2036'),
+      timeFrom: '10:15',
+      timeTill: '12:15',
+      phoneNumber: '866666999',
+      price: 20,
+      location: {
+        address: '155-12',
+        city: 'Kaunas',
+        country: 'Lithuania'
+      },
+      facebookEventUrl: 'fb.com/1236544',
+      description: 'Nice event',
+      imageUrl: 'https://images-na.ssl-images-amazon.com/images/I/51HEs7T6f2L.jpg',
+    };
 
-    return this.http.post(this.baseUrl + 'api/events', JSON.stringify(event), options).map((response: Response) => {
+    return this.http.post(`${this.baseUrl}/api/events`, JSON.stringify(eventForm), options).map((response: Response) => {
       return response.json();
     }).catch(this.handleError);
   }

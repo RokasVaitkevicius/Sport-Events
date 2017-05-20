@@ -3,9 +3,8 @@ import {EventService} from '../../microservices/event/event.service';
 import {Router} from '@angular/router';
 import {ISportType} from '../../microservices/sport-type/sport-type.model';
 import {SportTypeService} from '../../microservices/sport-type/sport-type.service';
-import {IEvent} from '../../microservices/event/event.model';
+import {IEvent, INewEvent} from '../../microservices/event/event.model';
 import {AuthService} from '../../user/shared/auth.service';
-import {audit} from 'rxjs/operator/audit';
 
 @Component({
   selector: 'create-event',
@@ -35,14 +34,30 @@ export class CreateEventComponent implements OnInit{
     //this.router.navigate(['/events']);
   }*/
 
-  saveEvent(formValues: IEvent) {
-    let event: IEvent = Object.assign({}, formValues);
-    console.log(event);
+  saveEvent(formValues) {
+    const newEvent: INewEvent = {
+      userId: this.auth.currentUser.id,
+      name: formValues.name,
+      sportTypeId: formValues.sportTypeId,
+      eventDate: new Date(formValues.eventDate),
+      timeFrom: formValues.timeFrom,
+      timeTill: formValues.timeTill,
+      phoneNumber: formValues.phoneNumber,
+      price: formValues.price,
+      location: {
+        address: formValues.location.address,
+        city: formValues.location.city,
+        country: formValues.location.country,
+      },
+      facebookEventUrl: formValues.facebookEventUrl,
+      description: formValues.description,
+      imageUrl: formValues.imageUrl
+    };
 
-    //this.eventService.saveEvent2(formValues).subscribe(event => {});
+    this.eventService.saveEvent2(newEvent).subscribe();
 
-    //this.router.navigate(['/myEvents']);
-    //this.isDirty = false;
+    this.router.navigate(['/myEvents']);
+    this.isDirty = false;
   }
 
   cancel() {

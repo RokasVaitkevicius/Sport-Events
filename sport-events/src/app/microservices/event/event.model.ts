@@ -21,3 +21,22 @@ export interface IEvent {
   imageUrl?: string;
   dateUpdated: Date;
 }
+
+export interface INewEvent {
+  name: string;
+  eventDate: Date;
+  timeFrom: string;
+  timeTill: string;
+  price: number;
+  phoneNumber: string;
+  location?: {
+    address: string;
+    city: string;
+    country: string
+  };
+  description?: string;
+  facebookEventUrl?: string;
+  imageUrl?: string;
+  userId: number;
+  sportTypeId: number;
+}
