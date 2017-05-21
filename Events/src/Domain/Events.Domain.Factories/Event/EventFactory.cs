@@ -33,7 +33,8 @@ namespace Events.Domain.Factories.Event
                 ImageUrl = newEvent.ImageUrl,
                 DateUpdated = DateTime.Now,
                 UserId = newEvent.UserId,
-                SportTypeId = newEvent.SportTypeId
+                SportTypeId = newEvent.SportTypeId,
+                Canceled = false
             };
 
             await _repository.CreateEvent(eventPoco);

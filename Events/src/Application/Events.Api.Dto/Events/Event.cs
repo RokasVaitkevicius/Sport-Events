@@ -36,5 +36,7 @@ namespace Events.Api.Dto.Events
         public int SportTypeId { get; set; }
 
         public List<Voter> Voters { get; set; }
+
+        public bool Canceled { get; set; }
     }
 }

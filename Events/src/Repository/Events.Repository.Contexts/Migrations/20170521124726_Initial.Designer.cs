@@ -8,7 +8,7 @@ using Events.Repository.Contexts;
 namespace Events.Repository.Contexts.Migrations
 {
     [DbContext(typeof(EventsDbContext))]
-    [Migration("20170512093619_Initial")]
+    [Migration("20170521124726_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -22,6 +22,8 @@ namespace Events.Repository.Contexts.Migrations
                         .ValueGeneratedOnAdd();
 
                     b.Property<string>("Address");
+
+                    b.Property<bool>("Canceled");
 
                     b.Property<string>("City");
 

@@ -69,6 +69,15 @@ export class EventService {
     }).catch(this.handleError);
   }
 
+  changeEventState(eventId: number): Observable<IEvent> {
+    const headers = new Headers({'Content-Type': 'application/json'});
+    const options = new RequestOptions({headers: headers});
+    console.log(eventId);
+    return this.http.put(`${this.baseUrl}/api/events/${eventId}/state`, options).map((response: Response) => {
+      return response.json();
+    }).catch(this.handleError);
+  }
+
   public activateSearch(searchTerm: string) {
     this.searchNotification.next(searchTerm);
   }
@@ -80,6 +89,10 @@ export class EventService {
   resetEvents() {
     this.resetEventsNotification.next();
   }
+
+
+
+
 
   getEventsByUserId(userId: number): Observable<IEvent[]> {
     return this.http.get(this.baseUrl + '/api/myEvents/' + userId)

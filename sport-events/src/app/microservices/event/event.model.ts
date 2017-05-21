@@ -22,6 +22,7 @@ export interface IEvent {
   dateUpdated: Date;
   sportTypeName: string;
   authorName: string;
+  canceled: boolean;
 }
 
 export interface INewEvent {

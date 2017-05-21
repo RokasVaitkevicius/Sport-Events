@@ -8,5 +8,7 @@ namespace Events.Repository.Event
         Task CreateEvent(EventPoco newEvent);
 
         Task UpdateEvent(int eventId, EventPoco updatedEvent);
+
+        Task ChangeEventState(int eventId);
     }
 }

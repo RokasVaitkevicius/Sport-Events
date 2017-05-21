@@ -37,6 +37,8 @@ namespace Events.Repository.Pocos
 
         public DateTime DateUpdated { get; set; }
 
+        public bool Canceled { get; set; }
+
         #region Dependencies
 
         public int UserId { get; set; }

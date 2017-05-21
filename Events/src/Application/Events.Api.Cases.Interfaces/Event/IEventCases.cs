@@ -8,5 +8,7 @@ namespace Events.Api.Cases.Event
         Task CreateEvent(NewEvent newEvent);
 
         Task UpdateEvent(int eventId, EventUpdate eventUpdate);
+
+        Task ChangeEventState(int eventId);
     }
 }

@@ -17,17 +17,24 @@ namespace Events.Repository.Event
 
         public async Task<EventPoco[]> GetAllEvents()
         {
-            return await _db.Events.Select(e => e).Include(v => v.Voters).ToArrayAsync();
+            return await _db.Events
+                .Select(e => e)
+                .Include(v => v.Voters)
+                .ToArrayAsync();
         }
 
         public async Task<EventPoco[]> GetAllEventsBySearchTerm(string searchTerm)
         {
-            return await _db.Events.Where(e => e.Name.ToLower().Contains(searchTerm.ToLower())).ToArrayAsync();
+            return await _db.Events
+                .Where(e => e.Name.ToLower().Contains(searchTerm.ToLower()))
+                .ToArrayAsync();
         }
 
         public async Task<EventPoco[]> GetAllEventsBySportTypeId(int sportTypeId)
         {
-            return await _db.Events.Where(e => e.SportTypeId == sportTypeId).ToArrayAsync();
+            return await _db.Events
+                .Where(e => e.SportTypeId == sportTypeId)
+                .ToArrayAsync();
         }
 
         public async Task<EventPoco> GetEventById(int id)
@@ -65,6 +72,24 @@ namespace Events.Repository.Event
             oldEvent.ImageUrl =  updatedEvent.ImageUrl;
             oldEvent.SportTypeId =  updatedEvent.SportTypeId;
             oldEvent.DateUpdated =  updatedEvent.DateUpdated;
+
+            _db.Events.Update(oldEvent);
+
+            await _db.SaveChangesAsync();
+        }
+
+        public async Task ChangeEventState(int eventId)
+        {
+            var oldEvent = await _db.Events.FirstOrDefaultAsync(e => e.EventId == eventId);
+
+            if (oldEvent.Canceled == false)
+            {
+                oldEvent.Canceled = true;
+            }
+            else if(oldEvent.Canceled == true)
+            {
+                oldEvent.Canceled = false;
+            }
 
             _db.Events.Update(oldEvent);
 

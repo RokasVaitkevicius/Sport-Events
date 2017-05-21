@@ -67,5 +67,14 @@ namespace Events.Api.Controllers.Event
 
             return Ok();
         }
+
+        [HttpPut]
+        [Route("{eventId:int}/state")]
+        public async Task<IActionResult> ChangeState([FromRoute] int eventId)
+        {
+            await _cases.ChangeEventState(eventId);
+
+            return Ok();
+        }
     }
 }

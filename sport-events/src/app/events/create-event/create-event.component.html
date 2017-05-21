@@ -114,7 +114,7 @@
         be a png or jpg url</em>
       <input (ngModel)="imageUrl" name="imageUrl" pattern=".*\/.*.(png|jpg)" id="imageUrl" type="text"
              class="form-control" placeholder="Image Url..."/>
-      <img [src]="newEventForm.controls.imageUrl.value"
+      <img [src]="newEventForm.controls.imageUrl?.value"
            *ngIf="newEventForm.controls.imageUrl?.valid"/>
     </div>
 

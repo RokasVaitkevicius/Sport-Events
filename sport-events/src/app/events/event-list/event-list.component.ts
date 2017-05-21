@@ -14,9 +14,11 @@ import {EventService} from '../../microservices/event/event.service';
   styleUrls: ['event-list.component.css']
 })
 export class EventListComponent implements OnInit {
+
   events: IEvent[];
   sportTypes: ISportType[];
   users: IUser[];
+  showCanceled = false;
   searchTerm = '';
   filterTerm = '';
   private searchSubscription: Subscription;
@@ -31,7 +33,7 @@ export class EventListComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.events = this.route.snapshot.data['events'];
+    this.events = this.route.snapshot.data['events'].filter(e => e.canceled === this.showCanceled);
 
     this.sportTypeService.getSportTypes().subscribe(sportType => {
       this.sportTypes = sportType;
@@ -102,5 +104,16 @@ export class EventListComponent implements OnInit {
     }
   }
 
-
+  private toggleCanceledEvents() {
+    this.showCanceled = !this.showCanceled;
+    console.log(this.showCanceled);
+    if(this.showCanceled === false)
+    {
+      this.events = this.route.snapshot.data['events'].filter(e => e.canceled === this.showCanceled);
+    } else if(this.showCanceled === true) {
+      this.events = this.route.snapshot.data['events'];
+      this.events = this.mapUsers(this.events);
+      this.events = this.mapSportTypes(this.events);
+    }
+  }
 }

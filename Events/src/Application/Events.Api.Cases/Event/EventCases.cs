@@ -70,5 +70,10 @@ namespace Events.Api.Cases.Event
         {
             await _eventFactory.CreateUpdatedEvent(eventId, eventUpdate);
         }
+
+        public async Task ChangeEventState(int eventId)
+        {
+            await _repository.ChangeEventState(eventId);
+        }
     }
 }

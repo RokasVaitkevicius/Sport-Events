@@ -43,6 +43,7 @@ namespace Events.Repository.Contexts.Migrations
                     EventId = table.Column<int>(nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
                     Address = table.Column<string>(nullable: true),
+                    Canceled = table.Column<bool>(nullable: false),
                     City = table.Column<string>(nullable: true),
                     Country = table.Column<string>(nullable: true),
                     DateUpdated = table.Column<DateTime>(nullable: false),

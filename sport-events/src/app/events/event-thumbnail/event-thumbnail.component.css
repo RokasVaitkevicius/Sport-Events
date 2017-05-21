@@ -1,5 +1,7 @@
 .thumbnail {
   min-height: 300px;
+  background-color: #4e5d6c;
+  border: none;
 }
 
 .pad-left {
@@ -8,4 +10,9 @@
 
 .well div {
   color: #bbb;
+}
+
+.hoverwell:hover {
+  background-color: #485563;
+  cursor: pointer;
 }

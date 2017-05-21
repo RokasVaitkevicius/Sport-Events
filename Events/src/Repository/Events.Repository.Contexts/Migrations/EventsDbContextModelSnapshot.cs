@@ -22,6 +22,8 @@ namespace Events.Repository.Contexts.Migrations
 
                     b.Property<string>("Address");
 
+                    b.Property<bool>("Canceled");
+
                     b.Property<string>("City");
 
                     b.Property<string>("Country");
