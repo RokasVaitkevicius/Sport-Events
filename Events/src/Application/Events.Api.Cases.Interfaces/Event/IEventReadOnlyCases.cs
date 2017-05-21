@@ -7,6 +7,10 @@ namespace Events.Api.Cases.Event
     {
         Task<EventDto[]> GetAllEvents();
 
+        Task<EventDto[]> GetAllEventsBySearchTerm(string searchTerm);
+
+        Task<EventDto[]> GetAllEventsBySportTypeId(int sportTypeId);
+
         Task<EventDto> GetEventById(int id);
 
         Task<EventDto[]> GetEventsByUserId(int userId);

@@ -7,6 +7,10 @@ namespace Events.Repository.Event
     {
         Task<EventPoco[]> GetAllEvents();
 
+        Task<EventPoco[]> GetAllEventsBySearchTerm(string searchTerm);
+
+        Task<EventPoco[]> GetAllEventsBySportTypeId(int sportTypeId);
+
         Task<EventPoco> GetEventById(int id);
 
         Task<EventPoco[]> GetEventsByUserId(int userId);

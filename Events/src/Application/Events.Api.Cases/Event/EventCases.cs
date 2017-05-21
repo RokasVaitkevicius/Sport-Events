@@ -13,9 +13,9 @@ namespace Events.Api.Cases.Event
 {
     public class EventCases : IEventCases
     {
-        private IEventsRepository _repository;
+        private readonly IEventsRepository _repository;
 
-        private IEventFactory _eventFactory;
+        private readonly IEventFactory _eventFactory;
 
         private readonly IMapper _mapper;
 
@@ -29,6 +29,20 @@ namespace Events.Api.Cases.Event
         public async Task<EventDto[]> GetAllEvents()
         {
             var eventsPoco = await _repository.GetAllEvents();
+
+            return eventsPoco.Select(eventPoco => _mapper.Map<EventPoco, EventDto>(eventPoco)).ToArray();
+        }
+
+        public async Task<EventDto[]> GetAllEventsBySearchTerm(string searchTerm)
+        {
+            var eventsPoco = await _repository.GetAllEventsBySearchTerm(searchTerm);
+
+            return eventsPoco.Select(eventPoco => _mapper.Map<EventPoco, EventDto>(eventPoco)).ToArray();
+        }
+
+        public async Task<EventDto[]> GetAllEventsBySportTypeId(int sportTypeId)
+        {
+            var eventsPoco = await _repository.GetAllEventsBySportTypeId(sportTypeId);
 
             return eventsPoco.Select(eventPoco => _mapper.Map<EventPoco, EventDto>(eventPoco)).ToArray();
         }

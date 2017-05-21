@@ -29,12 +29,6 @@ export class CreateEventComponent implements OnInit{
     });
   }
 
-  /**saveEvent(formValues: IEvent) {
-    this.eventService.saveEvent(formValues);
-    this.isDirty = false;
-    //this.router.navigate(['/events']);
-  }*/
-
   saveEvent(formValues) {
     const newEvent: INewEvent = {
       userId: this.auth.currentUser.id,

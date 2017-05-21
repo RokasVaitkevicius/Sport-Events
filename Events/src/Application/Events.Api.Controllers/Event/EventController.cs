@@ -25,6 +25,20 @@ namespace Events.Api.Controllers.Event
         }
 
         [HttpGet]
+        [Route("search/{searchTerm}", Name = nameof(RouteNames.GetAllEventsBySearchTerm))]
+        public async Task<EventDto[]> GetAllEventsBySearchTerm([FromRoute] string searchTerm)
+        {
+            return await _cases.GetAllEventsBySearchTerm(searchTerm);
+        }
+
+        [HttpGet]
+        [Route("sportType/{sportTypeId:int}", Name = nameof(RouteNames.GetAllEventsBySportTypeId))]
+        public async Task<EventDto[]> GetAllEventsBySportTypeId([FromRoute] int sportTypeId)
+        {
+            return await _cases.GetAllEventsBySportTypeId(sportTypeId);
+        }
+
+        [HttpGet]
         [Route("{id:int}", Name = nameof(RouteNames.GetEventById))]
         [Produces(typeof(EventDto))]
         public async Task<IActionResult> GetById([FromRoute] int id)

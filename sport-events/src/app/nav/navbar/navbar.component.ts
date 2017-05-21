@@ -10,29 +10,27 @@ import {SportTypeService} from '../../microservices/sport-type/sport-type.servic
   styleUrls: ['navbar.component.css']
 })
 export class NavbarComponent implements OnInit {
-  searchTerm: string = "";
+  searchTerm = '';
   sportTypes: ISportType[];
 
   constructor(private authService: AuthService,
-    private eventService: EventService,
-    private sportTypeService: SportTypeService) {
+              private eventService: EventService,
+              private sportTypeService: SportTypeService) {
   }
 
   ngOnInit() {
     this.sportTypeService.getSportTypes().subscribe(sportType => {
       this.sportTypes = sportType;
-      console.log(this.sportTypes);
     });
-    console.log("aaa");
   }
 
   searchEvents(searchTerm: string) {
     this.eventService.activateSearch(searchTerm);
   }
 
-  filterEvents(id: number, name: string) {
+  filterEvents(sportTypeId: number) {
     this.searchTerm = null;
-    this.eventService.filterEvents(id, name);
+    this.eventService.filterEvents(sportTypeId);
   }
 
   resetEvents() {

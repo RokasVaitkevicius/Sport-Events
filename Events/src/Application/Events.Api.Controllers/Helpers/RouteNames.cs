@@ -3,10 +3,12 @@
     public enum RouteNames
     {
         GetAllEvents,
+        GetAllEventsBySearchTerm,
+        GetAllEventsBySportTypeId,
         GetEventById,
         GetEventsByUserId,
 
         GetAllSportTypes,
-        GetSportTypeById
+        GetSportTypeById,
     }
 }

@@ -13,7 +13,6 @@ import {EditEventComponent} from './events/edit-event/edit-event.component';
 export const appRoutes: Routes = [
   { path: 'events/new', component: CreateEventComponent, canDeactivate: ['canDeactivateCreateEvent'] },
   { path: 'events', component: EventListComponent, resolve: { events: EventListResolver }},
-  { path: 'events/search/:searchTerm', component: EventListComponent, resolve: { events: EventListResolver }},
   { path: 'events/category/:categoryId', component: EventListComponent, resolve: { events: EventListResolver }},
   { path: 'events/:eventId', component: EventDetailsComponent, resolve: { event: EventResolver }},
   { path: 'myEvents', component: MyEventsComponent, resolve: { events: EventListResolver}},

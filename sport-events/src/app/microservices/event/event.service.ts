@@ -7,13 +7,16 @@ import {AuthService} from '../../user/shared/auth.service';
 
 @Injectable()
 export class EventService {
-  private searchNotification = new Subject<any>();
-  private filterNotification = new Subject<any>();
-  private resetEventsNotification = new Subject<any>();
+  private searchNotification = new Subject<string>();
   searchNotificationObservable$ = this.searchNotification.asObservable();
+
+  private filterNotification = new Subject<number>();
   filterNotificationObservable$ = this.filterNotification.asObservable();
+
+  private resetEventsNotification = new Subject<any>();
   resetEventsObservable$ = this.resetEventsNotification.asObservable();
-    private baseUrl = 'http://localhost:5000';
+
+  private baseUrl = 'http://localhost:5000';
 
   constructor(private http: Http,
               private auth: AuthService) {
@@ -22,6 +25,20 @@ export class EventService {
 
   getEvents(): Observable<IEvent[]> {
     return this.http.get(this.baseUrl + '/api/events')
+      .map((response: Response) => {
+        return <IEvent[]>response.json();
+      }).catch(this.handleError);
+  }
+
+  getEventsBySearchTerm(searchTerm: string): Observable<IEvent[]> {
+    return this.http.get(`${this.baseUrl}/api/events/search/${searchTerm}`)
+      .map((response: Response) => {
+        return <IEvent[]>response.json();
+      }).catch(this.handleError);
+  }
+
+  getEventsBySportTypeId(sportTypeId: number): Observable<IEvent[]> {
+    return this.http.get(`${this.baseUrl}/api/events/sportType/${sportTypeId}`)
       .map((response: Response) => {
         return <IEvent[]>response.json();
       }).catch(this.handleError);
@@ -53,27 +70,15 @@ export class EventService {
   }
 
   public activateSearch(searchTerm: string) {
-    let results: IEvent[] = [];
-    let term = searchTerm.trim().toLocaleLowerCase();
-    if(term === '') {
-      results = EVENTS;
-      this.searchNotification.next({events: results, searchTerm: term});
-    } else {
-      results = EVENTS.filter(events =>
-         events.name.toLocaleLowerCase().indexOf(term) > -1
-      );
-      this.searchNotification.next({events: results, searchTerm: searchTerm});
-    }
+    this.searchNotification.next(searchTerm);
   }
 
-  filterEvents(id: number, name: string) {
-    let results: IEvent[] = [];
-    results = EVENTS.filter(event => event.sportTypeId === id);
-    this.filterNotification.next({events: results, filterName: name});
+  filterEvents(sportTypeId: number) {
+    this.filterNotification.next(sportTypeId);
   }
 
   resetEvents() {
-    this.resetEventsNotification.next({events: EVENTS});
+    this.resetEventsNotification.next();
   }
 
   getEventsByUserId(userId: number): Observable<IEvent[]> {

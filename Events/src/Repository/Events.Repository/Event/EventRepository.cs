@@ -8,7 +8,7 @@ namespace Events.Repository.Event
 {
     public class EventRepository : IEventsRepository
     {
-        private EventsDbContext _db;
+        private readonly EventsDbContext _db;
 
         public EventRepository(EventsDbContext db)
         {
@@ -18,6 +18,16 @@ namespace Events.Repository.Event
         public async Task<EventPoco[]> GetAllEvents()
         {
             return await _db.Events.Select(e => e).Include(v => v.Voters).ToArrayAsync();
+        }
+
+        public async Task<EventPoco[]> GetAllEventsBySearchTerm(string searchTerm)
+        {
+            return await _db.Events.Where(e => e.Name.ToLower().Contains(searchTerm.ToLower())).ToArrayAsync();
+        }
+
+        public async Task<EventPoco[]> GetAllEventsBySportTypeId(int sportTypeId)
+        {
+            return await _db.Events.Where(e => e.SportTypeId == sportTypeId).ToArrayAsync();
         }
 
         public async Task<EventPoco> GetEventById(int id)
