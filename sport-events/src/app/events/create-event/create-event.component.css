@@ -31,6 +31,7 @@ option{
   background-color: #df691a;
   border-color: transparent;
   border-radius: 0;
+  margin-bottom: 15px;
 }
 
 .btn-primary:hover  {
@@ -42,6 +43,7 @@ option{
   background-color: #4e5d6c;
   border-color: transparent;
   border-radius: 0;
+  margin-bottom: 15px;
 }
 
 .btn-default:hover {
