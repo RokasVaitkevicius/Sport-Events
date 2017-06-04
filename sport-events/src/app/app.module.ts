@@ -31,6 +31,7 @@ import { CollapsibleWellComponent } from './common/collapsible-well/collapsible-
 import { SortingComponent } from './events/sorting/sorting.component';
 import {SportTypeService} from './microservices/sport-type/sport-type.service';
 import {StringToDatePipe} from './events/shared/string-to-date.pipe';
+import { RegisterComponent } from './user/register/register.component';
 
 @NgModule({
   declarations: [
@@ -50,7 +51,8 @@ import {StringToDatePipe} from './events/shared/string-to-date.pipe';
     EditEventComponent,
     MyEventsComponent,
     CollapsibleWellComponent,
-    SortingComponent
+    SortingComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,

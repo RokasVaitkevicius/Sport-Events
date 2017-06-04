@@ -1,5 +1,6 @@
 ﻿using Events.Api.DI.Setup.Infrastructure.Event;
 using Events.Api.DI.Setup.Infrastructure.SportType;
+using Events.Api.DI.Setup.Infrastructure.User;
 using Events.Api.DI.Setup.Infrastructure.Voter;
 using Microsoft.Extensions.DependencyInjection;
 using System;
@@ -18,6 +19,7 @@ namespace Events.Api.DI.Setup.Infrastructure
             return services
                 .AddInfrastructureLayerEventDependencies()
                 .AddInfrastructureLayerSportTypeDependencies()
+                .AddUserLayerUserDependencies()
                 .AddInfrastructureLayerVoterDependencies();
         }
     }

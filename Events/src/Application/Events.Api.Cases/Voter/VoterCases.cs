@@ -7,9 +7,9 @@ namespace Events.Api.Cases.Voter
 {
     public class VoterCases : IVoterCases
     {
-        private IVoterRepository _repository;
+        private readonly IVoterRepository _repository;
 
-        private IVoterFactory _voterFactory;
+        private readonly IVoterFactory _voterFactory;
 
         public VoterCases(IVoterRepository repository, IVoterFactory voterFactory)
         {

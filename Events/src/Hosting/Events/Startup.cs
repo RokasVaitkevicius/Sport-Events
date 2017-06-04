@@ -1,5 +1,6 @@
 ﻿using Events.Api.DI.Setup;
 using Events.Repository.Contexts;
+using Events.Seeder;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
@@ -41,10 +42,11 @@ namespace Events
             var connectionString = Configuration["EventsDB:ConnectionString"];
 
             services.AddDbContext<EventsDbContext>(options =>
-                options.UseSqlite(connectionString));
+                options.UseSqlite(connectionString), ServiceLifetime.Scoped);
         }
 
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory,
+            IServiceScopeFactory scopeFactory)
         {
             loggerFactory.AddConsole();
 
@@ -52,6 +54,8 @@ namespace Events
             {
                 app.UseDeveloperExceptionPage();
             }
+
+            scopeFactory.SeedData();
 
             app.UseCors(builder => builder
                 .AllowAnyOrigin()

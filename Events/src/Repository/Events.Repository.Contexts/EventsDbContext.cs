@@ -18,6 +18,7 @@ namespace Events.Repository.Contexts
             base(options)
         {
             Database.Migrate();
+           
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)

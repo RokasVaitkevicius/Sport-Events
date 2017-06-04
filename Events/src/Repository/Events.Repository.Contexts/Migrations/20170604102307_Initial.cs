@@ -27,8 +27,10 @@ namespace Events.Repository.Contexts.Migrations
                 {
                     UserId = table.Column<int>(nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
+                    Email = table.Column<string>(nullable: true),
                     FirstName = table.Column<string>(nullable: true),
                     LastName = table.Column<string>(nullable: true),
+                    Password = table.Column<string>(nullable: true),
                     UserName = table.Column<string>(nullable: true)
                 },
                 constraints: table =>

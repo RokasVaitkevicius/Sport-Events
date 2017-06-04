@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import {AuthService} from "../shared/auth.service";
-import {Router} from "@angular/router";
+import { Component } from '@angular/core';
+import {AuthService} from '../shared/auth.service';
+import {Router} from '@angular/router';
+import {ILogin} from '../shared/login.model';
 
 @Component({
   selector: 'app-login',
@@ -8,14 +9,17 @@ import {Router} from "@angular/router";
   styleUrls: ['login.component.css']
 })
 export class LoginComponent {
-  constructor(private authService:AuthService, private router: Router) {
+  constructor(private authService: AuthService, private router: Router) {
 
   }
 
   login(formValues) {
-    this.authService.loginUser(formValues.userName,
-      formValues.password);
-    this.router.navigate(['events']);
+    console.log(formValues);
+    const login: ILogin = {
+      email: formValues.userName,
+      password: formValues.password
+    };
+    this.authService.loginUser(login).subscribe();
   }
 
   cancel() {

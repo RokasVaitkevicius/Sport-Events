@@ -9,6 +9,7 @@ import {ProfileComponent} from "./user/profile/profile.component";
 import {LoginComponent} from "./user/login/login.component";
 import {MyEventsComponent} from './events/my-events/my-events.component';
 import {EditEventComponent} from './events/edit-event/edit-event.component';
+import {RegisterComponent} from './user/register/register.component';
 
 export const appRoutes: Routes = [
   { path: 'events/new', component: CreateEventComponent, canDeactivate: ['canDeactivateCreateEvent'] },
@@ -24,5 +25,6 @@ export const appRoutes: Routes = [
 
 
   {path: 'user/profile', component: ProfileComponent},
-  {path: 'user/login', component: LoginComponent}
+  {path: 'user/login', component: LoginComponent},
+  {path: 'user/register', component: RegisterComponent}
 ];
