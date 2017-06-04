@@ -42,25 +42,25 @@ export class EventDetailsComponent implements OnInit {
 
   toggleVote(event: IEvent) {
     if (this.userHasVoted(event)) {
-      this.voterService.deleteVoter(event.eventId, this.auth.currentUser.id).subscribe();
-      this.event.voters = this.event.voters.filter(e => e.userId !== this.auth.currentUser.id);
+      this.voterService.deleteVoter(event.eventId, this.auth.currentUser.userId).subscribe();
+      this.event.voters = this.event.voters.filter(e => e.userId !== this.auth.currentUser.userId);
     } else {
-      this.voterService.addVoter(event.eventId, this.auth.currentUser.id).subscribe();
+      this.voterService.addVoter(event.eventId, this.auth.currentUser.userId).subscribe();
       let voter: IVoter = {
         eventId: this.event.eventId,
-        userId: this.auth.currentUser.id
+        userId: this.auth.currentUser.userId
       };
       this.event.voters.push(voter);
     }
   }
 
   userHasVoted(event: IEvent) {
-    return this.voterService.userHasVoted(event, this.auth.currentUser.id);
+    return this.voterService.userHasVoted(event, this.auth.currentUser.userId);
   }
 
   determineAuthor(authorId: number): string {
     if(this.users !== undefined){
-      let foundUser = this.users.find(x => x.id === authorId);
+      let foundUser = this.users.find(x => x.userId === authorId);
       return `${foundUser.firstName} ${foundUser.lastName}`;
     }
   }

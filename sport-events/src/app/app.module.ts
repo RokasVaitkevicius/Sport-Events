@@ -32,6 +32,7 @@ import { SortingComponent } from './events/sorting/sorting.component';
 import {SportTypeService} from './microservices/sport-type/sport-type.service';
 import {StringToDatePipe} from './events/shared/string-to-date.pipe';
 import { RegisterComponent } from './user/register/register.component';
+import {CookieModule} from 'ngx-cookie';
 
 @NgModule({
   declarations: [
@@ -60,7 +61,8 @@ import { RegisterComponent } from './user/register/register.component';
     HttpModule,
     ReactiveFormsModule,
     RouterModule.forRoot(appRoutes),
-    ToastrModule.forRoot()
+    ToastrModule.forRoot(),
+    CookieModule.forRoot()
   ],
   providers: [
     EventService,

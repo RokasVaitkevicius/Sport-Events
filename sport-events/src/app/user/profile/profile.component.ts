@@ -3,6 +3,9 @@ import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {AuthService} from "../shared/auth.service";
 import {Router} from "@angular/router";
 import {ToastrService} from "toastr-ng2";
+import {UserService} from '../shared/user.service';
+import {IUpdateUser} from '../shared/login.model';
+import {CookieService} from 'ngx-cookie';
 
 @Component({
   selector: 'app-profile',
@@ -15,6 +18,7 @@ export class ProfileComponent implements OnInit{
   private lastName: FormControl;
 
   constructor(private authService: AuthService,
+              private userService: UserService,
               private router: Router,
               private toastrService: ToastrService) {
   }
@@ -32,10 +36,16 @@ export class ProfileComponent implements OnInit{
   }
 
   saveProfile(formValue) {
-    if(this.profileForm.valid) {
-      this.authService.updateCurrentUser(formValue.firstName, formValue.lastName);
-      //this.router.navigate(['events']);
-      this.toastrService.success('Profile Saved');
+    const userUpdate: IUpdateUser = {
+      firstName: formValue.firstName,
+      lastName: formValue.lastName
+    };
+
+    if (this.profileForm.valid) {
+      this.userService.updateUser(this.authService.currentUser.userId, userUpdate).subscribe();
+      this.toastrService.success('Profile saved!', 'Saved', {timeOut: 1500});
+      this.authService.updateUser(formValue.firstName, formValue.lastName);
+      this.router.navigate(['events']);
     }
   }
 
@@ -51,6 +61,4 @@ export class ProfileComponent implements OnInit{
   cancel() {
     this.router.navigate(['events']);
   }
-
-
 }

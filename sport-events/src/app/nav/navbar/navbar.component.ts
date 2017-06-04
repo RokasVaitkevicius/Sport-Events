@@ -3,6 +3,8 @@ import {AuthService} from '../../user/shared/auth.service';
 import {EventService} from '../../microservices/event/event.service';
 import {ISportType} from '../../microservices/sport-type/sport-type.model';
 import {SportTypeService} from '../../microservices/sport-type/sport-type.service';
+import {Router} from '@angular/router';
+import {IUser} from '../../user/shared/user.model';
 
 @Component({
   selector: 'nav-bar',
@@ -15,7 +17,8 @@ export class NavbarComponent implements OnInit {
 
   constructor(private authService: AuthService,
               private eventService: EventService,
-              private sportTypeService: SportTypeService) {
+              private sportTypeService: SportTypeService,
+              private router: Router) {
   }
 
   ngOnInit() {
@@ -36,5 +39,9 @@ export class NavbarComponent implements OnInit {
   resetEvents() {
     this.searchTerm = null;
     this.eventService.resetEvents();
+  }
+
+  logout() {
+    this.authService.logout();
   }
 }

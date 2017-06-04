@@ -26,14 +26,11 @@ export class MyEventsComponent implements OnInit {
   }
 
   ngOnInit() {
-    //let userId = this.auth.currentUser.eventId;
-    //this.myEvents = this.eventService.getEventsByUserId(userId);
-
     this.sportTypeService.getSportTypes().subscribe(sportType => {
       this.sportTypes = sportType;
     });
 
-    this.eventService.getEventsByUserId(1).subscribe(e => {
+    this.eventService.getEventsByUserId(this.auth.currentUser.userId).subscribe(e => {
       this.myEvents = e;
       this.myEvents.sort((event1, event2) => {
         if (event1.eventDate > event2.eventDate) {
@@ -44,8 +41,6 @@ export class MyEventsComponent implements OnInit {
         return 0;
       });
     });
-    //this.author = this.auth.getCurrentUserName();
-    //console.log(this.myEvents);
   }
 
   changeEventState(eventId: number) {

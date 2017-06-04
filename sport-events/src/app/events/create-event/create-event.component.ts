@@ -31,7 +31,7 @@ export class CreateEventComponent implements OnInit{
 
   saveEvent(formValues) {
     const newEvent: INewEvent = {
-      userId: this.auth.currentUser.id,
+      userId: this.auth.currentUser.userId,
       name: formValues.name,
       sportTypeId: formValues.sportTypeId,
       eventDate: new Date(formValues.eventDate),
@@ -48,6 +48,8 @@ export class CreateEventComponent implements OnInit{
       description: formValues.description,
       imageUrl: formValues.imageUrl
     };
+
+    console.log(newEvent);
 
     this.eventService.saveEvent(newEvent).subscribe();
 

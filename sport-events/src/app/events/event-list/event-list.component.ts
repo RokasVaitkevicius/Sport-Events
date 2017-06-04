@@ -99,7 +99,7 @@ export class EventListComponent implements OnInit {
 
   private determineAuthor(authorId: number): string {
     if (this.users !== undefined) {
-      const foundUser = this.users.find(x => x.id === authorId);
+      const foundUser = this.users.find(x => x.userId === authorId);
       return `${foundUser.firstName} ${foundUser.lastName}`;
     }
   }
@@ -107,10 +107,9 @@ export class EventListComponent implements OnInit {
   private toggleCanceledEvents() {
     this.showCanceled = !this.showCanceled;
     console.log(this.showCanceled);
-    if(this.showCanceled === false)
-    {
+    if (this.showCanceled === false) {
       this.events = this.route.snapshot.data['events'].filter(e => e.canceled === this.showCanceled);
-    } else if(this.showCanceled === true) {
+    } else if (this.showCanceled === true) {
       this.events = this.route.snapshot.data['events'];
       this.events = this.mapUsers(this.events);
       this.events = this.mapSportTypes(this.events);
