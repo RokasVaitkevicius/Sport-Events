@@ -3,7 +3,7 @@ import {EventService} from '../../microservices/event/event.service';
 import {Router} from '@angular/router';
 import {ISportType} from '../../microservices/sport-type/sport-type.model';
 import {SportTypeService} from '../../microservices/sport-type/sport-type.service';
-import {IEvent, INewEvent} from '../../microservices/event/event.model';
+import {INewEvent} from '../../microservices/event/event.model';
 import {AuthService} from '../../user/shared/auth.service';
 import {ToastrService} from 'toastr-ng2';
 
@@ -12,10 +12,11 @@ import {ToastrService} from 'toastr-ng2';
   templateUrl: 'create-event.component.html',
   styleUrls: ['create-event.component.css']
 })
-export class CreateEventComponent implements OnInit{
+export class CreateEventComponent implements OnInit {
   isDirty: boolean = true;
   sportTypes: ISportType[];
-  event: any = { location: {} };
+  event: any = {location: {}};
+
   constructor(private eventService: EventService,
               private router: Router,
               private sportTypeService: SportTypeService,

@@ -3,7 +3,6 @@ import {Observable} from 'rxjs/Rx';
 import {ISportType} from './sport-type.model';
 import {Http, Response} from '@angular/http';
 
-
 @Injectable()
 export class SportTypeService {
   private baseUrl = 'http://localhost:5000';
@@ -29,22 +28,3 @@ export class SportTypeService {
     return Observable.throw(error.statusText);
   }
 }
-
-const SPORTTYPES: ISportType[] = [
-  {
-    sportTypeId: 1,
-    name: 'Basketball'
-  },
-  {
-    sportTypeId: 2,
-    name: 'Football'
-  },
-  {
-    sportTypeId: 3,
-    name: 'Table tennis'
-  },
-  {
-    sportTypeId: 4,
-    name: 'Other'
-  }
-];

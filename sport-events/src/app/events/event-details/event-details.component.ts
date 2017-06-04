@@ -1,7 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import {ActivatedRoute, Router} from "@angular/router";
-import {EventService} from "../../microservices/event/event.service";
-import {IEvent} from "../../microservices/event/event.model";
+import {Component, OnInit} from '@angular/core';
+import {ActivatedRoute} from '@angular/router';
+import {IEvent} from '../../microservices/event/event.model';
 import {AuthService} from '../../user/shared/auth.service';
 import {VoterService} from '../../microservices/voter/voter.service';
 import {ISportType} from '../../microservices/sport-type/sport-type.model';
@@ -20,13 +19,12 @@ export class EventDetailsComponent implements OnInit {
   sportType: ISportType;
   users: IUser[];
 
-  constructor(private eventService: EventService,
-              private route: ActivatedRoute,
+  constructor(private route: ActivatedRoute,
               private auth: AuthService,
               private voterService: VoterService,
               private userService: UserService,
-              private sportTypeService: SportTypeService,
-              private router: Router) { }
+              private sportTypeService: SportTypeService) {
+  }
 
   ngOnInit() {
     this.event = this.route.snapshot.data['event'];
@@ -46,7 +44,7 @@ export class EventDetailsComponent implements OnInit {
       this.event.voters = this.event.voters.filter(e => e.userId !== this.auth.currentUser.userId);
     } else {
       this.voterService.addVoter(event.eventId, this.auth.currentUser.userId).subscribe();
-      let voter: IVoter = {
+      const voter: IVoter = {
         eventId: this.event.eventId,
         userId: this.auth.currentUser.userId
       };
@@ -59,8 +57,8 @@ export class EventDetailsComponent implements OnInit {
   }
 
   determineAuthor(authorId: number): string {
-    if(this.users !== undefined){
-      let foundUser = this.users.find(x => x.userId === authorId);
+    if (this.users !== undefined) {
+      const foundUser = this.users.find(x => x.userId === authorId);
       return `${foundUser.firstName} ${foundUser.lastName}`;
     }
   }

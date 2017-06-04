@@ -2,7 +2,6 @@ import {Component, OnInit} from '@angular/core';
 import {AuthService} from '../../user/shared/auth.service';
 import {IEvent} from '../../microservices/event/event.model';
 import {EventService} from '../../microservices/event/event.service';
-import {ActivatedRoute} from '@angular/router';
 import {ISportType} from '../../microservices/sport-type/sport-type.model';
 import {SportTypeService} from '../../microservices/sport-type/sport-type.service';
 import {ToastrService} from 'toastr-ng2';
@@ -14,14 +13,11 @@ import {ToastrService} from 'toastr-ng2';
 })
 export class MyEventsComponent implements OnInit {
   private myEvents: IEvent[];
-  private author = '';
   sportTypes: ISportType[];
-
 
   constructor(private auth: AuthService,
               private eventService: EventService,
               private sportTypeService: SportTypeService,
-              private route: ActivatedRoute,
               private toastrService: ToastrService) {
   }
 

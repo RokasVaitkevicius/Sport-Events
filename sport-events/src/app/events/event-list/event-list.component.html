@@ -3,7 +3,9 @@
   <hr/>
   <div class="row">
     <sorting [events]="events"></sorting>
-    <button [class.active]="showCanceled" class="btn btn-default pull-right col-md-1 btn-sm" (click)="toggleCanceledEvents()">Show canceled events</button>
+    <button class="btn btn-default pull-right col-md-1 btn-sm" [class.active]="showCanceled === true"
+            (click)="toggleCanceledEvents()">Show canceled events
+    </button>
   </div>
   <div class="row">
     <h1 class="term" *ngIf="searchTerm">Search term: {{searchTerm}}</h1>

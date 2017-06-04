@@ -12,7 +12,6 @@ export class UserService {
   constructor(private http: Http) {
   }
 
-
   getUsers(): Observable<IUser[]> {
     return this.http.get(this.baseUrl + '/api/user/all')
       .map((response: Response) => {

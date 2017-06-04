@@ -13,9 +13,9 @@
     <div class="form-group">
       <label>Sport Type:</label>
       <em *ngIf="newEventForm.controls.sportType?.invalid && (newEventForm.controls.sportType?.touched)">Required</em>
-      <select (ngModel)="sportTypeId" class="form-control" required name="sportTypeId" id="sportTypeId" >
+      <select (ngModel)="sportTypeId" class="form-control" required name="sportTypeId" id="sportTypeId">
         <option value="" selected disabled hidden>Choose Sport Type...</option>
-        <option  *ngFor="let sportType of sportTypes" [value]="sportType.sportTypeId">{{sportType.name}}</option>
+        <option *ngFor="let sportType of sportTypes" [value]="sportType.sportTypeId">{{sportType.name}}</option>
       </select>
     </div>
 
@@ -57,16 +57,21 @@
          [ngClass]="{'error': newEventForm.controls.phoneNumber?.invalid && newEventForm.controls.phoneNumber?.touched}">
       <label for="phoneNumber">Phone number:</label>
       <em
-        *ngIf="newEventForm.controls.phoneNumber?.invalid && (newEventForm.controls.phoneNumber?.touched)">Required</em>
+        *ngIf="newEventForm.controls.phoneNumber?.invalid && (newEventForm.controls.phoneNumber?.touched) && !newEventForm.controls.phoneNumber?.errors.pattern">Required</em>
+      <em
+        *ngIf="newEventForm.controls.phoneNumber?.invalid && newEventForm.controls.phoneNumber?.touched  && newEventForm.controls.phoneNumber?.errors.pattern">Must
+        Be In This Format: +3706xxxxxxx</em>
       <input (ngModel)="phoneNumber" name="phoneNumber" required id="phoneNumber" type="text" class="form-control"
-             placeholder="Phone number..."/>
+             maxlength=12
+             pattern="^[0-9\-\+]{12}$"
+             placeholder="Phone number +370..."/>
     </div>
     <div class="form-group"
          [ngClass]="{'error': newEventForm.controls.price?.invalid && newEventForm.controls.price?.touched}">
       <label for="eventPrice">Event Price:</label>
       <em *ngIf="newEventForm.controls.price?.invalid && (newEventForm.controls.price?.touched)">Required</em>
       <input (ngModel)="price" min=0 oninput="validity.valid||(value='')" name="price" required id="eventPrice"
-             type="text" type="number" class="form-control"
+             type="number" class="form-control"
              placeholder="Event price. Enter 0 if free..."/>
     </div>
 
@@ -76,17 +81,19 @@
         <em *ngIf="locationGroup?.invalid && locationGroup?.touched">
           You must enter either the full location OR Facebook event Url
         </em>
+        <div class="row">
+          <div class="col-md-6">
+            <input (ngModel)="city" name="city" id="city" type="text" class="form-control" placeholder="City..."/>
+          </div>
+          <div class="col-md-6">
+            <input (ngModel)="country" name="country" id="country" type="text" class="form-control"
+                   placeholder="Country..."/>
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
         <input (ngModel)="address" name="address" id="address" type="text" class="form-control"
                placeholder="Address of event..."/>
-      </div>
-      <div class="row">
-        <div class="col-md-6">
-          <input (ngModel)="city" name="city" id="city" type="text" class="form-control" placeholder="City..."/>
-        </div>
-        <div class="col-md-6">
-          <input (ngModel)="country" name="country" id="country" type="text" class="form-control"
-                 placeholder="Country..."/>
-        </div>
       </div>
     </div>
 
@@ -106,18 +113,6 @@
                 placeholder="More details about event...">
       </textarea>
     </div>
-
-    <div class="form-group">
-      <label for="imageUrl">Image:</label>
-      <em
-        *ngIf="newEventForm.controls.imageUrl?.invalid && newEventForm.controls.imageUrl?.touched  && newEventForm.controls.imageUrl?.errors.pattern">Must
-        be a png or jpg url</em>
-      <input (ngModel)="imageUrl" name="imageUrl" pattern=".*\/.*.(png|jpg)" id="imageUrl" type="text"
-             class="form-control" placeholder="Image Url..."/>
-      <img [src]="newEventForm.controls.imageUrl?.value"
-           *ngIf="newEventForm.controls.imageUrl?.valid"/>
-    </div>
-
     <button type="submit" [disabled]="newEventForm.invalid" class="btn btn-primary">Save</button>
     <button type="button" class="btn btn-default" (click)="cancel()">Cancel</button>
   </form>

@@ -17,8 +17,8 @@
                routerLinkActive="active">Create Event</a></li>
         <li>
           <a *ngIf="authService.isAuthenticated()"
-            [routerLink]="['/myEvents']"
-            routerLinkActive="active">My Events</a>
+             [routerLink]="['/myEvents']"
+             routerLinkActive="active">My Events</a>
         </li>
 
         <li class="dropdown">
@@ -26,9 +26,9 @@
             Events
             <span class="caret"></span>
           </a>
-            <ul class="dropdown-menu">
+          <ul class="dropdown-menu">
             <li>
-              <a (click)="filterEvents(sportType.sportTypeId)"
+              <a [routerLink]="['/events']" (click)="filterEvents(sportType.sportTypeId)"
                  *ngFor="let sportType of sportTypes">{{sportType.name}}</a>
             </li>
           </ul>
@@ -56,7 +56,8 @@
           <input [(ngModel)]="searchTerm" name="searchTerm"
                  type="text" class="form-control" placeholder="Search Sessions">
         </div>
-        <button [disabled]="searchTerm === '' || searchTerm === null" (click)="searchEvents(searchTerm)" class="btn btn-default">
+        <button [routerLink]="['/events']" [disabled]="searchTerm === '' || searchTerm === null"
+                (click)="searchEvents(searchTerm)" class="btn btn-default">
           Search
         </button>
       </form>

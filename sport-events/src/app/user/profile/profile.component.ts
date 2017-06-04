@@ -1,18 +1,17 @@
 import {Component, OnInit} from '@angular/core';
-import {FormControl, FormGroup, Validators} from "@angular/forms";
-import {AuthService} from "../shared/auth.service";
-import {Router} from "@angular/router";
-import {ToastrService} from "toastr-ng2";
+import {FormControl, FormGroup, Validators} from '@angular/forms';
+import {AuthService} from '../shared/auth.service';
+import {Router} from '@angular/router';
+import {ToastrService} from 'toastr-ng2';
 import {UserService} from '../shared/user.service';
 import {IUpdateUser} from '../shared/login.model';
-import {CookieService} from 'ngx-cookie';
 
 @Component({
   selector: 'app-profile',
   templateUrl: 'profile.component.html',
   styleUrls: ['profile.component.css']
 })
-export class ProfileComponent implements OnInit{
+export class ProfileComponent implements OnInit {
   profileForm: FormGroup;
   private firstName: FormControl;
   private lastName: FormControl;

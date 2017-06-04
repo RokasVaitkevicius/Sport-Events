@@ -13,7 +13,8 @@
         </span>
       </div>
       <div well-body>
-        <img *ngIf="event.imageUrl" [src]="event?.imageUrl" [alt]="event?.name" class="event-image" height="42" width="42">
+        <img *ngIf="event.imageUrl" [src]="event?.imageUrl" [alt]="event?.name" class="event-image" height="42"
+             width="42">
         <div><strong>Author:</strong> {{author}}</div>
         <div><strong>Phone Number:</strong> {{event?.phoneNumber}}</div>
         <div><strong>Date:</strong> {{event?.eventDate | date:'y-M-d'}}</div>
@@ -33,8 +34,12 @@
   </div>
   <div class="col-md-2">
     <button class="btn btn-primary pull-left" [routerLink]="['/myEvents', event.eventId]">Edit</button>
-    <button *ngIf="event.canceled === false" class="btn btn-default pull-left" type="button" (click)="changeEventState(event.eventId)">Cancel Event</button>
-    <button *ngIf="event.canceled === true" class="btn btn-success pull-left" type="button" (click)="changeEventState(event.eventId)">Restart Event</button>
+    <button *ngIf="event.canceled === false" class="btn btn-default pull-left" type="button"
+            (click)="changeEventState(event.eventId)">Cancel Event
+    </button>
+    <button *ngIf="event.canceled === true" class="btn btn-success pull-left" type="button"
+            (click)="changeEventState(event.eventId)">Restart Event
+    </button>
   </div>
 </div>
 

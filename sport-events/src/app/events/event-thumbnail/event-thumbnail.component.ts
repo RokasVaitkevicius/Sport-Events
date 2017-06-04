@@ -6,7 +6,7 @@ import {IEvent} from '../../microservices/event/event.model';
   templateUrl: 'event-thumbnail.component.html',
   styleUrls: ['event-thumbnail.component.css']
 })
-export class EventThumbnailComponent implements OnInit{
+export class EventThumbnailComponent implements OnInit {
   @Input() event: IEvent;
 
 

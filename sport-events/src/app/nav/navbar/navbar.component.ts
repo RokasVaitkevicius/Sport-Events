@@ -1,10 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {AuthService} from '../../user/shared/auth.service';
 import {EventService} from '../../microservices/event/event.service';
 import {ISportType} from '../../microservices/sport-type/sport-type.model';
 import {SportTypeService} from '../../microservices/sport-type/sport-type.service';
 import {Router} from '@angular/router';
-import {IUser} from '../../user/shared/user.model';
 
 @Component({
   selector: 'nav-bar',

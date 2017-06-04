@@ -1,4 +1,8 @@
-em { float: right; color: #E05C65; padding-left: 10px; }
+em {
+  float: right;
+  color: #E05C65;
+  padding-left: 10px;
+}
 
 .btn-default {
   color: #ffffff;
@@ -14,10 +18,18 @@ em { float: right; color: #E05C65; padding-left: 10px; }
   border-radius: 0;
 }
 
-.btn-primary:hover  {
+.btn-primary:hover {
   background-color: #ff8c1a;
 }
 
 .btn-default:hover {
   background-color: #485563;
+}
+
+.error input {
+  background-color: #E3C3C5;
+}
+
+input:invalid {
+  color: #C7C7CD;
 }

@@ -2,41 +2,45 @@
 <hr>
 <div class="col-md-4">
   <form #loginForm="ngForm" (ngSubmit)="register(loginForm.value)" autocomplete="off" novalidate>
-    <div class="form-group" >
+    <em *ngIf="error">User with that username or email exists</em>
+    <div class="form-group" [ngClass]="{'error': loginForm.controls.username?.invalid && loginForm.controls.username?.touched}" >
       <label for="username">User Name:</label>
       <em *ngIf="loginForm.controls.username?.invalid &&
                 (loginForm.controls.username?.touched || mouseoverLogin)">Required</em>
       <input (ngModel)="username" name="username" id="username" required type="text" class="form-control" placeholder="User Name..." />
     </div>
-    <div class="form-group" >
+    <div class="form-group" [ngClass]="{'error': loginForm.controls.firstname?.invalid && loginForm.controls.firstname?.touched}" >
       <label for="firstname">First Name:</label>
       <em *ngIf="loginForm.controls.firstname?.invalid &&
                 (loginForm.controls.firstname?.touched || mouseoverLogin)">Required</em>
       <input (ngModel)="firstname" name="firstname" id="firstname" required type="text" class="form-control" placeholder="First Name..." />
     </div>
-    <div class="form-group" >
+    <div class="form-group" [ngClass]="{'error': loginForm.controls.lastname?.invalid && loginForm.controls.lastname?.touched}" >
       <label for="lastname">Last Name:</label>
       <em *ngIf="loginForm.controls.lastname?.invalid &&
                 (loginForm.controls.lastname?.touched || mouseoverLogin)">Required</em>
       <input (ngModel)="lastname" name="lastname" id="lastname" required type="text" class="form-control" placeholder="Last Name..." />
     </div>
-    <div class="form-group" >
+    <div class="form-group" [ngClass]="{'error': loginForm.controls.email?.invalid && loginForm.controls.email?.touched}" >
       <label for="email">Email:</label>
       <em *ngIf="loginForm.controls.email?.invalid &&
                 (loginForm.controls.email?.touched || mouseoverLogin)">Required</em>
-      <input (ngModel)="email" name="email" id="email" required type="text" class="form-control" placeholder="Email..." />
+      <input  type="email" (ngModel)="email" name="email" id="email"
+             required class="form-control" placeholder="Email..." />
     </div>
-    <div class="form-group" >
+    <div class="form-group" [ngClass]="{'error': loginForm.controls.password?.invalid && loginForm.controls.password?.touched}" >
       <label for="password">Password:</label>
       <em *ngIf="loginForm.controls.password?.invalid &&
                 (loginForm.controls.password?.touched || mouseoverLogin)">Required</em>
+      <em *ngIf="passwordError">Passwords do not match</em>
       <input (ngModel)="password" name="password" id="password" required type="password" class="form-control"placeholder="Password..." />
     </div>
-    <div class="form-group" >
+    <div class="form-group" [ngClass]="{'error': loginForm.controls.cpassword?.invalid && loginForm.controls.cpassword?.touched}" >
       <label for="password">Confirm password:</label>
       <em *ngIf="loginForm.controls.cpassword?.invalid &&
                 (loginForm.controls.cpassword?.touched || mouseoverLogin)">Required</em>
-      <input (ngModel)="cpassword" name="cpassword" id="cpassword" required type="cpassword" class="form-control"placeholder="Confirm Password..." />
+      <em *ngIf="passwordError">Passwords do not match</em>
+      <input (ngModel)="cpassword" name="cpassword" id="cpassword" required type="password" class="form-control"placeholder="Confirm Password..." />
     </div>
 
     <span (mouseenter)="mouseoverLogin=true" (mouseleave)="mouseoverLogin=false">

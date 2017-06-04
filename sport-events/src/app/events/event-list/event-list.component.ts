@@ -26,14 +26,13 @@ export class EventListComponent implements OnInit {
   private resetSubscription: Subscription;
 
   constructor(private route: ActivatedRoute,
-              private router: Router,
               private eventService: EventService,
               private sportTypeService: SportTypeService,
               private userService: UserService) {
   }
 
   ngOnInit() {
-    this.events = this.route.snapshot.data['events'].filter(e => e.canceled === this.showCanceled);
+    this.events = this.route.snapshot.data['events'].filter(e => e.canceled === false);
 
     this.sportTypeService.getSportTypes().subscribe(sportType => {
       this.sportTypes = sportType;
@@ -48,8 +47,9 @@ export class EventListComponent implements OnInit {
     this.resetSubscription = this.eventService.resetEventsObservable$.subscribe(() => {
       this.filterTerm = '';
       this.searchTerm = '';
+      this.showCanceled = false;
       this.eventService.getEvents().subscribe(e => {
-        this.events = e;
+        this.events = e.filter(ev => ev.canceled === false);
         this.events = this.mapUsers(this.events);
         this.events = this.mapSportTypes(this.events);
       });
@@ -58,8 +58,9 @@ export class EventListComponent implements OnInit {
     this.searchSubscription = this.eventService.searchNotificationObservable$.subscribe((searchTerm) => {
       this.filterTerm = '';
       this.searchTerm = searchTerm;
+      this.showCanceled = false;
       this.eventService.getEventsBySearchTerm(searchTerm).subscribe(e => {
-        this.events = e;
+        this.events = e.filter(ev => ev.canceled === false);
         this.events = this.mapUsers(this.events);
         this.events = this.mapSportTypes(this.events);
       });
@@ -68,9 +69,9 @@ export class EventListComponent implements OnInit {
     this.filterSubscription = this.eventService.filterNotificationObservable$.subscribe((sportTypeId) => {
       this.filterTerm = this.determineSportType(sportTypeId);
       this.searchTerm = '';
+      this.showCanceled = false;
       this.eventService.getEventsBySportTypeId(sportTypeId).subscribe(e => {
-        console.log(e);
-        this.events = e;
+        this.events = e.filter(ev => ev.canceled === false);
         this.events = this.mapUsers(this.events);
         this.events = this.mapSportTypes(this.events);
       });
@@ -105,8 +106,9 @@ export class EventListComponent implements OnInit {
   }
 
   private toggleCanceledEvents() {
+    this.searchTerm = '';
+    this.filterTerm = '';
     this.showCanceled = !this.showCanceled;
-    console.log(this.showCanceled);
     if (this.showCanceled === false) {
       this.events = this.route.snapshot.data['events'].filter(e => e.canceled === this.showCanceled);
     } else if (this.showCanceled === true) {

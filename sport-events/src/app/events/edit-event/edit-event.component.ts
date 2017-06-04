@@ -3,8 +3,8 @@ import {IEvent, IUpdateEvent} from '../../microservices/event/event.model';
 import {ActivatedRoute, Router} from '@angular/router';
 import {EventService} from '../../microservices/event/event.service';
 import {FormControl, FormGroup} from '@angular/forms';
-import {ISportType} from "../../microservices/sport-type/sport-type.model";
-import {ToastrService} from "toastr-ng2";
+import {ISportType} from '../../microservices/sport-type/sport-type.model';
+import {ToastrService} from 'toastr-ng2';
 import {SportTypeService} from '../../microservices/sport-type/sport-type.service';
 
 @Component({

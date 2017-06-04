@@ -6,7 +6,7 @@
   <div>Author: {{event?.authorName}}</div>
   <div>Sport Type: {{event?.sportTypeName}}</div>
   <div>Date: {{event?.eventDate | date:'y-M-d'}}</div>
-  <div>Event Time: {{event?.timeFrom}} - {{event?.timeTill}}  </div>
+  <div>Event Time: {{event?.timeFrom}} - {{event?.timeTill}}</div>
   <div *ngIf="event?.price > 0"><strong>Price:</strong> {{event?.price | currency:'EUR':true}}</div>
   <div *ngIf="event?.price === 0"><strong>Price:</strong> FREE</div>
   <div *ngIf="event.location.address !== ''">

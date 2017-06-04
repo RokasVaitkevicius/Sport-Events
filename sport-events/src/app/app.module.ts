@@ -19,7 +19,6 @@ import {EventListResolver} from "./microservices/event/event-list-resolver.servi
 import {RouterModule} from "@angular/router";
 import {appRoutes} from "./app-routing.module";
 import {CreateEventComponent} from "./events/create-event/create-event.component";
-import {DurationPipe} from "./events/shared/duration.pipe";
 import {ToastrModule} from "toastr-ng2";
 import {UpvoteComponent} from './events/upvote/upvote.component';
 import {VoterService} from './microservices/voter/voter.service';
@@ -27,11 +26,11 @@ import {LocationValidator} from './events/create-event/location-validator.direct
 import {EditEventComponent} from './events/edit-event/edit-event.component';
 import {MyEventsComponent} from './events/my-events/my-events.component';
 import {UserService} from './user/shared/user.service';
-import { CollapsibleWellComponent } from './common/collapsible-well/collapsible-well.component';
-import { SortingComponent } from './events/sorting/sorting.component';
+import {CollapsibleWellComponent} from './common/collapsible-well/collapsible-well.component';
+import {SortingComponent} from './events/sorting/sorting.component';
 import {SportTypeService} from './microservices/sport-type/sport-type.service';
 import {StringToDatePipe} from './events/shared/string-to-date.pipe';
-import { RegisterComponent } from './user/register/register.component';
+import {RegisterComponent} from './user/register/register.component';
 import {CookieModule} from 'ngx-cookie';
 
 @NgModule({
@@ -45,7 +44,6 @@ import {CookieModule} from 'ngx-cookie';
     ProfileComponent,
     LoginComponent,
     Error404Component,
-    DurationPipe,
     StringToDatePipe,
     UpvoteComponent,
     LocationValidator,

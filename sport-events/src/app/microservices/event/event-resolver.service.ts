@@ -1,9 +1,9 @@
-import {Injectable} from "@angular/core";
-import {CanActivate, Router, ActivatedRouteSnapshot, Resolve} from "@angular/router";
-import {EventService} from "./event.service";
+import {Injectable} from '@angular/core';
+import {ActivatedRouteSnapshot, Resolve} from '@angular/router';
+import {EventService} from './event.service';
 
 @Injectable()
-export class EventResolver implements Resolve<any>{
+export class EventResolver implements Resolve<any> {
   constructor(private eventService: EventService) {
   }
 
