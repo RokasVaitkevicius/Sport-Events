@@ -12,8 +12,15 @@ import {ToastrService} from 'toastr-ng2';
 })
 export class RegisterComponent implements OnInit {
   private exists: boolean;
-  private error = false;
-  private passwordError = false;
+  public error = false;
+  public passwordError = false;
+  public mouseoverLogin = true;
+  public username: string;
+  public email: string;
+  public firstname: string;
+  public lastname: string;
+  public password: string;
+  public cpassword: string;
 
   constructor(private userService: UserService, private router: Router, private toastrService: ToastrService) {
   }

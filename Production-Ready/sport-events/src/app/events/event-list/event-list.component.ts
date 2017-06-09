@@ -105,7 +105,7 @@ export class EventListComponent implements OnInit {
     }
   }
 
-  private toggleCanceledEvents() {
+  public toggleCanceledEvents() {
     this.searchTerm = '';
     this.filterTerm = '';
     this.showCanceled = !this.showCanceled;

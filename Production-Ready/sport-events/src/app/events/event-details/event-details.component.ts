@@ -20,7 +20,7 @@ export class EventDetailsComponent implements OnInit {
   users: IUser[];
 
   constructor(private route: ActivatedRoute,
-              private auth: AuthService,
+              public auth: AuthService,
               private voterService: VoterService,
               private userService: UserService,
               private sportTypeService: SportTypeService) {

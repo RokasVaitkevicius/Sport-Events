@@ -103,7 +103,7 @@
         Link is invalid
       </em>
       <input (ngModel)="facebookEventUrl" name="facebookEventUrl" id="facebookEventUrl" type="url" pattern="https?://.+"
-             class="form-control" (change)="locationGroup.control.controls.address.updateValueAndValidity()"
+             class="form-control" (change)="locationGroup.control.get('address').updateValueAndValidity()"
              placeholder="Facebook event Url https://..."/>
     </div>
 

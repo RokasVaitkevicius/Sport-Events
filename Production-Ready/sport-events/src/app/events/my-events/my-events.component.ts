@@ -12,7 +12,7 @@ import {ToastrService} from 'toastr-ng2';
   styleUrls: ['./my-events.component.css']
 })
 export class MyEventsComponent implements OnInit {
-  private myEvents: IEvent[];
+  public myEvents: IEvent[];
   sportTypes: ISportType[];
 
   constructor(private auth: AuthService,

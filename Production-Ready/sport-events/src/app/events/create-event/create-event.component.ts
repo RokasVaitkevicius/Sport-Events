@@ -19,7 +19,22 @@ export class CreateEventComponent implements OnInit {
 
   // Form variables
 
-  public name: string;
+ public eventId: number;
+ public userId: number;
+ public name: string;
+ public sportTypeId: number;
+ public eventDate: Date;
+ public timeFrom: string;
+ public timeTill: string;
+ public price: number;
+ public phoneNumber: string;
+ public address: string;
+ public city: string;
+ public country: string;
+ public description: string;
+ public facebookEventUrl: string;
+ public imageUrl: string;
+ public canceled: boolean;
 
   public mouserOverLogin = false;
 

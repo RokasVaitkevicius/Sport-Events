@@ -78,14 +78,6 @@
       </textarea>
     </div>
 
-    <div class="form-group">
-      <label for="imageUrl">Image:</label>
-         <input formControlName="imageUrl" required pattern=".*\/.*.(png|jpg)" id="imageUrl" type="text"
-             class="form-control" placeholder="Image Url..."/>
-      <img [src]="eventForm.controls.imageUrl.value"
-           *ngIf="eventForm.controls.imageUrl?.valid" height="60" width="60"/>
-    </div>
-
     <button type="submit" class="btn btn-primary">Save</button>
     <button type="button" class="btn btn-default" (click)="cancel()">Cancel</button>
   </form>

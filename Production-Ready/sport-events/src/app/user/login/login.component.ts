@@ -11,7 +11,10 @@ import {AuthService} from '../shared/auth.service';
   styleUrls: ['login.component.css']
 })
 export class LoginComponent {
-  private error = false;
+  public error = false;
+  public mouseoverLogin = false;
+  public email: string;
+  public password: string;
 
   constructor(private router: Router,
               private userService: UserService,

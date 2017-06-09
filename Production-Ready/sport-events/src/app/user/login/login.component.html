@@ -5,15 +5,15 @@
     <em *ngIf="error">User with this login data does not exist</em>
     <div class="form-group">
       <label for="email">Email:</label>
-      <em *ngIf="loginForm.controls.email?.invalid &&
-                (loginForm.controls.email?.touched || mouseoverLogin)">Required</em>
+      <em *ngIf="loginForm.form.get('email')?.invalid &&
+                (loginForm.form.get('email')?.touched || mouseoverLogin)">Required</em>
       <input (ngModel)="email" name="email" id="email" required type="text" class="form-control"
              placeholder="Email..."/>
     </div>
     <div class="form-group">
       <label for="password">Password:</label>
-      <em *ngIf="loginForm.controls.password?.invalid &&
-                (loginForm.controls.password?.touched || mouseoverLogin)">Required</em>
+      <em *ngIf="loginForm.form.get('password')?.invalid &&
+                (loginForm.form.get('password')?.touched || mouseoverLogin)">Required</em>
       <input (ngModel)="password" name="password" id="password" required type="password" class="form-control"
              placeholder="Password..."/>
     </div>
