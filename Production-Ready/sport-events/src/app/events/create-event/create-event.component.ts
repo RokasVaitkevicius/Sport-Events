@@ -71,8 +71,6 @@ export class CreateEventComponent implements OnInit {
       imageUrl: formValues.imageUrl
     };
 
-    console.log(newEvent);
-
     this.eventService.saveEvent(newEvent).subscribe();
 
     this.router.navigate(['/myEvents']);

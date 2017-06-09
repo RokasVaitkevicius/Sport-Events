@@ -6,7 +6,7 @@ import {Http, RequestOptions, Headers, Response} from '@angular/http';
 
 @Injectable()
 export class VoterService {
-  private baseUrl = 'http://localhost:5000';
+  private baseUrl = 'http://localhost:3000/events';
 
   constructor(private http: Http) {
 

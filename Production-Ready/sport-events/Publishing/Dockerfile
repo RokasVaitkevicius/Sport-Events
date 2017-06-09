@@ -1,2 +1,2 @@
-FROM nginx:1.11.10
+FROM library/nginx
 COPY ./published /usr/share/nginx/html

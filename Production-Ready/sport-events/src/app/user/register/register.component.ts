@@ -29,7 +29,6 @@ export class RegisterComponent implements OnInit {
   }
 
   register(formValues) {
-    console.log(formValues);
     const checkUser: ICheckUser = {
       email: formValues.email,
       userName: formValues.username

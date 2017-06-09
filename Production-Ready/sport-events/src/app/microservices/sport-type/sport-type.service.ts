@@ -5,7 +5,7 @@ import {Http, Response} from '@angular/http';
 
 @Injectable()
 export class SportTypeService {
-  private baseUrl = 'http://localhost:5000';
+  private baseUrl = 'http://localhost:3000/events';
 
   constructor(private http: Http) {
   }

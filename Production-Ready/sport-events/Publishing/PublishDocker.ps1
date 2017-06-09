@@ -10,4 +10,5 @@ docker build -t ui .
 
 Remove-Item "$scriptPath\published" -Force -Recurse
 
+
 Pause

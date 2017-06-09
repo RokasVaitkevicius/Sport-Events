@@ -14,7 +14,7 @@ export class EventService {
   private resetEventsNotification = new Subject<any>();
   resetEventsObservable$ = this.resetEventsNotification.asObservable();
 
-  private baseUrl = 'http://localhost:5000';
+  private baseUrl = 'http://localhost:3000/events';
 
   constructor(private http: Http) {
 
@@ -69,7 +69,6 @@ export class EventService {
   changeEventState(eventId: number): Observable<IEvent> {
     const headers = new Headers({'Content-Type': 'application/json'});
     const options = new RequestOptions({headers: headers});
-    console.log(eventId);
     return this.http.put(`${this.baseUrl}/api/events/${eventId}/state`, options).map((response: Response) => {
       return response.json();
     }).catch(this.handleError);

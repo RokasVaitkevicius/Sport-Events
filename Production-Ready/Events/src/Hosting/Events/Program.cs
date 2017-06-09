@@ -12,10 +12,10 @@ namespace Events
         public static void Main(string[] args)
         {
             var host = new WebHostBuilder()
+                .UseUrls(@"http://*:80/events")
                 .UseKestrel()
                 .UseContentRoot(Directory.GetCurrentDirectory())
                 .UseStartup<Startup>()
-                .UseUrls(@"http://*:80")
                 .Build();
 
             host.Run();

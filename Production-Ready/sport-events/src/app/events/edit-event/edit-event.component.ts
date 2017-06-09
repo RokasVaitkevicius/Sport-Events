@@ -72,8 +72,6 @@ export class EditEventComponent implements OnInit {
       imageUrl: formValues.imageUrl
     };
 
-    console.log(updateEvent);
-
     this.eventService.updateEvent(updateEvent, this.event.eventId).subscribe();
 
     this.router.navigate(['/myEvents']);

@@ -7,7 +7,7 @@ import {RequestOptions, Response, Headers, Http} from '@angular/http';
 @Injectable()
 export class UserService {
 
-  baseUrl = 'http://localhost:5000';
+  baseUrl = 'http://localhost:3000/events';
 
   constructor(private http: Http) {
   }
