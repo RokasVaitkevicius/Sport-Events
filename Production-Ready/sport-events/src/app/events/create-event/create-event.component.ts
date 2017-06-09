@@ -17,6 +17,12 @@ export class CreateEventComponent implements OnInit {
   sportTypes: ISportType[];
   event: any = {location: {}};
 
+  // Form variables
+
+  public name: string;
+
+  public mouserOverLogin = false;
+
   constructor(private eventService: EventService,
               private router: Router,
               private sportTypeService: SportTypeService,
@@ -30,7 +36,7 @@ export class CreateEventComponent implements OnInit {
     });
   }
 
-  saveEvent(formValues: any) {
+  saveEvent(formValues) {
     const newEvent: INewEvent = {
       userId: this.auth.currentUser.userId,
       name: formValues.name,
