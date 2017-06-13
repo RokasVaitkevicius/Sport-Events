@@ -32,3 +32,8 @@
   font-weight: bold;
   font-size: 14px;
 }
+
+
+.well {
+  max-width: 20px
+}

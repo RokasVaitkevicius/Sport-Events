@@ -24,7 +24,7 @@
         <div><strong>Sport Type:</strong> {{determineSportType(event?.sportTypeId)}}</div>
         <div *ngIf="event.facebookEventUrl"><strong>Facebook Event Url:</strong> {{event?.facebookEventUrl}}</div>
         <div><strong>Votes count:</strong> {{event?.voters.length}}</div>
-        <address *ngIf="event.location">
+        <address *ngIf="event?.location.address !== null">
           <strong>Address:</strong><br/>
           {{event?.location?.country}}, {{event?.location?.city}}, {{event?.location?.address}}
         </address>

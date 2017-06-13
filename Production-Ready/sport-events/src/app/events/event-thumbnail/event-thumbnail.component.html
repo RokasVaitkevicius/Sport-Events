@@ -9,7 +9,7 @@
   <div>Event Time: {{event?.timeFrom}} - {{event?.timeTill}}</div>
   <div *ngIf="event?.price > 0"><strong>Price:</strong> {{event?.price | currency:'EUR':true}}</div>
   <div *ngIf="event?.price === 0"><strong>Price:</strong> FREE</div>
-  <div *ngIf="event.location.address !== ''">
+  <div *ngIf="event?.location.address !== null">
     <span>Location: {{event?.location.country}}, {{event?.location?.city}}, {{event?.location?.address}}</span>
   </div>
   <div *ngIf="event?.facebookEventUrl">
