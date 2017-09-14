@@ -5,7 +5,7 @@ namespace Events.Repository.User
 {
     public interface IUserRepository : IUserReadOnlyRepository
     {
-        Task CreateUser(UserPoco newUser);
+        Task<int> CreateUser(UserPoco newUser);
 
         Task UpdateUser(int userId, UserPoco updatedUser);
     }

@@ -50,9 +50,9 @@ namespace Events.Api.Cases.Users
             return _mapper.Map<UserPoco, UserDto>(userPoco);
         }
 
-        public async Task CreateUser(NewUser newUser)
+        public async Task<int> CreateUser(NewUser newUser)
         {
-            await _factory.CreateUser(newUser);
+            return await _factory.CreateUser(newUser);
         }
 
         public async Task UpdateUser(int userId, UserUpdate updatedUser)

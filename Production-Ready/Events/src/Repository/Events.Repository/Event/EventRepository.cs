@@ -47,11 +47,13 @@ namespace Events.Repository.Event
             return await _db.Events.Select(e => e).Where(e => e.UserId == userId).Include(e => e.Voters).ToArrayAsync();
         }
 
-        public async Task CreateEvent(EventPoco newEvent)
+        public async Task<int> CreateEvent(EventPoco newEvent)
         {
             await _db.Events.AddAsync(newEvent);
 
             await _db.SaveChangesAsync();
+
+            return newEvent.EventId;
         }
 
         public async Task UpdateEvent(int eventId, EventPoco updatedEvent)
@@ -82,14 +84,7 @@ namespace Events.Repository.Event
         {
             var oldEvent = await _db.Events.FirstOrDefaultAsync(e => e.EventId == eventId);
 
-            if (oldEvent.Canceled == false)
-            {
-                oldEvent.Canceled = true;
-            }
-            else if(oldEvent.Canceled == true)
-            {
-                oldEvent.Canceled = false;
-            }
+            oldEvent.Canceled = !oldEvent.Canceled;
 
             _db.Events.Update(oldEvent);
 

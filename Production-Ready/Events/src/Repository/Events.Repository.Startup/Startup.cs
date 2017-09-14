@@ -9,7 +9,7 @@ namespace Events.Repository.Startup
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<EventsDbContext>(options =>
-                options.UseNpgsql("connection", b => b.MigrationsAssembly("Events.Repository.Contexts")));
+                options.UseSqlite("connection", b => b.MigrationsAssembly("Events.Repository.Contexts")));
         }
     }
 }

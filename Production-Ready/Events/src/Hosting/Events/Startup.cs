@@ -42,7 +42,7 @@ namespace Events
             var connectionString = Configuration["EventsDB:ConnectionString"];
 
             services.AddDbContext<EventsDbContext>(options =>
-                options.UseNpgsql(connectionString));
+                options.UseSqlite(connectionString), ServiceLifetime.Scoped);
         }
 
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory,

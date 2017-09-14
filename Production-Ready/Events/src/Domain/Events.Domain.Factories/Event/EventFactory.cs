@@ -15,7 +15,7 @@ namespace Events.Domain.Factories.Event
             _repository = repository;
         }
 
-        public async Task CreateEvent(NewEvent newEvent)
+        public async Task<int> CreateEvent(NewEvent newEvent)
         {
             var eventPoco = new EventPoco
             {
@@ -37,7 +37,7 @@ namespace Events.Domain.Factories.Event
                 Canceled = false
             };
 
-            await _repository.CreateEvent(eventPoco);
+            return await _repository.CreateEvent(eventPoco);
         }
 
         public async Task CreateUpdatedEvent(int eventId, EventUpdate updateEvent)

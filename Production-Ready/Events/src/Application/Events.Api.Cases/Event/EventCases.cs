@@ -61,9 +61,9 @@ namespace Events.Api.Cases.Event
             return eventsPoco.Select(eventPoco => _mapper.Map<EventPoco, EventDto>(eventPoco)).ToArray();
         }
 
-        public async Task CreateEvent(NewEvent newEvent)
+        public async Task<int> CreateEvent(NewEvent newEvent)
         {
-            await _eventFactory.CreateEvent(newEvent);
+            return await _eventFactory.CreateEvent(newEvent);
         }
 
         public async Task UpdateEvent(int eventId, EventUpdate eventUpdate)

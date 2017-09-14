@@ -17,7 +17,7 @@ namespace Events.Repository.Contexts
         public EventsDbContext(DbContextOptions<EventsDbContext> options) :
             base(options)
         {
-            Database.Migrate();
+            //Database.Migrate();
            
         }
 

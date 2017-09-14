@@ -2,6 +2,7 @@
 using Events.Api.Controllers.Helpers;
 using Events.Api.Dto.Events;
 using Microsoft.AspNetCore.Mvc;
+using System;
 using System.Threading.Tasks;
 using EventDto = Events.Api.Dto.Events.Event;
 
@@ -63,9 +64,11 @@ namespace Events.Api.Controllers.Event
         [Route("")]
         public async Task<IActionResult> Add([FromBody] NewEvent newEvent)
         {
-            await _cases.CreateEvent(newEvent);
+            var eventId = await _cases.CreateEvent(newEvent);
 
-            return Ok();
+            var uri = new Uri(Url.Link(nameof(RouteNames.GetEventById), new { id = eventId }));
+
+            return Created(uri, null);
         }
 
         [HttpPut]

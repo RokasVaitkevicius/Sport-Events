@@ -49,11 +49,13 @@ namespace Events.Repository.User
             return await _db.Users.FirstOrDefaultAsync(u => u.Email == email && u.Password == password);
         }
 
-        public async Task CreateUser(UserPoco newUser)
+        public async Task<int> CreateUser(UserPoco newUser)
         {
             await _db.AddAsync(newUser);
 
             await _db.SaveChangesAsync();
+
+            return newUser.UserId;
         }
 
         public async Task UpdateUser(int userId, UserPoco updatedUser)

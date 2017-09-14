@@ -15,7 +15,7 @@ namespace Events.Domain.Factories.Users
             _repository = repository;
         }
 
-        public async Task CreateUser(NewUser newUser)
+        public async Task<int> CreateUser(NewUser newUser)
         {
             var userPoco = new UserPoco
             {
@@ -26,7 +26,7 @@ namespace Events.Domain.Factories.Users
                 UserName = newUser.UserName
             };
 
-            await _repository.CreateUser(userPoco);
+            return await _repository.CreateUser(userPoco);
         }
 
         public async Task CreateUpdatedUser(int userId, UserUpdate updateUser)

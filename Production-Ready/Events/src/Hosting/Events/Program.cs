@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using Microsoft.AspNetCore.Hosting;
 using System.IO;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Hosting;
 
 namespace Events
 {
@@ -12,7 +8,7 @@ namespace Events
         public static void Main(string[] args)
         {
             var host = new WebHostBuilder()
-                .UseUrls(@"http://*:80/events")
+                //.UseUrls(@"http://*:80/events")
                 .UseKestrel()
                 .UseContentRoot(Directory.GetCurrentDirectory())
                 .UseStartup<Startup>()

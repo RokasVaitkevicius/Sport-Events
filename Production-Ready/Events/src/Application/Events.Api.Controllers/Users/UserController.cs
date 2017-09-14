@@ -2,6 +2,7 @@
 using Events.Api.Controllers.Helpers;
 using Events.Api.Dto.Users;
 using Microsoft.AspNetCore.Mvc;
+using System;
 using System.Threading.Tasks;
 using UserDto = Events.Api.Dto.Users.User;
 
@@ -51,9 +52,11 @@ namespace Events.Api.Controllers.Users
         [Route("")]
         public async Task<IActionResult> Add([FromBody] NewUser newUser)
         {
-            await _cases.CreateUser(newUser);
+            var userId = await _cases.CreateUser(newUser);
 
-            return Ok();
+            var uri = new Uri(Url.Link(nameof(RouteNames.GetUserByUserId), new {userId = userId}));
+
+            return Created(uri, null);
         }
 
         [HttpPut]
