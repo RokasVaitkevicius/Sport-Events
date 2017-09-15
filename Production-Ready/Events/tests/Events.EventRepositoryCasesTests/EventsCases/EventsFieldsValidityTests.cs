@@ -5,14 +5,15 @@ using Events.Api.Dto.Users;
 using Events.EventRepositoryCasesTests.EventsCases.TestData;
 using Events.TestHelpers;
 using Microsoft.Extensions.DependencyInjection;
+using System;
 using Xunit;
 
 namespace Events.EventRepositoryCasesTests.EventsCases
 {
-    public class EventsCreateReadTests
+    public class EventsFieldsValidityTests
     {
-        [Theory, ClassData(typeof(EventsValidationDataCollection))]
-        public async void ItFindsCreatedEvent_WhenEventIsCreated(NewUser newUser, NewEvent newEvent)
+        [Theory, ClassData(typeof(EventsInvalidDataCollection))]
+        public async void ItThrowsArgumentNullException_WhenEventIsCreated(NewUser newUser, NewEvent newEvent)
         {
             // Prepare:
 
@@ -28,13 +29,10 @@ namespace Events.EventRepositoryCasesTests.EventsCases
 
             newEvent.UserId = userId;
 
-            var eventId = await eventCases.CreateEvent(newEvent);
-
             // Assert:
 
-            var retrievedEvent = await eventCases.GetEventById(eventId);
-
-            Assert.NotNull(retrievedEvent);
+            await Assert.ThrowsAsync<ArgumentNullException>(async () => 
+                await eventCases.CreateEvent(newEvent));
         }
     }
 }

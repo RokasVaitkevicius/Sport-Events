@@ -6,17 +6,19 @@ using System;
 
 namespace Events.EventRepositoryCasesTests.EventsCases.TestData
 {
-    public class EventsValidationDataCollection : ClassDataBase<NewUser, NewEvent>
+    public class EventsInvalidDataCollection : ClassDataBase<NewUser, NewEvent>
     {
-        public EventsValidationDataCollection() :
+        public EventsInvalidDataCollection() :
             base(new[]
             {
-                Create("username", "email", "firstname", "latname", "paswrd", "Event", DateTime.Now, "10", "12", 12.05,
+                Create("username", "email", "firstname", "latname", "paswrd", null, DateTime.Now, "10", "12", 12.05,
                     "8666566", "street", "city", "country", "description", null, null, 1, 1),
-                Create("usernames", "emailaaas", "firstname", "latname", "paswrd", "Event", DateTime.Now, "10", "12", 12.05,
+                Create("usernames", "emailaaas", "firstname", "latname", "paswrd", "Event", DateTime.Now, null, "12", 12.05,
                     "8666566", "street", "city", "country", "description", "https://fb", "http://image", 1, 1),
-                Create("usernamsse", "email@aaa", "firstname", "latname", "paswrd", "Event", DateTime.Now, "10", "12", 12.05,
-                "8666566", "street", "city", "country", "description", null, "http://image", 1, 1)
+                Create("usernamsse", "email@aaa", "firstname", "latname", "paswrd", "Event", DateTime.Now, "10", null, 12.05,
+                "8666566", "street", "city", "country", "description", null, "http://image", 1, 1),
+                Create("usernamsse", "email@aaa", "firstname", "latname", "paswrd", "Event", DateTime.Now, "10", null, 12.05,
+                null, "street", "city", "country", "description", null, "http://image", 1, 1)
             })
         {
         }

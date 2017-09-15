@@ -1,10 +1,10 @@
-﻿using System.Collections.Generic;
-using System.Linq;
+﻿using AutoMapper;
 using Events.Api.Dto.Events;
 using Events.Domain.Factories.Event;
 using Events.Repository.Event;
+using System;
+using System.Linq;
 using System.Threading.Tasks;
-using AutoMapper;
 using EventDto = Events.Api.Dto.Events.Event;
 using EventPoco = Events.Repository.Pocos.Event;
 
@@ -63,6 +63,36 @@ namespace Events.Api.Cases.Event
 
         public async Task<int> CreateEvent(NewEvent newEvent)
         {
+            if (string.IsNullOrWhiteSpace(newEvent.Name))
+            {
+                throw new ArgumentNullException(nameof(newEvent.Name));
+            }
+
+            if (string.IsNullOrWhiteSpace(newEvent.TimeFrom))
+            {
+                throw new ArgumentNullException(nameof(newEvent.TimeFrom));
+            }
+
+            if (string.IsNullOrWhiteSpace(newEvent.TimeTill))
+            {
+                throw new ArgumentNullException(nameof(newEvent.TimeTill));
+            }
+
+            if (string.IsNullOrWhiteSpace(newEvent.PhoneNumber))
+            {
+                throw new ArgumentNullException(nameof(newEvent.PhoneNumber));
+            }
+
+            if (string.IsNullOrWhiteSpace(newEvent.Location.Country))
+            {
+                throw new ArgumentNullException(nameof(newEvent.Location.Country));
+            }
+
+            if (string.IsNullOrWhiteSpace(newEvent.Location.City))
+            {
+                throw new ArgumentNullException(nameof(newEvent.Location.City));
+            }
+
             return await _eventFactory.CreateEvent(newEvent);
         }
 
