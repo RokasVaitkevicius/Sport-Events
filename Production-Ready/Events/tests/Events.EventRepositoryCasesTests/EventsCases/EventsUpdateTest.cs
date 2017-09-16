@@ -49,6 +49,5 @@ namespace Events.EventRepositoryCasesTests.EventsCases
             Assert.Equal(updatedEvent.FacebookEventUrl, retrievedEvent.FacebookEventUrl);
             Assert.Equal(updatedEvent.ImageUrl, retrievedEvent.ImageUrl);
         }
-
     }
 }
