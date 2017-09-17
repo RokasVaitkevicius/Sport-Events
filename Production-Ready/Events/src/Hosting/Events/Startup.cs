@@ -1,4 +1,5 @@
-﻿using Events.Api.DI.Setup;
+﻿using System;
+using Events.Api.DI.Setup;
 using Events.Repository.Contexts;
 using Events.Seeder;
 using Microsoft.AspNetCore.Builder;
@@ -28,6 +29,8 @@ namespace Events
 
         public void ConfigureServices(IServiceCollection services)
         {
+            Console.WriteLine("Running microservice");
+
             services.AddCors();
 
             services.AddMvc();
@@ -42,7 +45,7 @@ namespace Events
             var connectionString = Configuration["EventsDB:ConnectionString"];
 
             services.AddDbContext<EventsDbContext>(options =>
-                options.UseSqlite(connectionString), ServiceLifetime.Scoped);
+                options.UseSqlite(connectionString));
         }
 
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory,

@@ -7,7 +7,7 @@ namespace Events.Repository.Voter
 {
     public class VoterRepository : IVoterRepository
     {
-        private EventsDbContext _db;
+        private readonly EventsDbContext _db;
 
         public VoterRepository(EventsDbContext db)
         {

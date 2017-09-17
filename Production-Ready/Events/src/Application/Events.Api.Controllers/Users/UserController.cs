@@ -54,7 +54,7 @@ namespace Events.Api.Controllers.Users
         {
             var userId = await _cases.CreateUser(newUser);
 
-            var uri = new Uri(Url.Link(nameof(RouteNames.GetUserByUserId), new {userId = userId}));
+            var uri = new Uri(Url.Link(nameof(RouteNames.GetUserByUserId), new {userId}));
 
             return Created(uri, null);
         }

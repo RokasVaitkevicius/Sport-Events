@@ -1,8 +1,7 @@
-﻿using System.Threading.Tasks;
-using Events.Api.Cases.Event;
-using Events.Api.Cases.SportType;
+﻿using Events.Api.Cases.SportType;
 using Events.Api.Controllers.Helpers;
 using Microsoft.AspNetCore.Mvc;
+using System.Threading.Tasks;
 using SportTypeDto = Events.Api.Dto.SportType.SportType;
 
 namespace Events.Api.Controllers.SportType

@@ -1,8 +1,7 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using Events.Api.Dto.SportType;
-using Events.Repository.Contexts;
+﻿using Events.Repository.Contexts;
 using Microsoft.Extensions.DependencyInjection;
+using System.Collections.Generic;
+using System.Linq;
 using SportTypePoco = Events.Repository.Pocos.SportType;
 
 namespace Events.Seeder

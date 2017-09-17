@@ -6,7 +6,7 @@ namespace Events.Domain.Factories.Voter
 {
     public class VoterFactory : IVoterFactory
     {
-        private IVoterRepository _repository;
+        private readonly IVoterRepository _repository;
 
         public VoterFactory(IVoterRepository repository)
         {

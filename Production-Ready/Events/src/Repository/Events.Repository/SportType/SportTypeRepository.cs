@@ -8,7 +8,7 @@ namespace Events.Repository.SportType
 {
     public class SportTypeRepository : ISportTypeRepository
     {
-        private EventsDbContext _db;
+        private readonly EventsDbContext _db;
 
         public SportTypeRepository(EventsDbContext db)
         {

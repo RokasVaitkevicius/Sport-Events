@@ -10,6 +10,7 @@ namespace Events.TestHelpers.Data
 
         protected DataBase(object[][] data)
         {
+            // ReSharper disable once JoinNullCheckWithUsage
             if (data == null)
             {
                 throw new ArgumentNullException(nameof(data));

@@ -8,7 +8,7 @@ namespace Events.Api.Controllers.Voter
     [Route("api/voter")]
     public class VoterController : Controller
     {
-        private IVoterCases _cases;
+        private readonly IVoterCases _cases;
 
         public VoterController(IVoterCases cases)
         {
