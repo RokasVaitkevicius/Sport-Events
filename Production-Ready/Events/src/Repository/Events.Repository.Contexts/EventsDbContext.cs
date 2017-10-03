@@ -1,5 +1,6 @@
 ﻿using Events.Repository.Pocos;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Design;
 
 namespace Events.Repository.Contexts
 {
@@ -17,10 +18,10 @@ namespace Events.Repository.Contexts
         public EventsDbContext(DbContextOptions<EventsDbContext> options) :
             base(options)
         {
-            //Database.Migrate();
+            Database.Migrate();
            
         }
-
+        
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Event>()

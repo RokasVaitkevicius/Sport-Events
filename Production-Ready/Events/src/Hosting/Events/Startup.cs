@@ -2,6 +2,7 @@
 using Events.Api.DI.Setup;
 using Events.Repository.Contexts;
 using Events.Seeder;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
@@ -65,6 +66,14 @@ namespace Events
                 .AllowAnyHeader()
                 .AllowAnyMethod()
                 .AllowCredentials());
+
+            var options = new JwtBearerOptions
+            {
+                Audience = Configuration["Auth0:ApiIdentifier"],
+                Authority = $"https://{Configuration["Auth0:Domain"]}/"
+            };
+
+            app.UseJwtBearerAuthentication(options);
 
             app.UseMvc();
 
