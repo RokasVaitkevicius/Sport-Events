@@ -22,7 +22,7 @@ namespace Events.Api.Cases.Voter
             await _voterFactory.CreateVoter(newVoter.EventId, newVoter.UserId);
         }
 
-        public async Task DeleteVoter(int eventId, int userId)
+        public async Task DeleteVoter(int eventId, string userId)
         {
             await _repository.DeleteVoter(eventId, userId);
         }

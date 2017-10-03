@@ -15,8 +15,7 @@ export class NavbarComponent implements OnInit {
 
   constructor(public authService: AuthService,
               private eventService: EventService,
-              private sportTypeService: SportTypeService,
-              private _authService: AuthService) {
+              private sportTypeService: SportTypeService) {
   }
 
   ngOnInit() {
@@ -39,12 +38,11 @@ export class NavbarComponent implements OnInit {
     this.eventService.resetEvents();
   }
 
-  logout() {
+  logoutFromSystem() {
     this.authService.logout();
   }
 
   loginToSystem() {
-
-    this._authService.login();
+    this.authService.login();
   }
 }

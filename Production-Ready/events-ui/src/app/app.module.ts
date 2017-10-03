@@ -1,8 +1,7 @@
 import {BrowserModule} from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import {HttpModule} from '@angular/http';
-
+import { HttpModule, Http, RequestOptions } from '@angular/http';
 import {AppComponent} from './app.component';
 import {EventDetailsComponent} from './events/event-details/event-details.component';
 
@@ -11,7 +10,6 @@ import {NavbarComponent} from './nav/navbar/navbar.component';
 import {EventResolver} from "./microservices/event/event-resolver.service";
 import {EventListComponent} from './events/event-list/event-list.component';
 import {EventThumbnailComponent} from './events/event-thumbnail/event-thumbnail.component';
-import {ProfileComponent} from './user/profile/profile.component';
 import {LoginComponent} from './user/login/login.component';
 import {Error404Component} from './errors/error404/error404.component';
 import {AuthService} from "./user/shared/auth.service";
@@ -30,9 +28,15 @@ import {CollapsibleWellComponent} from './common/collapsible-well/collapsible-we
 import {SortingComponent} from './events/sorting/sorting.component';
 import {SportTypeService} from './microservices/sport-type/sport-type.service';
 import {StringToDatePipe} from './events/shared/string-to-date.pipe';
-import {RegisterComponent} from './user/register/register.component';
 import {CookieModule} from 'ngx-cookie';
 import {CallbackComponent} from "./user/callback/callback.component";
+import { AuthHttp, AuthConfig } from 'angular2-jwt';
+
+export function authHttpServiceFactory(http: Http, options: RequestOptions) {
+  return new AuthHttp(new AuthConfig({
+    tokenGetter: (() => localStorage.getItem('access_token'))
+  }), http, options);
+}
 
 @NgModule({
   declarations: [
@@ -42,7 +46,6 @@ import {CallbackComponent} from "./user/callback/callback.component";
     CreateEventComponent,
     EventListComponent,
     EventThumbnailComponent,
-    ProfileComponent,
     LoginComponent,
     Error404Component,
     StringToDatePipe,
@@ -52,7 +55,6 @@ import {CallbackComponent} from "./user/callback/callback.component";
     MyEventsComponent,
     CollapsibleWellComponent,
     SortingComponent,
-    RegisterComponent,
     CallbackComponent
   ],
   imports: [
@@ -72,6 +74,11 @@ import {CallbackComponent} from "./user/callback/callback.component";
     EventResolver,
     EventListResolver,
     AuthService,
+    {
+      provide: AuthHttp,
+      useFactory: authHttpServiceFactory,
+      deps: [Http, RequestOptions]
+    },
     {provide: 'canDeactivateCreateEvent', useValue: checkDirtyState}
   ],
   bootstrap: [AppComponent]

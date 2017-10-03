@@ -39,11 +39,9 @@ namespace Events.Repository.Pocos
 
         public bool Canceled { get; set; }
 
+        public string UserId { get; set; }
+
         #region Dependencies
-
-        public int UserId { get; set; }
-
-        public User User { get; set; }
 
         public int SportTypeId { get; set; }
 

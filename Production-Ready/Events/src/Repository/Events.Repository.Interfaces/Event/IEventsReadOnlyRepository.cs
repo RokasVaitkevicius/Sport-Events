@@ -13,6 +13,6 @@ namespace Events.Repository.Event
 
         Task<EventPoco> GetEventById(int id);
 
-        Task<EventPoco[]> GetEventsByUserId(int userId);
+        Task<EventPoco[]> GetEventsByUserId(string userId);
     }
 }

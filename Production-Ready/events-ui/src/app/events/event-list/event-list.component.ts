@@ -39,11 +39,6 @@ export class EventListComponent implements OnInit {
       this.events = this.mapSportTypes(this.events);
     });
 
-    this.userService.getUsers().subscribe(users => {
-      this.users = users;
-      this.events = this.mapUsers(this.events);
-    });
-
     this.resetSubscription = this.eventService.resetEventsObservable$.subscribe(() => {
       this.filterTerm = '';
       this.searchTerm = '';

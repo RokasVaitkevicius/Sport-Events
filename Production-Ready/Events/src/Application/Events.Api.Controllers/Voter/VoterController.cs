@@ -1,10 +1,12 @@
 ﻿using Events.Api.Cases.Voter;
 using Events.Api.Dto.Voters;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 
 namespace Events.Api.Controllers.Voter
 {
+    [Authorize]
     [Route("api/voter")]
     public class VoterController : Controller
     {
@@ -25,8 +27,8 @@ namespace Events.Api.Controllers.Voter
         }
 
         [HttpDelete]
-        [Route("{eventId:int}/{userId:int}")]
-        public async Task<IActionResult> Delete([FromRoute] int eventId, [FromRoute] int userId)
+        [Route("{eventId:int}/{userId}")]
+        public async Task<IActionResult> Delete([FromRoute] int eventId, [FromRoute] string userId)
         {
             await _cases.DeleteVoter(eventId, userId);
 

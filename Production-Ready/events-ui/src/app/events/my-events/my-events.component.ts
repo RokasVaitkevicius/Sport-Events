@@ -14,6 +14,8 @@ import {ToastrService} from 'toastr-ng2';
 export class MyEventsComponent implements OnInit {
   public myEvents: IEvent[];
   sportTypes: ISportType[];
+  profile: any;
+  initialize = false;
 
   constructor(private auth: AuthService,
               private eventService: EventService,
@@ -22,11 +24,17 @@ export class MyEventsComponent implements OnInit {
   }
 
   ngOnInit() {
+      this.auth.getProfile((err, profile) => {
+        this.profile = profile;
+        console.log(this.profile);
+      });
+
+    setTimeout(() =>{
     this.sportTypeService.getSportTypes().subscribe(sportType => {
       this.sportTypes = sportType;
     });
 
-    this.eventService.getEventsByUserId(this.auth.currentUser.userId).subscribe(e => {
+    this.eventService.getEventsByUserId(this.profile.sub).subscribe(e => {
       this.myEvents = e;
       this.myEvents.sort((event1, event2) => {
         if (event1.eventDate > event2.eventDate) {
@@ -36,7 +44,8 @@ export class MyEventsComponent implements OnInit {
         }
         return 0;
       });
-    });
+      this.initialize = true;
+    });}, 1000);
   }
 
   changeEventState(eventId: number) {

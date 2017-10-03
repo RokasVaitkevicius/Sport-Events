@@ -7,17 +7,14 @@ namespace Events.Repository.Pocos
         [Key]
         public int VoterId { get; set; }
 
+        public string UserId { get; set; }
+
         #region Dependencies
 
         public int EventId { get; set; }
 
         public Event Event { get; set; }
 
-        public int UserId { get; set; }
-
-        public User User { get; set; }
-
         #endregion
-
     }
 }

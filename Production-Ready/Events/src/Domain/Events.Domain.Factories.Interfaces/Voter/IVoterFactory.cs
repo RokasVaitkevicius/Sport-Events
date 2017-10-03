@@ -4,6 +4,6 @@ namespace Events.Domain.Factories.Voter
 {
     public interface IVoterFactory
     {
-        Task CreateVoter(int eventId, int userId);
+        Task CreateVoter(int eventId, string userId);
     }
 }

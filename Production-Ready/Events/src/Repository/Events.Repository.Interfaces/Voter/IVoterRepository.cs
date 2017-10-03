@@ -7,6 +7,6 @@ namespace Events.Repository.Voter
     {
         Task CreateVoter(VoterPoco voter);
 
-        Task DeleteVoter(int eventId, int userId);
+        Task DeleteVoter(int eventId, string userId);
     }
 }

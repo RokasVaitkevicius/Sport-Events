@@ -13,6 +13,6 @@ namespace Events.Api.Cases.Event
 
         Task<EventDto> GetEventById(int id);
 
-        Task<EventDto[]> GetEventsByUserId(int userId);
+        Task<EventDto[]> GetEventsByUserId(string userId);
     }
 }

@@ -1,13 +1,15 @@
 ﻿using Events.Api.Cases.Event;
 using Events.Api.Controllers.Helpers;
+using Events.Api.Dto.Events;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
-using Events.Api.Dto.Events;
 using EventDto = Events.Api.Dto.Events.Event;
 
 
 namespace Events.Api.Controllers.Event
 {
+    [Authorize]
     [Route("api/myEvents")]
     public class MyEventController : Controller
     {
@@ -19,9 +21,9 @@ namespace Events.Api.Controllers.Event
         }
 
         [HttpGet]
-        [Route("{userId:int}", Name = nameof(RouteNames.GetEventsByUserId))]
+        [Route("{userId}", Name = nameof(RouteNames.GetEventsByUserId))]
         [Produces(typeof(EventDto))]
-        public async Task<IActionResult> GetByUserId([FromRoute] int userId)
+        public async Task<IActionResult> GetByUserId([FromRoute] string userId)
         {
             IActionResult result;
 

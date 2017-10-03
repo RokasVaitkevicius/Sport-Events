@@ -1,6 +1,7 @@
 ﻿using Events.Api.Cases.Event;
 using Events.Api.Controllers.Helpers;
 using Events.Api.Dto.Events;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Threading.Tasks;
@@ -60,6 +61,7 @@ namespace Events.Api.Controllers.Event
             return result;
         }
 
+        [Authorize]
         [HttpPost]
         [Route("")]
         public async Task<IActionResult> Add([FromBody] NewEvent newEvent)

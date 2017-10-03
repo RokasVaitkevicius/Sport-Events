@@ -13,7 +13,7 @@ namespace Events.Domain.Factories.Voter
             _repository = repository;
         }
 
-        public async Task CreateVoter(int eventId, int userId)
+        public async Task CreateVoter(int eventId, string userId)
         {
             var voterPoco = new VoterPoco
             {

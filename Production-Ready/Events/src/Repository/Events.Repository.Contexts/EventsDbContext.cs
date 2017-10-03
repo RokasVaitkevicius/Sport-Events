@@ -11,8 +11,6 @@ namespace Events.Repository.Contexts
 
         public DbSet<SportType> SportTypes { get; set; }
 
-        public DbSet<User> Users { get; set; }
-
         public DbSet<Voter> Voters { get; set; }
 
         public EventsDbContext(DbContextOptions<EventsDbContext> options) :
@@ -25,12 +23,6 @@ namespace Events.Repository.Contexts
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Event>()
-                .HasOne(e => e.User)
-                .WithMany(a => a.Events)
-                .HasForeignKey(e => e.UserId)
-                .IsRequired();
-
-            modelBuilder.Entity<Event>()
                 .HasOne(e => e.SportType)
                 .WithMany(st => st.Events)
                 .HasForeignKey(e => e.SportTypeId)
@@ -40,12 +32,6 @@ namespace Events.Repository.Contexts
                 .HasOne(v => v.Event)
                 .WithMany(e => e.Voters)
                 .HasForeignKey(e => e.EventId)
-                .IsRequired();
-
-            modelBuilder.Entity<Voter>()
-                .HasOne(v => v.User)
-                .WithMany(e => e.Voters)
-                .HasForeignKey(e => e.UserId)
                 .IsRequired();
         }
     }

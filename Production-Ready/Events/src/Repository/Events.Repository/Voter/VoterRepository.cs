@@ -21,7 +21,7 @@ namespace Events.Repository.Voter
             await _db.SaveChangesAsync();
         }
 
-        public async Task DeleteVoter(int eventId, int userId)
+        public async Task DeleteVoter(int eventId, string userId)
         {
             var voter = await _db.Voters.
                 FirstOrDefaultAsync(v => v.EventId == eventId && v.UserId == userId);

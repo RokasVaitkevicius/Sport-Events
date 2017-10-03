@@ -51,13 +51,11 @@ namespace Events.Repository.Contexts.Migrations
 
                     b.Property<string>("TimeTill");
 
-                    b.Property<int>("UserId");
+                    b.Property<string>("UserId");
 
                     b.HasKey("EventId");
 
                     b.HasIndex("SportTypeId");
-
-                    b.HasIndex("UserId");
 
                     b.ToTable("Events");
                 });
@@ -74,26 +72,6 @@ namespace Events.Repository.Contexts.Migrations
                     b.ToTable("SportTypes");
                 });
 
-            modelBuilder.Entity("Events.Repository.Pocos.User", b =>
-                {
-                    b.Property<int>("UserId")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<string>("Email");
-
-                    b.Property<string>("FirstName");
-
-                    b.Property<string>("LastName");
-
-                    b.Property<string>("Password");
-
-                    b.Property<string>("UserName");
-
-                    b.HasKey("UserId");
-
-                    b.ToTable("Users");
-                });
-
             modelBuilder.Entity("Events.Repository.Pocos.Voter", b =>
                 {
                     b.Property<int>("VoterId")
@@ -101,13 +79,11 @@ namespace Events.Repository.Contexts.Migrations
 
                     b.Property<int>("EventId");
 
-                    b.Property<int>("UserId");
+                    b.Property<string>("UserId");
 
                     b.HasKey("VoterId");
 
                     b.HasIndex("EventId");
-
-                    b.HasIndex("UserId");
 
                     b.ToTable("Voters");
                 });
@@ -118,11 +94,6 @@ namespace Events.Repository.Contexts.Migrations
                         .WithMany("Events")
                         .HasForeignKey("SportTypeId")
                         .OnDelete(DeleteBehavior.Cascade);
-
-                    b.HasOne("Events.Repository.Pocos.User", "User")
-                        .WithMany("Events")
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("Events.Repository.Pocos.Voter", b =>
@@ -130,11 +101,6 @@ namespace Events.Repository.Contexts.Migrations
                     b.HasOne("Events.Repository.Pocos.Event", "Event")
                         .WithMany("Voters")
                         .HasForeignKey("EventId")
-                        .OnDelete(DeleteBehavior.Cascade);
-
-                    b.HasOne("Events.Repository.Pocos.User", "User")
-                        .WithMany("Voters")
-                        .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
         }

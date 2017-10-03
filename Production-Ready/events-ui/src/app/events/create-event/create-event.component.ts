@@ -16,7 +16,7 @@ export class CreateEventComponent implements OnInit {
   isDirty: boolean = true;
   sportTypes: ISportType[];
   event: any = {location: {}};
-
+profile: any;
   // Form variables
 
  public eventId: number;
@@ -49,11 +49,16 @@ export class CreateEventComponent implements OnInit {
     this.sportTypeService.getSportTypes().subscribe(sportType => {
       this.sportTypes = sportType;
     });
+
+    this.auth.getProfile((err, profile) => {
+      this.profile = profile;
+      console.log(this.profile);
+    });
   }
 
   saveEvent(formValues) {
     const newEvent: INewEvent = {
-      userId: this.auth.currentUser.userId,
+      userId: this.profile.sub,
       name: formValues.name,
       sportTypeId: formValues.sportTypeId,
       eventDate: new Date(formValues.eventDate),

@@ -54,7 +54,7 @@ namespace Events.Api.Cases.Event
             return _mapper.Map<EventPoco, EventDto>(eventPoco);
         }
 
-        public async Task<EventDto[]> GetEventsByUserId(int userId)
+        public async Task<EventDto[]> GetEventsByUserId(string userId)
         {
             var eventsPoco = await _repository.GetEventsByUserId(userId);
 

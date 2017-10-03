@@ -38,15 +38,10 @@
       <div class="navbar-header navbar-right">
         <ul class="nav navbar-nav">
           <li>
-            <a *ngIf="!authService.isAuthenticated()" [routerLink]="['user/register']">Register</a>
-          </li>
-          <li>
             <a *ngIf="!authService.isAuthenticated()" (click)="loginToSystem()">Login</a>
-            <a *ngIf="authService.isAuthenticated()" [routerLink]="['user/profile']">Welcome
-              {{authService.currentUser.firstName}}</a>
           </li>
           <li>
-            <a *ngIf="authService.isAuthenticated()" [routerLink]="['events']" (click)="logout()">Logout</a>
+            <a *ngIf="authService.isAuthenticated()" [routerLink]="['events']" (click)="logoutFromSystem()">Logout</a>
           </li>
         </ul>
       </div>

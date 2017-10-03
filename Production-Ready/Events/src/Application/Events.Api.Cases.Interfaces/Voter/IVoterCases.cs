@@ -7,6 +7,6 @@ namespace Events.Api.Cases.Voter
     {
         Task CreateVoter(NewVoter newVoter);
 
-        Task DeleteVoter(int eventId, int userId);
+        Task DeleteVoter(int eventId, string userId);
     }
 }

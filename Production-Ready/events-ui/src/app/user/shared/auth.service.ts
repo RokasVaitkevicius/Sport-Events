@@ -1,12 +1,12 @@
 import {IUser} from './user.model';
 import {Injectable} from '@angular/core';
-import {CookieService} from 'ngx-cookie';
 import * as auth0 from 'auth0-js';
 import {Router} from '@angular/router';
 
 @Injectable()
 export class AuthService {
   currentUser: IUser;
+  userProfile: any;
 
   auth0 = new auth0.WebAuth({
     clientID: 'TjLRmJl6dmuyh275VCWg300XEgG0uGt0',
@@ -14,10 +14,10 @@ export class AuthService {
     responseType: 'token id_token',
     audience: 'http://localhost:5000',
     redirectUri: 'http://localhost:4200/callback',
-    scope: 'openid'
+    scope: 'openid profile'
   });
 
-  constructor(private cookieService: CookieService, public router: Router) {
+  constructor(public router: Router) {
   }
 
   public handleAuthentication(): void {
@@ -61,26 +61,18 @@ export class AuthService {
     this.auth0.authorize();
   }
 
-  /**login() {
-    console.log('hello')
-    this.currentUser = <IUser>this.cookieService.getObject('user');
-  }*/
+  public getProfile(cb): void {
+    const accessToken = localStorage.getItem('access_token');
+    if (!accessToken) {
+      throw new Error('Access token must exist to fetch profile');
+    }
 
-  updateUser(firstName: string, lastName: string) {
-    this.currentUser.firstName = firstName;
-    this.currentUser.lastName = lastName;
-    this.cookieService.putObject('user', this.currentUser);
+    const self = this;
+    this.auth0.client.userInfo(accessToken, (err, profile) => {
+      if (profile) {
+        self.userProfile = profile;
+      }
+      cb(err, profile);
+    });
   }
-
-  /**isAuthenticated() {
-    this.currentUser = <IUser>this.cookieService.getObject('user');
-    return !!this.currentUser;
-  }
-
-
-
-  logout() {
-    this.currentUser = null;
-    this.cookieService.removeAll();
-  }*/
 }
