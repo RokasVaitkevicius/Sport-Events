@@ -2,6 +2,7 @@ import {Injectable} from '@angular/core';
 import {Observable, Subject} from 'rxjs/Rx';
 import {IEvent, INewEvent, IUpdateEvent} from './event.model';
 import {Http, Response, Headers, RequestOptions} from '@angular/http';
+import {AuthHttp} from 'angular2-jwt';
 
 @Injectable()
 export class EventService {
@@ -16,7 +17,7 @@ export class EventService {
 
   private baseUrl = 'http://localhost:5000';
 
-  constructor(private http: Http) {
+  constructor(private http: Http, private authHttp: AuthHttp) {
 
   }
 
@@ -52,7 +53,7 @@ export class EventService {
     const headers = new Headers({'Content-Type': 'application/json'});
     const options = new RequestOptions({headers: headers});
 
-    return this.http.post(`${this.baseUrl}/api/events`, JSON.stringify(newEvent), options).map((response: Response) => {
+    return this.authHttp.post(`${this.baseUrl}/api/events`, JSON.stringify(newEvent), options).map((response: Response) => {
       return response.json();
     }).catch(this.handleError);
   }
@@ -61,7 +62,7 @@ export class EventService {
     const headers = new Headers({'Content-Type': 'application/json'});
     const options = new RequestOptions({headers: headers});
 
-    return this.http.put(`${this.baseUrl}/api/myEvents/${eventId}`, JSON.stringify(updateEvent), options).map((response: Response) => {
+    return this.authHttp.put(`${this.baseUrl}/api/myEvents/${eventId}`, JSON.stringify(updateEvent), options).map((response: Response) => {
       return response.json();
     }).catch(this.handleError);
   }
@@ -69,7 +70,7 @@ export class EventService {
   changeEventState(eventId: number): Observable<IEvent> {
     const headers = new Headers({'Content-Type': 'application/json'});
     const options = new RequestOptions({headers: headers});
-    return this.http.put(`${this.baseUrl}/api/events/${eventId}/state`, options).map((response: Response) => {
+    return this.authHttp.put(`${this.baseUrl}/api/events/${eventId}/state`, options).map((response: Response) => {
       return response.json();
     }).catch(this.handleError);
   }
@@ -87,7 +88,7 @@ export class EventService {
   }
 
   getEventsByUserId(userId: number): Observable<IEvent[]> {
-    return this.http.get(this.baseUrl + '/api/myEvents/' + userId)
+    return this.authHttp.get(this.baseUrl + '/api/myEvents/' + userId)
       .map((response: Response) => {
         return <IEvent>response.json();
       }).catch(this.handleError);

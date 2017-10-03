@@ -73,6 +73,7 @@ namespace Events.Api.Controllers.Event
             return Created(uri, null);
         }
 
+        [Authorize]
         [HttpPut]
         [Route("{eventId:int}/state")]
         public async Task<IActionResult> ChangeState([FromRoute] int eventId)

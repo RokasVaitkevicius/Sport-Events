@@ -28,7 +28,7 @@
       </div>
       <div class="col-md-1">
         <div *ngIf="auth.isAuthenticated()">
-          <upvote (vote)="toggleVote(event)"
+          <upvote *ngIf="profile" (vote)="toggleVote(event)"
                   [count]="event?.voters.length"
                   [voted]="userHasVoted(event)">
           </upvote>

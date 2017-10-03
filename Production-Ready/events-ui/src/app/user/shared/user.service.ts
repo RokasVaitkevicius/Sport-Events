@@ -3,13 +3,14 @@ import {Injectable} from '@angular/core';
 import {Observable} from 'rxjs/Observable';
 import {IRegisterUser, IUpdateUser} from './login.model';
 import {RequestOptions, Response, Headers, Http} from '@angular/http';
+import {AuthHttp} from 'angular2-jwt';
 
 @Injectable()
 export class UserService {
 
   baseUrl = 'http://localhost:5000';
 
-  constructor(private http: Http) {
+  constructor(private http: AuthHttp) {
   }
 
   getUsers(): Observable<IUser[]> {

@@ -1,11 +1,9 @@
-import {IUser} from './user.model';
 import {Injectable} from '@angular/core';
 import * as auth0 from 'auth0-js';
 import {Router} from '@angular/router';
 
 @Injectable()
 export class AuthService {
-  currentUser: IUser;
   userProfile: any;
 
   auth0 = new auth0.WebAuth({

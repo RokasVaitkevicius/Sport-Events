@@ -2,6 +2,7 @@ import {Injectable} from '@angular/core';
 import {Observable} from 'rxjs/Rx';
 import {ISportType} from './sport-type.model';
 import {Http, Response} from '@angular/http';
+import {AuthHttp} from 'angular2-jwt';
 
 @Injectable()
 export class SportTypeService {

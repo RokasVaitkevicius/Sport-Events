@@ -52,7 +52,6 @@ profile: any;
 
     this.auth.getProfile((err, profile) => {
       this.profile = profile;
-      console.log(this.profile);
     });
   }
 
