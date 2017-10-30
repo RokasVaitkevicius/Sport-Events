@@ -83,16 +83,6 @@ namespace Events.Api.Cases.Event
                 throw new ArgumentNullException(nameof(newEvent.PhoneNumber));
             }
 
-            if (string.IsNullOrWhiteSpace(newEvent.Location.Country))
-            {
-                throw new ArgumentNullException(nameof(newEvent.Location.Country));
-            }
-
-            if (string.IsNullOrWhiteSpace(newEvent.Location.City))
-            {
-                throw new ArgumentNullException(nameof(newEvent.Location.City));
-            }
-
             return await _eventFactory.CreateEvent(newEvent);
         }
 
